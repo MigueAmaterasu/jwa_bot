@@ -146,7 +146,7 @@ class Bot:
         self.dino_collected_amount_loc = (280, 330, 220, 350)
         self.center_loc = (587, 257)
         self.D = 10
-        self.v_max = 20  # ⚡ v3.4.6: DUPLICADO de 10 a 20 para seguir dinos rápidos
+        self.v_max = 30  # ⚡ v3.4.8: TRIPLICADO (10→20→30) para seguir dinos ultra-rápidos
         
 
         # ========================================================================
@@ -1039,15 +1039,19 @@ class Bot:
             
             end = time.time()
             
-            # ⚡ NUEVO v3.4.6: Forzar disparo cada 10 segundos si no se ha disparado
-            if end - last_shot_attempt > 10 and shots_attempted < 3:
-                self.logger.warning(f"⚠️  Forzando disparo #{shots_attempted + 1} (timeout 10s)")
+            # ⚡ v3.4.8: REDUCIDO timeout de 10s→6s para disparar más rápido
+            if end - last_shot_attempt > 6 and shots_attempted < 5:
+                self.logger.warning(f"⚠️  Forzando disparo #{shots_attempted + 1} (timeout 6s)")
                 pyautogui.mouseUp()
-                time.sleep(0.3)
+                time.sleep(0.1)  # Reducido de 0.3s a 0.1s
                 pyautogui.mouseDown()
-                time.sleep(0.5)
+                time.sleep(0.3)  # Reducido de 0.5s a 0.3s
                 shots_attempted += 1
                 last_shot_attempt = end
+                
+                # 🚀 v3.4.8: PERSEGUIR INMEDIATAMENTE después de soltar
+                # No esperar, continuar el loop para actualizar posición del dino
+                continue
 
             if not dino_loc and prev_dino_loc:
                 # ⚡ MEJORADO: Predicción más agresiva cuando no se detecta el dino
@@ -1064,15 +1068,17 @@ class Bot:
                     print("--"*10)
                     print("DINO CLOSE SHOOTING")
                     pyautogui.mouseUp()
-                    time.sleep(0.25)
+                    time.sleep(0.1)  # ⚡ v3.4.8: REDUCIDO de 0.25s a 0.1s
                     pyautogui.mouseDown()
-                    time.sleep(0.5)
+                    time.sleep(0.3)  # ⚡ v3.4.8: REDUCIDO de 0.5s a 0.3s
+                    # 🚀 v3.4.8: CONTINUAR inmediatamente para perseguir
+                    continue
                 else: # if not move screen to dino
                     v_max_new = v_max + h2*battery_left
 
-                    # ⚡ v3.4.6: Factor de predicción AUMENTADO para dinos rápidos
-                    # Aumentado de 3x a 5x para anticipar mejor el movimiento
-                    prediction_factor = 5.0
+                    # ⚡ v3.4.8: Factor de predicción AUMENTADO para dinos ultra-rápidos
+                    # 3x → 5x → 7x para anticipar mejor el movimiento
+                    prediction_factor = 7.0
                     dino_loc_pred = [dino_loc[0] + vel[0] * prediction_factor * (dino_2_dart / v_max_new),  
                                     dino_loc[1] + vel[1] * prediction_factor * (dino_2_dart / v_max_new)] 
 

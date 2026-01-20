@@ -2,6 +2,8 @@ import pyautogui
 import keyboard
 import time
 import logging
+import platform
+import subprocess
 
 from jw_bot import Bot
 
@@ -12,11 +14,17 @@ from jw_bot import Bot
 # Esto ayuda a prevenir baneos por jugar demasiado tiempo seguido
 # 
 # Ejemplos:
+#   MAX_RUN_HOURS = 4    # Se detendrá después de 4 horas
 #   MAX_RUN_HOURS = 8    # Se detendrá después de 8 horas
 #   MAX_RUN_HOURS = 12   # Se detendrá después de 12 horas
 #   MAX_RUN_HOURS = None # Correrá indefinidamente (no recomendado)
 # ============================================================================
-MAX_RUN_HOURS = 8  # ⬅️ CAMBIA ESTE VALOR SEGÚN TUS NECESIDADES
+MAX_RUN_HOURS = 4  # ⬅️ CAMBIA ESTE VALOR SEGÚN TUS NECESIDADES
+
+# 💻 APAGADO AUTOMÁTICO DE PC
+# Si es True, apagará la PC cuando termine el tiempo límite
+# Si es False, solo detendrá el bot
+SHUTDOWN_WHEN_DONE = True  # ⬅️ CAMBIA A False SI NO QUIERES APAGADO AUTOMÁTICO
 # ============================================================================
 
 if __name__ == "__main__":
@@ -42,6 +50,33 @@ if __name__ == "__main__":
 
     x, y, w, h = -1, -1, -1, -1
     bot = Bot(max_run_hours=MAX_RUN_HOURS)  # Pasamos el tiempo límite al bot
+    
+    def shutdown_pc():
+        """Apaga la PC según el sistema operativo"""
+        logger.info("="*80)
+        logger.info("💤 INICIANDO APAGADO AUTOMÁTICO DE PC")
+        logger.info("="*80)
+        
+        system = platform.system()
+        try:
+            if system == "Windows":
+                # Windows: shutdown /s /t 60 (apagar en 60 segundos)
+                logger.info("🪟 Windows detectado - Apagando en 60 segundos...")
+                logger.info("💡 Puedes cancelar con: shutdown /a")
+                time.sleep(3)  # 3 segundos para que veas el mensaje
+                subprocess.run(["shutdown", "/s", "/t", "60"], check=True)
+                logger.info("✅ Comando de apagado enviado correctamente")
+            elif system == "Darwin":  # macOS
+                logger.warning("🍎 macOS detectado - Apagado automático NO implementado")
+                logger.info("💡 Detén el bot manualmente (Ctrl+C)")
+            elif system == "Linux":
+                logger.warning("🐧 Linux detectado - Apagado automático requiere sudo")
+                logger.info("💡 Ejecuta manualmente: sudo shutdown -h +1")
+            else:
+                logger.warning(f"⚠️  Sistema {system} no soportado para apagado automático")
+        except Exception as e:
+            logger.error(f"❌ Error al intentar apagar: {e}")
+            logger.info("💡 En Windows, ejecuta manualmente: shutdown /s /t 60")
     
     try:
         while True:
@@ -100,7 +135,7 @@ if __name__ == "__main__":
             
     except KeyboardInterrupt:
         logger.info("="*80)
-        logger.info("⛔ BOT DETENIDO POR USUARIO")
+        logger.info("⛔ BOT DETENIDO POR USUARIO (Ctrl+C o 'q')")
         logger.info("="*80)
         logger.info("📊 RESUMEN DE RECURSOS COLECTADOS:")
         logger.info("-"*80)
@@ -122,3 +157,8 @@ if __name__ == "__main__":
         logger.info("="*80)
         logger.info("✅ Sesión finalizada. Log guardado en carpeta 'logs/'")
         logger.info("="*80)
+        
+        # Verificar si se debe apagar la PC
+        if SHUTDOWN_WHEN_DONE and bot.max_run_hours and (time.time() - bot.start_time) / 3600 >= bot.max_run_hours:
+            logger.info("⏰ Tiempo límite alcanzado - Apagando PC...")
+            shutdown_pc()
