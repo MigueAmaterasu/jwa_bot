@@ -100,7 +100,12 @@ class Bot:
 
         # get the ratios (I get it from my PC to fit other screen sizes)
         self.shooting_zone_ratio = (230 / 831, 740 / 971, 10 / 481, 410 / 481)
-        self.launch_button_loc_ratio = (650 / 831, 712 / 831, 132 / 481, 310 / 481)
+        
+        # ⏱️ v3.4.2: EXPANDIDA para capturar texto de cooldown "0m 9s" que aparece ARRIBA del botón
+        # Área expandida de Y[78%-86%] a Y[60%-86%] para capturar tiempo restante
+        # ANTES: (650 / 831, 712 / 831, ...) solo capturaba el botón
+        # AHORA: (500 / 831, 712 / 831, ...) captura botón + texto cooldown arriba
+        self.launch_button_loc_ratio = (500 / 831, 712 / 831, 132 / 481, 310 / 481)
         
         # ✅ CORREGIDO v3.2: Área del texto en la PARTE SUPERIOR de la pantalla
         # Esta área captura el texto "EVENTO", "SUMINISTRO", etc. que aparece ARRIBA de la cajita
