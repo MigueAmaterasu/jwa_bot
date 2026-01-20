@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import pyautogui
 import keyboard
 import numpy as np
-import cv2
 from PIL import Image
 import pytesseract
 from skimage import measure, morphology, filters, feature, color, transform
@@ -457,9 +456,14 @@ class Bot:
         # Nuevo umbral: 15 píxeles = captura todos sin generar falsos positivos
         min_pixels = 15
         
-        # v3.4.8.4: FILTRADO DE ZONAS MOVIDO A main.py para mejor control
-        # Se eliminó el filtrado interno para permitir que main.py maneje
-        # las zonas prohibidas y muestre mensajes apropiados
+        # v3.4.7: Zonas de exclusión para círculos de evento fijos
+        # Coordenadas aproximadas en 565x952 (ajustar según necesidad)
+        # Esquina inferior izquierda: X[0-180] Y[600-952] (Especial + Extra/Radar)
+        # Esquina inferior derecha: X[385-565] Y[600-952] (Nuevo + Mochila)
+        excluded_zones = [
+            {'name': 'Inferior izquierda (Especial/Extra)', 'x_min': 0, 'x_max': 180, 'y_min': 600, 'y_max': 952},
+            {'name': 'Inferior derecha (Nuevo/Mochila)', 'x_min': 385, 'x_max': 565, 'y_min': 600, 'y_max': 952}
+        ]
         
         for label in range(1, labels.max()+1):
             rows, cols = np.where(labels == label)
@@ -467,9 +471,18 @@ class Bot:
                 center_y = self.shooting_zone[0] + int(np.mean(rows))
                 center_x = self.shooting_zone[2] + int(np.mean(cols))
                 
-                # Ya no filtrar aquí - main.py se encarga
-                pos.append([center_y, center_x])
-                self.logger.debug(f"   ✅ Supply drop #{label}: {len(rows)} píxeles en posición ({center_y}, {center_x})")
+                # Verificar si está en zona excluida
+                is_excluded = False
+                for zone in excluded_zones:
+                    if (zone['x_min'] <= center_x <= zone['x_max'] and 
+                        zone['y_min'] <= center_y <= zone['y_max']):
+                        self.logger.debug(f"   ⛔ Supply drop #{label} en zona excluida: {zone['name']} ({center_y}, {center_x})")
+                        is_excluded = True
+                        break
+                
+                if not is_excluded:
+                    pos.append([center_y, center_x])
+                    self.logger.debug(f"   ✅ Supply drop #{label}: {len(rows)} píxeles en posición ({center_y}, {center_x})")
         
         if len(pos) > 0:
             self.logger.info(f"🟠 [SUPPLY DROP] Detectados {len(pos)} supply drops: {pos}")
@@ -651,6 +664,16 @@ class Bot:
 
         state = ""
         
+        # 🛡️ v3.4.7: FALLBACK DE SEGURIDAD - Buscar X para salir de pantallas problemáticas
+        # Si entramos a un círculo de evento por error, detectar la X y clickearla
+        pos_x = self.locate_x_button(background)
+        if pos_x:
+            self.logger.warning("⚠️  [FALLBACK] Detectada X de salida - Clickeando para salir de pantalla problemática")
+            pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+            time.sleep(1)
+            state = "out_of_range"
+            return state
+        
         self.logger.debug("🔍 Determinando estado del objeto...")
         
         # Capturar áreas para detección
@@ -781,15 +804,6 @@ class Bot:
         else:
             self.logger.warning(f"❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado")
             self.logger.warning(f"   💡 Considera activar debug visual para ver qué captura el OCR")
-            
-            # 🛡️ v3.4.8: FALLBACK DE SEGURIDAD - Solo si NO identificamos nada
-            # Y hay una X visible (significa pantalla incorrecta, no un supply drop válido)
-            pos_x = self.locate_x_button(background)
-            if pos_x:
-                self.logger.warning("⚠️  [FALLBACK] Pantalla no identificada CON X visible - Saliendo")
-                pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
-                time.sleep(1)
-                state = "out_of_range"
 
         return state
 
@@ -954,58 +968,6 @@ class Bot:
         battery_remaining = 1.0 - (line_length / abs(self.battery_loc[3] - self.battery_loc[2]))
         return battery_remaining
 
-    def detect_filled_white_circle(self, background):
-        """
-        v3.4.9: Detecta el círculo RELLENO blanco (punto de mira del juego)
-        
-        Returns:
-            dict con 'center' (x,y), 'radius', 'area', 'circularity' o None si no se detecta
-        """
-        # Crear máscara de píxeles blancos puros
-        lower_white = np.array([240, 240, 240])  # BGR - muy blanco
-        upper_white = np.array([255, 255, 255])
-        mask_white = cv2.inRange(background, lower_white, upper_white)
-        
-        # Encontrar contornos en la máscara blanca
-        contours, _ = cv2.findContours(mask_white, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        
-        for contour in contours:
-            area = cv2.contourArea(contour)
-            
-            # Filtrar contornos muy pequeños (ruido)
-            if area < 10:
-                continue
-            
-            # Obtener bounding box
-            x, y, w, h = cv2.boundingRect(contour)
-            
-            # Verificar si es aproximadamente circular (relación aspecto ~1.0)
-            aspect_ratio = float(w) / h if h > 0 else 0
-            is_circular = 0.7 <= aspect_ratio <= 1.3
-            
-            # Calcular "circularidad" (4π*area / perimeter²)
-            # Círculo perfecto = 1.0, cuadrado = 0.785
-            perimeter = cv2.arcLength(contour, True)
-            circularity = 4 * np.pi * area / (perimeter * perimeter) if perimeter > 0 else 0
-            
-            # Radio estimado
-            radius = int(np.sqrt(area / np.pi))
-            center_x = x + w // 2
-            center_y = y + h // 2
-            
-            # Filtrar solo círculos PEQUEÑOS (3-30px, puede ser más pequeño con dinos raros)
-            # Rechazar círculos grandes (>30px) que son ruido del juego
-            if is_circular and circularity > 0.6 and 20 < area < 3000 and 3 <= radius <= 30:
-                return {
-                    'center': (center_x, center_y),
-                    'radius': radius,
-                    'area': area,
-                    'circularity': circularity,
-                    'aspect_ratio': aspect_ratio
-                }
-        
-        return None
-
     def shoot_dino(self):
         """Shoots the dino"""
 
@@ -1063,7 +1025,6 @@ class Bot:
         end = start
         shots_attempted = 0  # Contador de intentos de disparo
         last_shot_attempt = start
-        screenshot_counter = 0  # Contador para screenshots durante shooting
 
         # ⚡ OPTIMIZADO: Reducido timeout de 60 a 45 segundos (suficiente para centrar)
         while not self.is_dino_loading_screen(background) and end - start < 45:
@@ -1073,7 +1034,6 @@ class Bot:
 
             # b_prev = background
             background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-            
             background_cropped = background[self.dino_shoot_loc[0]:,:self.dino_shoot_loc[1],:]
             dino_loc, _ = dino_location(background_cropped, self.dino_shoot_loc[0], 2*self.D)
             
@@ -1100,27 +1060,18 @@ class Bot:
    
             if dino_loc:
                 dino_2_dart = np.sqrt((dino_loc[0] - dart_loc[0])**2 + (dino_loc[1] - dart_loc[1])**2)
-                battery_left = self.get_battery_left(background)
+                battery_left = self.get_battery_left(background)  # CORREGIDO: Ya no se invierte
 
-                # ================================================================
-                # v3.4.8.4: MÉTODO POR DISTANCIA (RESTAURADO - v3.4.9 FALLÓ)
-                # ================================================================
-                # v3.4.9 intentó usar círculo blanco pero NUNCA se detectó (0/140 disparos)
-                # Todos los disparos fueron forzados por timeout → Eficiencia pésima
-                # Restaurando método anterior que sí funciona
-                # ================================================================
-                
-                # check if dino in dart range - v3.4.6: Rango ampliado 1.5x
+                # check if dino in dart range - v3.4.6: Rango ampliado 1.5x para disparar más fácil
                 shoot_range = (D + h1*battery_left) * 1.5
                 if dino_2_dart <= shoot_range:
                     print("--"*10)
                     print("DINO CLOSE SHOOTING")
-                    
                     pyautogui.mouseUp()
-                    time.sleep(0.1)
+                    time.sleep(0.1)  # ⚡ v3.4.8: REDUCIDO de 0.25s a 0.1s
                     pyautogui.mouseDown()
-                    time.sleep(0.3)
-                    
+                    time.sleep(0.3)  # ⚡ v3.4.8: REDUCIDO de 0.5s a 0.3s
+                    # 🚀 v3.4.8: CONTINUAR inmediatamente para perseguir
                     continue
                 else: # if not move screen to dino
                     v_max_new = v_max + h2*battery_left
@@ -1185,31 +1136,15 @@ class Bot:
             pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2) 
             time.sleep(5) 
 
-    def collect_dino(self, filtered_positions=None):
-        """"Finds and shoots the dino
-        
-        Args:
-            filtered_positions: Lista pre-filtrada de posiciones [y, x]. 
-                               Si es None, detecta normalmente.
-        """
-        
-        # v3.4.8.5: TIMEOUT para evitar quedarse atascado
-        MAX_DINO_TIME = 60  # 60 segundos máximo por dino
-        function_start_time = time.time()
+    def collect_dino(self):
+        """"Finds and shoots the dino"""
         
         background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-        
-        # Si hay posiciones pre-filtradas, usarlas. Si no, detectar normalmente
-        dino_pos = filtered_positions if filtered_positions is not None else self.detect_dino(background)
+        dino_pos = self.detect_dino(background)
         
         print("--"*10)
         print("TOTAL NUMBER OF DINO", len(dino_pos))
         for i, pos in enumerate(dino_pos):
-            # v3.4.8.5: Verificar timeout global de la función
-            if time.time() - function_start_time > MAX_DINO_TIME:
-                self.logger.warning(f"⏰ TIMEOUT en collect_dino después de {MAX_DINO_TIME}s - Abortando")
-                break
-                
             if keyboard.is_pressed("q"):
                 raise KeyboardInterrupt
 
@@ -1226,62 +1161,47 @@ class Bot:
 
             time.sleep(0.8)
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-            
-            # v3.4.8.6: NO usar determine_state() - ya sabemos que es dino
-            # Confiar en la detección inicial desde main.py
-            cx = (self.launch_button_loc[2] + self.launch_button_loc[3]) / 2
-            cy = (self.launch_button_loc[0] + self.launch_button_loc[1]) / 2
-            pyautogui.click(x=self.x+cx, y=self.y+cy)  
-            time.sleep(0.5)
+            state = self.determine_state(background_new)
 
-            # v3.4.8.5: TIMEOUT para loading screen
-            background_loading_screen = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-            loading_start = time.time()
-            MAX_LOADING_TIME = 15  # 15 segundos máximo esperando loading
-            
-            while self.is_dino_loading_screen(background_loading_screen):
-                if time.time() - loading_start > MAX_LOADING_TIME:
-                    self.logger.warning(f"⏰ TIMEOUT esperando loading screen - Abortando dino")
-                    break
+            if state == "dino":
+                cx = (self.launch_button_loc[2] + self.launch_button_loc[3]) / 2
+                cy = (self.launch_button_loc[0] + self.launch_button_loc[1]) / 2
+                pyautogui.click(x=self.x+cx, y=self.y+cy)  
+                time.sleep(0.5)
+
                 background_loading_screen = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-                time.sleep(1)
+                while self.is_dino_loading_screen(background_loading_screen):
+                    background_loading_screen = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                    time.sleep(1)
 
-            print("--"*10)
-            print("TIME TO SHOOT")                
-            
-            time.sleep(0.3)
-            self.shoot_dino()
+                print("--"*10)
+                print("TIME TO SHOOT")                
+                
+                time.sleep(0.3)
+                self.shoot_dino()
 
-            # there is some bug in JW which is expected when I shoot a dino it turn to original direction
-            for _ in range(self.number_of_scrolls):
-                self.change_view()  
+                # there is some bug in JW which is expected when I shoot a dino it turn to original direction
+                for _ in range(self.number_of_scrolls):
+                    self.change_view()
+
+            else:
+                print("--"*10)
+                print("NOT DINO")
+                pos = self.locate_x_button(background_new)
+                pos = pos if pos else self.map_button_loc
+                pyautogui.click(x=self.x+pos[1], y=self.y+pos[0])
+                time.sleep(1)  
 
     # ----------------------------------------------------------
     #   COIN COLLECTION
     # ----------------------------------------------------------
 
-    def collect_coin(self, filtered_positions=None):
-        """Collects coin chests
-        
-        Args:
-            filtered_positions: Lista pre-filtrada de posiciones [y, x]. 
-                               Si es None, detecta normalmente.
-        """
-        # v3.4.8.5: TIMEOUT para evitar quedarse atascado
-        MAX_COIN_TIME = 90  # 90 segundos máximo para monedas
-        function_start_time = time.time()
-        
+    def collect_coin(self):
+        """Collects coin chests"""
         background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-        
-        # Si hay posiciones pre-filtradas, usarlas. Si no, detectar normalmente
-        coin_pos = filtered_positions if filtered_positions is not None else self.detect_coins(background)
+        coin_pos = self.detect_coins(background)
 
         for pos in coin_pos:
-            # v3.4.8.5: Verificar timeout
-            if time.time() - function_start_time > MAX_COIN_TIME:
-                self.logger.warning(f"⏰ TIMEOUT en collect_coin después de {MAX_COIN_TIME}s - Abortando")
-                break
-                
             if keyboard.is_pressed("q"):
                 raise KeyboardInterrupt
 
@@ -1301,23 +1221,25 @@ class Bot:
 
             time.sleep(0.8)
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-            
-            # v3.4.8.6: NO usar determine_state() - ya sabemos que es coin
-            # Confiar en la detección inicial desde main.py
-            print("--"*10)
-            print("CLICKING COIN")
-            pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2) 
-            time.sleep(2.5) 
-            pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2) 
-            
-            # sometimes clicks already opened coin chests - verificar si sigue abierto
-            background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-            if self.background_changed(background_old, background):
-                # Aún hay algo abierto, cerrar con X
-                pos = self.locate_x_button(background)
-                pos = pos if pos else self.map_button_loc
-                pyautogui.click(x=self.x+pos[1], y=self.y+pos[0])
-                time.sleep(1)
+            state = self.determine_state(background_new)
+            if state == "coin":
+                print("--"*10)
+                print("CLICKING COIN")
+                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2) 
+                time.sleep(2.5) 
+                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2) 
+                
+                # sometimes clicks already opened coin chests
+                background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                state = self.determine_state(background)
+                if state == "coin":
+                    pos = self.locate_x_button(background)
+                    pos = pos if pos else self.map_button_loc
+                    pyautogui.click(x=self.x+pos[1], y=self.y+pos[0])
+                    time.sleep(1)  
+            else:
+                print("--"*10)
+                print("NOT COIN")
                 pos = self.locate_x_button(background)
                 pos = pos if pos else self.map_button_loc
                 pyautogui.click(x=self.x+pos[1], y=self.y+pos[0])
@@ -1327,30 +1249,15 @@ class Bot:
     #   SUPPLY COLLECTION
     # ----------------------------------------------------------
 
-    def collect_supply_drop(self, filtered_positions=None):
-        """"Collects supply drops
-        
-        Args:
-            filtered_positions: Lista pre-filtrada de posiciones [y, x]. 
-                               Si es None, detecta normalmente.
-        """
-
-        # v3.4.8.5: TIMEOUT para evitar quedarse atascado
-        MAX_SUPPLY_TIME = 120  # 120 segundos máximo para supply drops
-        function_start_time = time.time()
+    def collect_supply_drop(self):
+        """"Collects supply drops"""
 
         # use old background to determine stop clicking
-        background_old= np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-        
-        # Si hay posiciones pre-filtradas, usarlas. Si no, detectar normalmente
-        supply_drop_pos = filtered_positions if filtered_positions is not None else self.detect_supply_drop(background_old)
+        background_old= np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))        
+        supply_drop_pos = self.detect_supply_drop(background_old)
         
         # loop until you click supply drop
         for pos in supply_drop_pos:
-            # v3.4.8.5: Verificar timeout
-            if time.time() - function_start_time > MAX_SUPPLY_TIME:
-                self.logger.warning(f"⏰ TIMEOUT en collect_supply_drop después de {MAX_SUPPLY_TIME}s - Abortando")
-                break
 
             if keyboard.is_pressed("q"):
                 raise KeyboardInterrupt
@@ -1369,44 +1276,55 @@ class Bot:
             time.sleep(1.0)  # AUMENTADO de 0.8 a 1.0 para dar más tiempo al OCR
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
 
-            # v3.4.8.6: NO usar determine_state() aquí - ya sabemos que es supply drop
-            # El problema era que el botón "LANZAR" del supply drop confundía al OCR
-            # haciéndole pensar que era un dinosaurio (LANZAR = shoot dino)
-            # SOLUCIÓN: Confiar en la detección inicial desde main.py
+            state = self.determine_state(background_new)
             
-            print("--"*10)
-            print("CLICKING SUPPLY DROP")
-
-            background_tmp = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-            # activate the supply drop
-            pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
-            time.sleep(2.5)  # AUMENTADO de 2 a 2.5
-            background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+            # 🔍 DEBUG: Descomentar la siguiente línea para guardar imágenes de lo que ve el OCR
+            self.debug_save_ocr_regions(background_new, f"supply_{pos[0]}_{pos[1]}")
             
-            # Si no cambió el background, puede que ya esté abierto o necesite cerrar
-            if not self.background_changed(background_new, background_tmp):
-                pos_x = self.locate_x_button(background_new)
-                if pos_x:
-                    pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
-                    time.sleep(1) 
-
-            count = 0
-            # loop until max click is reached or we are in the old background
-            while self.max_click >= count and \
-                  self.background_changed(background_old, background_new):
+            # MEJORADO: También aceptar "event" como supply drop válido
+            if state == "supply" or state == "event":
                 print("--"*10)
-                print(f"CLICK {count+1}/{self.max_click}")
-                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
-                time.sleep(2.5) 
-                background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-                count += 1
+                print(f"CLICKING {state.upper()}")
 
-            # if clicked more than max amount something is wrong
-            if count > self.max_click:
+                background_tmp = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                # activate the supply drop
+                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
+                time.sleep(2.5)  # AUMENTADO de 2 a 2.5
+                background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                
+                # Si no cambió el background, puede que ya esté abierto o necesite cerrar
+                if not self.background_changed(background_new, background_tmp):
+                    pos_x = self.locate_x_button(background_new)
+                    if pos_x:
+                        pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                        time.sleep(1) 
+
+                count = 0
+                # loop until max click is reached or we are in the old background
+                while self.max_click >= count and \
+                      self.background_changed(background_old, background_new):
+                    print("--"*10)
+                    print(f"CLICK {count+1}/{self.max_click}")
+                    pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
+                    time.sleep(2.5) 
+                    background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                    count += 1
+
+                # if clicked more than max amount something is wrong
+                if count > self.max_click:
+                    pos_x = self.locate_x_button(background_new)
+                    if pos_x:
+                        pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                        time.sleep(1) 
+
+            else:
+                print("--"*10)
+                print(f"NOT SUPPLY DROP (detected: {state})")
+                # find x button if not there click on map button
                 pos_x = self.locate_x_button(background_new)
-                if pos_x:
-                    pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
-                    time.sleep(1)                                       
+                pos_x = pos_x if pos_x else self.map_button_loc
+                pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                time.sleep(1)                                       
 
     # ----------------------------------------------------------
     #   HELPER

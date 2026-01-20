@@ -4,7 +4,6 @@ import time
 import logging
 import platform
 import subprocess
-import numpy as np
 
 from jw_bot import Bot
 
@@ -79,13 +78,6 @@ if __name__ == "__main__":
             logger.error(f"❌ Error al intentar apagar: {e}")
             logger.info("💡 En Windows, ejecuta manualmente: shutdown /s /t 60")
     
-    # ================================================================
-    # v3.4.8.4: Sistema de detección de pantalla atascada
-    # ================================================================
-    stuck_counter = 0  # Contador de iteraciones sin recolectar
-    last_collection_time = time.time()  # Última vez que recolectó algo
-    STUCK_THRESHOLD = 30  # Segundos sin recolectar antes de presionar X
-    
     try:
         while True:
             # set location of the app
@@ -114,160 +106,27 @@ if __name__ == "__main__":
                 if bot.check_time_limit():
                     raise KeyboardInterrupt
 
-                # 🛡️ v3.4.8.2: PRE-VERIFICAR ZONAS PROHIBIDAS para TODOS los tipos
-                # Tomar screenshot para detectar objetos ANTES de llamar collect functions
-                background_check = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
-                
-                # Definir zonas excluidas (eventos fijos en esquinas inferiores)
-                excluded_zones = [
-                    {'name': 'Inferior izquierda (Especial/Extra)', 'x_min': 0, 'x_max': 180, 'y_min': 600, 'y_max': 952},
-                    {'name': 'Inferior derecha (Nuevo/Mochila)', 'x_min': 385, 'x_max': 565, 'y_min': 600, 'y_max': 952}
-                ]
-                
-                def is_in_prohibited_zone(y, x, zones):
-                    """Verifica si una posición está en zona prohibida"""
-                    for zone in zones:
-                        if (zone['x_min'] <= x <= zone['x_max'] and 
-                            zone['y_min'] <= y <= zone['y_max']):
-                            return True, zone['name']
-                    return False, None
-                
-                # ============================================================
-                # 🪙 MONEDAS - Verificar zonas prohibidas
-                # ============================================================
+                # get coins
                 logger.debug("🪙 Verificando monedas...")
-                coins = bot.detect_coins(background_check)
-                valid_coins = []  # Lista de monedas válidas (fuera de zonas prohibidas)
-                
-                for coin_pos in coins:
-                    center_y, center_x = coin_pos[0], coin_pos[1]
-                    is_prohibited, zone_name = is_in_prohibited_zone(center_y, center_x, excluded_zones)
-                    
-                    if is_prohibited:
-                        logger.warning(f"⛔ [ZONA PROHIBIDA] Moneda en {zone_name} (x={center_x}, y={center_y}) - SKIP")
-                    else:
-                        valid_coins.append(coin_pos)  # Agregar a lista de válidas
-                
-                if valid_coins:
-                    logger.info(f"🪙 Recolectando {len(valid_coins)} monedas...")
-                    bot.collect_coin(filtered_positions=valid_coins)  # Pasar lista filtrada
-                    logger.info(f"✅ Monedas procesadas")
-                    last_collection_time = time.time()  # Resetear contador de atascado
-                    stuck_counter = 0
-                elif coins:
-                    logger.info(f"🪙 {len(coins)} monedas detectadas pero TODAS en zonas prohibidas - SKIP")
-                
-                # ============================================================
-                # 📦 SUPPLY DROPS - Verificar zonas prohibidas
-                # ============================================================
+                bot.collect_coin()
+
+                # get supply drops
                 logger.debug("📦 Verificando supply drops...")
-                supply_drops = bot.detect_supply_drop(background_check)
-                valid_drops = []  # Lista de supply drops válidos (fuera de zonas prohibidas)
-                
-                for drop_pos in supply_drops:
-                    center_y, center_x = drop_pos[0], drop_pos[1]
-                    is_prohibited, zone_name = is_in_prohibited_zone(center_y, center_x, excluded_zones)
-                    
-                    if is_prohibited:
-                        logger.warning(f"⛔ [ZONA PROHIBIDA] Supply drop en {zone_name} (x={center_x}, y={center_y}) - SKIP")
-                    else:
-                        valid_drops.append(drop_pos)  # Agregar a lista de válidos
-                
-                if valid_drops:
-                    logger.info(f"📦 Recolectando {len(valid_drops)} supply drops...")
-                    bot.collect_supply_drop(filtered_positions=valid_drops)  # Pasar lista filtrada
-                    logger.info(f"✅ Supply drops procesados")
-                    last_collection_time = time.time()  # Resetear contador de atascado
-                    stuck_counter = 0
-                elif supply_drops:
-                    logger.info(f"📦 {len(supply_drops)} supply drops detectados pero TODOS en zonas prohibidas - SKIP")
-                
-                # ============================================================
-                # 🦖 DINOS - Verificar zonas prohibidas
-                # ============================================================
+                bot.collect_supply_drop()                                 
+
+                # get dinos
                 logger.debug("🦖 Verificando dinosaurios...")
-                dinos = bot.detect_dino(background_check)
-                valid_dinos = []  # Lista de dinos válidos (fuera de zonas prohibidas)
-                
-                for dino_pos in dinos:
-                    center_y, center_x = dino_pos[0], dino_pos[1]
-                    is_prohibited, zone_name = is_in_prohibited_zone(center_y, center_x, excluded_zones)
-                    
-                    if is_prohibited:
-                        logger.warning(f"⛔ [ZONA PROHIBIDA] Dino en {zone_name} (x={center_x}, y={center_y}) - SKIP")
-                    else:
-                        valid_dinos.append(dino_pos)  # Agregar a lista de válidos
-                
-                if valid_dinos:
-                    logger.info(f"🦖 Cazando {len(valid_dinos)} dinosaurios...")
-                    bot.collect_dino(filtered_positions=valid_dinos)  # Pasar lista filtrada
-                    logger.info(f"✅ Dinos procesados")
-                    last_collection_time = time.time()  # Resetear contador de atascado
-                    stuck_counter = 0
-                elif dinos:
-                    logger.info(f"🦖 {len(dinos)} dinos detectados pero TODOS en zonas prohibidas - SKIP")
+                bot.collect_dino()
 
-                # ================================================================
-                # v3.4.8.5: DETECCIÓN DE PANTALLA ATASCADA MEJORADA
-                # ================================================================
-                # Si no se recolectó nada en los últimos STUCK_THRESHOLD segundos,
-                # intentar salir de pantalla atascada presionando X
-                time_since_last_collection = time.time() - last_collection_time
-                
-                if time_since_last_collection > STUCK_THRESHOLD:
-                    stuck_counter += 1
-                    logger.warning(f"⚠️  POSIBLE PANTALLA ATASCADA - {int(time_since_last_collection)}s sin recolectar")
-                    logger.warning(f"🔄 Intentando recuperación #{stuck_counter} - Buscando botón X...")
-                    
-                    # Intentar detectar y presionar el botón X
-                    background_stuck = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
-                    x_button_pos = bot.locate_x_button(background_stuck)
-                    
-                    if x_button_pos:
-                        logger.info(f"✅ Botón X detectado en posición: {x_button_pos}")
-                        pyautogui.click(bot.x + x_button_pos[1], bot.y + x_button_pos[0])
-                        time.sleep(1)
-                        logger.info("🔙 Click en X ejecutado - Esperando volver al mapa...")
-                        last_collection_time = time.time()  # Resetear contador
-                        stuck_counter = 0
-                    else:
-                        logger.warning("❌ No se detectó botón X - Intentando ESC...")
-                        pyautogui.press('esc')
-                        time.sleep(0.5)
-                        
-                        # Si después de 3 intentos sigue atascado, presionar múltiples veces
-                        if stuck_counter >= 3:
-                            logger.warning("🚨 ATASCADO PERSISTENTE - Presionando ESC múltiples veces...")
-                            for _ in range(5):
-                                pyautogui.press('esc')
-                                time.sleep(0.3)
-                            
-                            # Si después de 5 intentos sigue atascado, presionar X en ubicaciones comunes
-                            if stuck_counter >= 5:
-                                logger.error("🚨🚨 ATASCADO CRÍTICO - Clickeando posiciones comunes de X...")
-                                # Posiciones comunes del botón X (relativas a la ventana)
-                                common_x_positions = [
-                                    (50, 50),   # Esquina superior izquierda
-                                    (bot.w - 50, 50),  # Esquina superior derecha
-                                    (bot.w // 2, 50),  # Centro superior
-                                ]
-                                for pos_x, pos_y in common_x_positions:
-                                    pyautogui.click(bot.x + pos_x, bot.y + pos_y)
-                                    time.sleep(0.5)
-                            
-                            last_collection_time = time.time()  # Resetear de todas formas
-                            stuck_counter = 0
-
-                # if bot.number_of_scrolls > max_scrolls:
-                #     # move location
-                #     logger.info("="*80)
-                #     logger.info("📍 CAMBIANDO UBICACIÓN EN EL MAPA")
-                #     logger.info("="*80)
-                #     bot.change_location()
-                #     bot.number_of_scrolls = 0
+                if bot.number_of_scrolls > max_scrolls:
+                    # move location
+                    logger.info("="*80)
+                    logger.info("📍 CAMBIANDO UBICACIÓN EN EL MAPA")
+                    logger.info("="*80)
+                    bot.change_location()
+                    bot.number_of_scrolls = 0
                     
                 # if not something_there:
-                logger.debug(f"🔄 Cambiando vista del mapa (scroll #{bot.number_of_scrolls + 1})")
                 bot.change_view()
                 bot.number_of_scrolls += 1
                 
