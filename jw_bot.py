@@ -747,7 +747,8 @@ class Bot:
             self.logger.debug("   🦖 Palabras clave de DINO detectadas")
         
         # 2. Detectar SUPPLY DROPS (palabras clave específicas)
-        elif any(word in combined_text for word in ["SUMINISTRO", "SUMINISTROS", "SUPPLY", "DROP", "ABASTECIMIENTO"]):
+        # INCLUYE "EVENTO" para farolitos verdes que dicen "EVENTO ESPECIAL TERMINA EN..."
+        elif any(word in combined_text for word in ["SUMINISTRO", "SUMINISTROS", "SUPPLY", "DROP", "ABASTECIMIENTO", "EVENTO", "EVENT", "ESPECIAL", "SPECIAL"]):
             state = "supply"
             self.logger.debug("   📦 Palabras clave de SUPPLY detectadas")
             
