@@ -1019,11 +1019,19 @@ class Bot:
         time.sleep(0.3)  # ⚡ REDUCIDO de 0.5 a 0.3 segundos
         
         background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+        
+        # 📸 v3.4.8.2: Screenshot ANTES de empezar a disparar
+        timestamp = time.strftime("%Y%m%d_%H%M%S")
+        screenshot_path = f"debug_screenshots/shooting_start_{timestamp}.png"
+        os.makedirs("debug_screenshots", exist_ok=True)
+        Image.fromarray(background).save(screenshot_path)
+        self.logger.info(f"📸 Screenshot inicial de shooting guardado: {screenshot_path}")
 
         start = time.time()
         end = start
         shots_attempted = 0  # Contador de intentos de disparo
         last_shot_attempt = start
+        screenshot_counter = 0  # Contador para screenshots durante shooting
 
         # ⚡ OPTIMIZADO: Reducido timeout de 60 a 45 segundos (suficiente para centrar)
         while not self.is_dino_loading_screen(background) and end - start < 45:
@@ -1033,6 +1041,15 @@ class Bot:
 
             # b_prev = background
             background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+            
+            # 📸 v3.4.8.2: Screenshot cada 30 frames DURANTE el shooting
+            screenshot_counter += 1
+            if screenshot_counter % 30 == 0:
+                timestamp = time.strftime("%Y%m%d_%H%M%S")
+                screenshot_path = f"debug_screenshots/shooting_tracking_{timestamp}_frame{screenshot_counter}.png"
+                Image.fromarray(background).save(screenshot_path)
+                self.logger.debug(f"📸 Screenshot tracking (frame {screenshot_counter}): {screenshot_path}")
+            
             background_cropped = background[self.dino_shoot_loc[0]:,:self.dino_shoot_loc[1],:]
             dino_loc, _ = dino_location(background_cropped, self.dino_shoot_loc[0], 2*self.D)
             
@@ -1066,10 +1083,25 @@ class Bot:
                 if dino_2_dart <= shoot_range:
                     print("--"*10)
                     print("DINO CLOSE SHOOTING")
+                    
+                    # 📸 v3.4.8.2: Screenshot JUSTO ANTES de disparar
+                    timestamp = time.strftime("%Y%m%d_%H%M%S")
+                    screenshot_path = f"debug_screenshots/shooting_before_shot_{timestamp}.png"
+                    Image.fromarray(background).save(screenshot_path)
+                    self.logger.info(f"📸 Screenshot ANTES de disparar: {screenshot_path}")
+                    
                     pyautogui.mouseUp()
                     time.sleep(0.1)  # ⚡ v3.4.8: REDUCIDO de 0.25s a 0.1s
                     pyautogui.mouseDown()
                     time.sleep(0.3)  # ⚡ v3.4.8: REDUCIDO de 0.5s a 0.3s
+                    
+                    # 📸 v3.4.8.2: Screenshot DESPUÉS de disparar
+                    background_after = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                    timestamp = time.strftime("%Y%m%d_%H%M%S")
+                    screenshot_path = f"debug_screenshots/shooting_after_shot_{timestamp}.png"
+                    Image.fromarray(background_after).save(screenshot_path)
+                    self.logger.info(f"📸 Screenshot DESPUÉS de disparar: {screenshot_path}")
+                    
                     # 🚀 v3.4.8: CONTINUAR inmediatamente para perseguir
                     continue
                 else: # if not move screen to dino

@@ -107,12 +107,9 @@ if __name__ == "__main__":
                 if bot.check_time_limit():
                     raise KeyboardInterrupt
 
-                # 🛡️ v3.4.8.1: PRE-VERIFICAR ZONAS PROHIBIDAS en el main loop
-                # Tomar screenshot para detectar círculos ANTES de llamar collect functions
+                # 🛡️ v3.4.8.2: PRE-VERIFICAR ZONAS PROHIBIDAS para TODOS los tipos
+                # Tomar screenshot para detectar objetos ANTES de llamar collect functions
                 background_check = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
-                
-                # Detectar supply drops visibles
-                supply_drops = bot.detect_supply_drop(background_check)
                 
                 # Definir zonas excluidas (eventos fijos en esquinas inferiores)
                 excluded_zones = [
@@ -120,42 +117,79 @@ if __name__ == "__main__":
                     {'name': 'Inferior derecha (Nuevo/Mochila)', 'x_min': 385, 'x_max': 565, 'y_min': 600, 'y_max': 952}
                 ]
                 
-                # Bandera para determinar si hay círculos válidos (fuera de zonas prohibidas)
-                has_valid_drops = False
-                has_prohibited_drops = False
+                def is_in_prohibited_zone(y, x, zones):
+                    """Verifica si una posición está en zona prohibida"""
+                    for zone in zones:
+                        if (zone['x_min'] <= x <= zone['x_max'] and 
+                            zone['y_min'] <= y <= zone['y_max']):
+                            return True, zone['name']
+                    return False, None
                 
-                for pos in supply_drops:
-                    center_y, center_x = pos[0], pos[1]
-                    is_in_excluded = False
-                    
-                    for zone in excluded_zones:
-                        if (zone['x_min'] <= center_x <= zone['x_max'] and 
-                            zone['y_min'] <= center_y <= zone['y_max']):
-                            logger.warning(f"⛔ [ZONA PROHIBIDA] Círculo detectado en {zone['name']} (x={center_x}, y={center_y}) - SKIP")
-                            is_in_excluded = True
-                            has_prohibited_drops = True
-                            break
-                    
-                    if not is_in_excluded:
-                        has_valid_drops = True
-                
-                # get coins
+                # ============================================================
+                # 🪙 MONEDAS - Verificar zonas prohibidas
+                # ============================================================
                 logger.debug("🪙 Verificando monedas...")
-                bot.collect_coin()
-
-                # get supply drops - SOLO si hay círculos válidos fuera de zonas prohibidas
-                if supply_drops:
-                    if has_valid_drops:
-                        logger.debug("📦 Verificando supply drops válidos...")
-                        bot.collect_supply_drop()
+                coins = bot.detect_coins(background_check)  # ✅ CORREGIDO: detect_coins con 's'
+                has_valid_coins = False
+                
+                for coin_pos in coins:
+                    center_y, center_x = coin_pos[0], coin_pos[1]
+                    is_prohibited, zone_name = is_in_prohibited_zone(center_y, center_x, excluded_zones)
+                    
+                    if is_prohibited:
+                        logger.warning(f"⛔ [ZONA PROHIBIDA] Moneda en {zone_name} (x={center_x}, y={center_y}) - SKIP")
                     else:
-                        logger.info("📦 Supply drops detectados pero TODOS en zonas prohibidas - SKIP recolección")
-                else:
-                    logger.debug("📦 No hay supply drops visibles")                                 
-
-                # get dinos
+                        has_valid_coins = True
+                        break  # Al menos 1 moneda válida
+                
+                if has_valid_coins:
+                    bot.collect_coin()
+                elif coins:
+                    logger.info("🪙 Monedas detectadas pero TODAS en zonas prohibidas - SKIP")
+                
+                # ============================================================
+                # 📦 SUPPLY DROPS - Verificar zonas prohibidas
+                # ============================================================
+                logger.debug("📦 Verificando supply drops...")
+                supply_drops = bot.detect_supply_drop(background_check)
+                has_valid_drops = False
+                
+                for drop_pos in supply_drops:
+                    center_y, center_x = drop_pos[0], drop_pos[1]
+                    is_prohibited, zone_name = is_in_prohibited_zone(center_y, center_x, excluded_zones)
+                    
+                    if is_prohibited:
+                        logger.warning(f"⛔ [ZONA PROHIBIDA] Supply drop en {zone_name} (x={center_x}, y={center_y}) - SKIP")
+                    else:
+                        has_valid_drops = True
+                        break  # Al menos 1 supply drop válido
+                
+                if has_valid_drops:
+                    bot.collect_supply_drop()
+                elif supply_drops:
+                    logger.info("📦 Supply drops detectados pero TODOS en zonas prohibidas - SKIP")
+                
+                # ============================================================
+                # 🦖 DINOS - Verificar zonas prohibidas
+                # ============================================================
                 logger.debug("🦖 Verificando dinosaurios...")
-                bot.collect_dino()
+                dinos = bot.detect_dino(background_check)
+                has_valid_dinos = False
+                
+                for dino_pos in dinos:
+                    center_y, center_x = dino_pos[0], dino_pos[1]
+                    is_prohibited, zone_name = is_in_prohibited_zone(center_y, center_x, excluded_zones)
+                    
+                    if is_prohibited:
+                        logger.warning(f"⛔ [ZONA PROHIBIDA] Dino en {zone_name} (x={center_x}, y={center_y}) - SKIP")
+                    else:
+                        has_valid_dinos = True
+                        break  # Al menos 1 dino válido
+                
+                if has_valid_dinos:
+                    bot.collect_dino()
+                elif dinos:
+                    logger.info("🦖 Dinos detectados pero TODOS en zonas prohibidas - SKIP")
 
                 if bot.number_of_scrolls > max_scrolls:
                     # move location
