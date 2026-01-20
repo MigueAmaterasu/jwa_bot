@@ -4,6 +4,7 @@ import time
 import logging
 import platform
 import subprocess
+import numpy as np
 
 from jw_bot import Bot
 
@@ -106,17 +107,36 @@ if __name__ == "__main__":
                 if bot.check_time_limit():
                     raise KeyboardInterrupt
 
+                # v3.4.8.7: Filtrado de zonas prohibidas para TODOS los objetos
                 # get coins
                 logger.debug("🪙 Verificando monedas...")
-                bot.collect_coin()
+                coins = bot.detect_coins(np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h))))
+                valid_coins = bot.filter_excluded_zones(coins, "coin")
+                if valid_coins:
+                    logger.info(f"🪙 Recolectando {len(valid_coins)} monedas válidas...")
+                    bot.collect_coin(filtered_positions=valid_coins)
+                elif coins:
+                    logger.info(f"🪙 {len(coins)} monedas detectadas pero TODAS en zonas prohibidas - SKIP")
 
                 # get supply drops
                 logger.debug("📦 Verificando supply drops...")
-                bot.collect_supply_drop()                                 
+                supply_drops = bot.detect_supply_drop(np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h))))
+                valid_drops = bot.filter_excluded_zones(supply_drops, "supply")
+                if valid_drops:
+                    logger.info(f"📦 Recolectando {len(valid_drops)} supply drops válidos...")
+                    bot.collect_supply_drop(filtered_positions=valid_drops)
+                elif supply_drops:
+                    logger.info(f"📦 {len(supply_drops)} supply drops detectados pero TODOS en zonas prohibidas - SKIP")
 
                 # get dinos
                 logger.debug("🦖 Verificando dinosaurios...")
-                bot.collect_dino()
+                dinos = bot.detect_dino(np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h))))
+                valid_dinos = bot.filter_excluded_zones(dinos, "dino")
+                if valid_dinos:
+                    logger.info(f"🦖 Disparando a {len(valid_dinos)} dinosaurios válidos...")
+                    bot.collect_dino(filtered_positions=valid_dinos)
+                elif dinos:
+                    logger.info(f"🦖 {len(dinos)} dinosaurios detectados pero TODOS en zonas prohibidas - SKIP")
 
                 if bot.number_of_scrolls > max_scrolls:
                     # move location

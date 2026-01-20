@@ -654,6 +654,39 @@ class Bot:
 
         if key and number:
             return key, number
+
+
+    def filter_excluded_zones(self, positions, object_type):
+        """Filtra posiciones que están en zonas prohibidas (UI elements)
+        
+        Args:
+            positions: Lista de [y, x] posiciones detectadas
+            object_type: Tipo de objeto ("coin", "supply", "dino") para logging
+            
+        Returns:
+            Lista filtrada de posiciones válidas
+        """
+        excluded_zones = [
+            {'name': 'Inferior izquierda (Especial/Extra)', 'x_min': 0, 'x_max': 180, 'y_min': 600, 'y_max': 952},
+            {'name': 'Inferior derecha (Nuevo/Mochila)', 'x_min': 385, 'x_max': 565, 'y_min': 600, 'y_max': 952}
+        ]
+        
+        valid_positions = []
+        for pos in positions:
+            y, x = pos[0], pos[1]
+            is_excluded = False
+            
+            for zone in excluded_zones:
+                if (zone['x_min'] <= x <= zone['x_max'] and 
+                    zone['y_min'] <= y <= zone['y_max']):
+                    self.logger.debug(f"⛔ [{object_type.upper()}] Posición ({y}, {x}) en zona excluida: {zone['name']}")
+                    is_excluded = True
+                    break
+            
+            if not is_excluded:
+                valid_positions.append(pos)
+        
+        return valid_positions
             
 
     def determine_state(self, background):
@@ -1136,11 +1169,16 @@ class Bot:
             pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2) 
             time.sleep(5) 
 
-    def collect_dino(self):
-        """"Finds and shoots the dino"""
+    def collect_dino(self, filtered_positions=None):
+        """"Finds and shoots the dino
+        
+        Args:
+            filtered_positions: Lista pre-filtrada de posiciones [y, x]. 
+                               Si es None, detecta normalmente.
+        """
         
         background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-        dino_pos = self.detect_dino(background)
+        dino_pos = filtered_positions if filtered_positions is not None else self.detect_dino(background)
         
         print("--"*10)
         print("TOTAL NUMBER OF DINO", len(dino_pos))
@@ -1196,10 +1234,15 @@ class Bot:
     #   COIN COLLECTION
     # ----------------------------------------------------------
 
-    def collect_coin(self):
-        """Collects coin chests"""
+    def collect_coin(self, filtered_positions=None):
+        """Collects coin chests
+        
+        Args:
+            filtered_positions: Lista pre-filtrada de posiciones [y, x]. 
+                               Si es None, detecta normalmente.
+        """
         background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-        coin_pos = self.detect_coins(background)
+        coin_pos = filtered_positions if filtered_positions is not None else self.detect_coins(background)
 
         for pos in coin_pos:
             if keyboard.is_pressed("q"):
@@ -1249,12 +1292,17 @@ class Bot:
     #   SUPPLY COLLECTION
     # ----------------------------------------------------------
 
-    def collect_supply_drop(self):
-        """"Collects supply drops"""
+    def collect_supply_drop(self, filtered_positions=None):
+        """"Collects supply drops
+        
+        Args:
+            filtered_positions: Lista pre-filtrada de posiciones [y, x]. 
+                               Si es None, detecta normalmente.
+        """
 
         # use old background to determine stop clicking
         background_old= np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))        
-        supply_drop_pos = self.detect_supply_drop(background_old)
+        supply_drop_pos = filtered_positions if filtered_positions is not None else self.detect_supply_drop(background_old)
         
         # loop until you click supply drop
         for pos in supply_drop_pos:
@@ -1315,16 +1363,11 @@ class Bot:
                     pos_x = self.locate_x_button(background_new)
                     if pos_x:
                         pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
-                        time.sleep(1) 
+                        time.sleep(1)
 
-            else:
-                print("--"*10)
-                print(f"NOT SUPPLY DROP (detected: {state})")
-                # find x button if not there click on map button
-                pos_x = self.locate_x_button(background_new)
-                pos_x = pos_x if pos_x else self.map_button_loc
-                pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
-                time.sleep(1)                                       
+            # 🔧 v3.4.8.7: ELIMINADO else block que causaba click en X cuando OCR fallaba
+            # Ahora confiamos en las posiciones filtradas y no re-verificamos con OCR
+                                       
 
     # ----------------------------------------------------------
     #   HELPER
