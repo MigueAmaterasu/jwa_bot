@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import pyautogui
 import keyboard
 import numpy as np
+import cv2
 from PIL import Image
 import pytesseract
 from skimage import measure, morphology, filters, feature, color, transform
@@ -967,6 +968,58 @@ class Bot:
         battery_remaining = 1.0 - (line_length / abs(self.battery_loc[3] - self.battery_loc[2]))
         return battery_remaining
 
+    def detect_filled_white_circle(self, background):
+        """
+        v3.4.9: Detecta el círculo RELLENO blanco (punto de mira del juego)
+        
+        Returns:
+            dict con 'center' (x,y), 'radius', 'area', 'circularity' o None si no se detecta
+        """
+        # Crear máscara de píxeles blancos puros
+        lower_white = np.array([240, 240, 240])  # BGR - muy blanco
+        upper_white = np.array([255, 255, 255])
+        mask_white = cv2.inRange(background, lower_white, upper_white)
+        
+        # Encontrar contornos en la máscara blanca
+        contours, _ = cv2.findContours(mask_white, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        
+        for contour in contours:
+            area = cv2.contourArea(contour)
+            
+            # Filtrar contornos muy pequeños (ruido)
+            if area < 10:
+                continue
+            
+            # Obtener bounding box
+            x, y, w, h = cv2.boundingRect(contour)
+            
+            # Verificar si es aproximadamente circular (relación aspecto ~1.0)
+            aspect_ratio = float(w) / h if h > 0 else 0
+            is_circular = 0.7 <= aspect_ratio <= 1.3
+            
+            # Calcular "circularidad" (4π*area / perimeter²)
+            # Círculo perfecto = 1.0, cuadrado = 0.785
+            perimeter = cv2.arcLength(contour, True)
+            circularity = 4 * np.pi * area / (perimeter * perimeter) if perimeter > 0 else 0
+            
+            # Radio estimado
+            radius = int(np.sqrt(area / np.pi))
+            center_x = x + w // 2
+            center_y = y + h // 2
+            
+            # Filtrar solo círculos PEQUEÑOS (3-30px, puede ser más pequeño con dinos raros)
+            # Rechazar círculos grandes (>30px) que son ruido del juego
+            if is_circular and circularity > 0.6 and 20 < area < 3000 and 3 <= radius <= 30:
+                return {
+                    'center': (center_x, center_y),
+                    'radius': radius,
+                    'area': area,
+                    'circularity': circularity,
+                    'aspect_ratio': aspect_ratio
+                }
+        
+        return None
+
     def shoot_dino(self):
         """Shoots the dino"""
 
@@ -1019,13 +1072,6 @@ class Bot:
         time.sleep(0.3)  # ⚡ REDUCIDO de 0.5 a 0.3 segundos
         
         background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-        
-        # 📸 v3.4.8.2: Screenshot ANTES de empezar a disparar
-        timestamp = time.strftime("%Y%m%d_%H%M%S")
-        screenshot_path = f"debug_screenshots/shooting_start_{timestamp}.png"
-        os.makedirs("debug_screenshots", exist_ok=True)
-        Image.fromarray(background).save(screenshot_path)
-        self.logger.info(f"📸 Screenshot inicial de shooting guardado: {screenshot_path}")
 
         start = time.time()
         end = start
@@ -1041,14 +1087,6 @@ class Bot:
 
             # b_prev = background
             background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-            
-            # 📸 v3.4.8.2: Screenshot cada 30 frames DURANTE el shooting
-            screenshot_counter += 1
-            if screenshot_counter % 30 == 0:
-                timestamp = time.strftime("%Y%m%d_%H%M%S")
-                screenshot_path = f"debug_screenshots/shooting_tracking_{timestamp}_frame{screenshot_counter}.png"
-                Image.fromarray(background).save(screenshot_path)
-                self.logger.debug(f"📸 Screenshot tracking (frame {screenshot_counter}): {screenshot_path}")
             
             background_cropped = background[self.dino_shoot_loc[0]:,:self.dino_shoot_loc[1],:]
             dino_loc, _ = dino_location(background_cropped, self.dino_shoot_loc[0], 2*self.D)
@@ -1076,35 +1114,71 @@ class Bot:
    
             if dino_loc:
                 dino_2_dart = np.sqrt((dino_loc[0] - dart_loc[0])**2 + (dino_loc[1] - dart_loc[1])**2)
-                battery_left = self.get_battery_left(background)  # CORREGIDO: Ya no se invierte
+                battery_left = self.get_battery_left(background)
 
-                # check if dino in dart range - v3.4.6: Rango ampliado 1.5x para disparar más fácil
-                shoot_range = (D + h1*battery_left) * 1.5
-                if dino_2_dart <= shoot_range:
+                # ================================================================
+                # v3.4.9: NUEVO MÉTODO - Detectar círculo blanco relleno
+                # ================================================================
+                white_circle = self.detect_filled_white_circle(background)
+                
+                # Threshold: Radio máximo del círculo blanco para disparar
+                # 6-10px = normal, hasta 15px por seguridad
+                # Círculos más grandes = batería gastada = baja precisión
+                PRECISION_THRESHOLD = 15
+                
+                if white_circle and white_circle['radius'] <= PRECISION_THRESHOLD:
+                    # ✅ Círculo pequeño detectado = ALTA PRECISIÓN = DISPARAR AHORA
                     print("--"*10)
-                    print("DINO CLOSE SHOOTING")
-                    
-                    # 📸 v3.4.8.2: Screenshot JUSTO ANTES de disparar
-                    timestamp = time.strftime("%Y%m%d_%H%M%S")
-                    screenshot_path = f"debug_screenshots/shooting_before_shot_{timestamp}.png"
-                    Image.fromarray(background).save(screenshot_path)
-                    self.logger.info(f"📸 Screenshot ANTES de disparar: {screenshot_path}")
+                    print(f"⚪ CÍRCULO BLANCO DETECTADO - Radio: {white_circle['radius']}px - DISPARANDO")
+                    self.logger.info(f"⚪ Círculo blanco pequeño detectado (R={white_circle['radius']}px) - DISPARANDO")
                     
                     pyautogui.mouseUp()
-                    time.sleep(0.1)  # ⚡ v3.4.8: REDUCIDO de 0.25s a 0.1s
+                    time.sleep(0.1)
                     pyautogui.mouseDown()
-                    time.sleep(0.3)  # ⚡ v3.4.8: REDUCIDO de 0.5s a 0.3s
+                    time.sleep(0.3)
                     
-                    # 📸 v3.4.8.2: Screenshot DESPUÉS de disparar
-                    background_after = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-                    timestamp = time.strftime("%Y%m%d_%H%M%S")
-                    screenshot_path = f"debug_screenshots/shooting_after_shot_{timestamp}.png"
-                    Image.fromarray(background_after).save(screenshot_path)
-                    self.logger.info(f"📸 Screenshot DESPUÉS de disparar: {screenshot_path}")
-                    
-                    # 🚀 v3.4.8: CONTINUAR inmediatamente para perseguir
                     continue
-                else: # if not move screen to dino
+                
+                # ================================================================
+                # MÉTODO ANTIGUO (COMENTADO) - Detección por distancia
+                # ================================================================
+                # Este método usa predicción matemática de velocidad
+                # Problema: No considera el indicador de precisión del juego (círculo blanco)
+                # Resultado: Máximo 60 DNA vs 100-220 DNA con método del círculo
+                # ================================================================
+                
+                # # check if dino in dart range - v3.4.6: Rango ampliado 1.5x para disparar más fácil
+                # shoot_range = (D + h1*battery_left) * 1.5
+                # if dino_2_dart <= shoot_range:
+                #     print("--"*10)
+                #     print("DINO CLOSE SHOOTING")
+                #     
+                #     # 📸 v3.4.8.2: Screenshot JUSTO ANTES de disparar
+                #     timestamp = time.strftime("%Y%m%d_%H%M%S")
+                #     screenshot_path = f"debug_screenshots/shooting_before_shot_{timestamp}.png"
+                #     Image.fromarray(background).save(screenshot_path)
+                #     self.logger.info(f"📸 Screenshot ANTES de disparar: {screenshot_path}")
+                #     
+                #     pyautogui.mouseUp()
+                #     time.sleep(0.1)  # ⚡ v3.4.8: REDUCIDO de 0.25s a 0.1s
+                #     pyautogui.mouseDown()
+                #     time.sleep(0.3)  # ⚡ v3.4.8: REDUCIDO de 0.5s a 0.3s
+                #     
+                #     # 📸 v3.4.8.2: Screenshot DESPUÉS de disparar
+                #     background_after = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                #     timestamp = time.strftime("%Y%m%d_%H%M%S")
+                #     screenshot_path = f"debug_screenshots/shooting_after_shot_{timestamp}.png"
+                #     Image.fromarray(background_after).save(screenshot_path)
+                #     self.logger.info(f"📸 Screenshot DESPUÉS de disparar: {screenshot_path}")
+                #     
+                #     # 🚀 v3.4.8: CONTINUAR inmediatamente para perseguir
+                #     continue
+                # else: # if not move screen to dino
+                
+                # ================================================================
+                # Continuar persiguiendo al dino (método antiguo sigue funcionando)
+                # ================================================================
+                if True:  # Siempre perseguir mientras no se dispare
                     v_max_new = v_max + h2*battery_left
 
                     # ⚡ v3.4.8: Factor de predicción AUMENTADO para dinos ultra-rápidos
@@ -1167,11 +1241,18 @@ class Bot:
             pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2) 
             time.sleep(5) 
 
-    def collect_dino(self):
-        """"Finds and shoots the dino"""
+    def collect_dino(self, filtered_positions=None):
+        """"Finds and shoots the dino
+        
+        Args:
+            filtered_positions: Lista pre-filtrada de posiciones [y, x]. 
+                               Si es None, detecta normalmente.
+        """
         
         background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-        dino_pos = self.detect_dino(background)
+        
+        # Si hay posiciones pre-filtradas, usarlas. Si no, detectar normalmente
+        dino_pos = filtered_positions if filtered_positions is not None else self.detect_dino(background)
         
         print("--"*10)
         print("TOTAL NUMBER OF DINO", len(dino_pos))
@@ -1227,10 +1308,17 @@ class Bot:
     #   COIN COLLECTION
     # ----------------------------------------------------------
 
-    def collect_coin(self):
-        """Collects coin chests"""
+    def collect_coin(self, filtered_positions=None):
+        """Collects coin chests
+        
+        Args:
+            filtered_positions: Lista pre-filtrada de posiciones [y, x]. 
+                               Si es None, detecta normalmente.
+        """
         background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-        coin_pos = self.detect_coins(background)
+        
+        # Si hay posiciones pre-filtradas, usarlas. Si no, detectar normalmente
+        coin_pos = filtered_positions if filtered_positions is not None else self.detect_coins(background)
 
         for pos in coin_pos:
             if keyboard.is_pressed("q"):
@@ -1280,12 +1368,19 @@ class Bot:
     #   SUPPLY COLLECTION
     # ----------------------------------------------------------
 
-    def collect_supply_drop(self):
-        """"Collects supply drops"""
+    def collect_supply_drop(self, filtered_positions=None):
+        """"Collects supply drops
+        
+        Args:
+            filtered_positions: Lista pre-filtrada de posiciones [y, x]. 
+                               Si es None, detecta normalmente.
+        """
 
         # use old background to determine stop clicking
-        background_old= np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))        
-        supply_drop_pos = self.detect_supply_drop(background_old)
+        background_old= np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+        
+        # Si hay posiciones pre-filtradas, usarlas. Si no, detectar normalmente
+        supply_drop_pos = filtered_positions if filtered_positions is not None else self.detect_supply_drop(background_old)
         
         # loop until you click supply drop
         for pos in supply_drop_pos:
