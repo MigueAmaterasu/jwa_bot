@@ -19,7 +19,7 @@ if __name__ == "__main__":
     logger.info("❌ Presiona 'q' para detener el bot en cualquier momento")
     logger.info("="*80)
     
-    DEBUG = False
+    DEBUG = True
 
     # for changing location
     something_there = False

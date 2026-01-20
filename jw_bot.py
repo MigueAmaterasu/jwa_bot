@@ -1097,7 +1097,7 @@ class Bot:
             state = self.determine_state(background_new)
             
             # 🔍 DEBUG: Descomentar la siguiente línea para guardar imágenes de lo que ve el OCR
-            # self.debug_save_ocr_regions(background_new, f"supply_{pos[0]}_{pos[1]}")
+            self.debug_save_ocr_regions(background_new, f"supply_{pos[0]}_{pos[1]}")
             
             # MEJORADO: También aceptar "event" como supply drop válido
             if state == "supply" or state == "event":
