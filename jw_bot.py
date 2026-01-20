@@ -671,6 +671,30 @@ class Bot:
             self.logger.warning("⛔ [EXCLUIDO] Pantalla de carga o menú")
             return state
         
+        # 4. 🚫 INCUBADORAS - Eventos de combate/asalto (raids)
+        if any(word in combined_text for word in ["COMBATE", "BATTLE", "ASALTO", "RAID", "INCUBADORA", "INCUBATOR"]):
+            state = "out_of_range"
+            self.logger.warning("⛔ [EXCLUIDO] Incubadora o evento de combate detectado")
+            return state
+        
+        # 5. ⏱️ SUPPLY DROPS EN COOLDOWN - Ya fueron recolectados recientemente
+        # Detecta tiempo restante en formato: "0m 9s", "14h 10m", "1h", "30m", etc.
+        # El texto aparece en el área superior donde normalmente está el nombre del supply drop
+        import re
+        cooldown_patterns = [
+            r'\d+[HMS]',        # Formato simple: "1H", "30M", "45S"
+            r'\d+[hms]',        # Formato minúsculas: "1h", "30m", "45s"  
+            r'\d+[HMS]\s*\d*[HMS]?',  # Formato compuesto: "14H 10M", "1H 30M"
+            r'\d+[hms]\s*\d*[hms]?',  # Formato compuesto minúsculas: "0m 9s", "14h 10m"
+        ]
+        
+        has_cooldown_time = any(re.search(pattern, combined_text) for pattern in cooldown_patterns)
+        
+        if has_cooldown_time:
+            state = "out_of_range"
+            self.logger.warning(f"⛔ [EXCLUIDO] Supply drop en cooldown - Texto detectado: '{combined_text[:50]}'")
+            return state
+        
         # ✅ EVENTOS ESPECIALES SON VÁLIDOS - NO se excluyen
         # Los supply drops que dicen "EVENTO ESPECIAL TERMINA EN..." SON cajitas verdes con suministros
         # Los dinosaurios de evento también son válidos para disparar y recolectar ADN
