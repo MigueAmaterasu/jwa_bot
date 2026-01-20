@@ -1,4 +1,7 @@
 import time
+import logging
+import os
+from datetime import datetime
 
 import matplotlib.pyplot as plt
 import pyautogui
@@ -9,9 +12,65 @@ import pytesseract
 from skimage import measure, morphology, filters, feature, color, transform
 from scipy import ndimage
 
-# CHANGE THIS!
-# https://stackoverflow.com/questions/50655738/how-do-i-resolve-a-tesseractnotfounderror
+# ============================================================================
+# CONFIGURACIÓN DE TESSERACT
+# ============================================================================
+# Para BlueStacks en Windows, descomenta y ajusta la siguiente línea:
 pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+# 
+# # Para macOS con Homebrew:
+# pytesseract.pytesseract.tesseract_cmd = '/opt/homebrew/bin/tesseract'
+#
+# Si tesseract está en el PATH del sistema, puedes comentar/eliminar esta línea
+# ============================================================================
+
+# ============================================================================
+# CONFIGURACIÓN DE LOGGING
+# ============================================================================
+def setup_logging(log_level=logging.INFO):
+    """
+    Configura el sistema de logging para el bot
+    Crea archivo de log con timestamp y muestra en consola
+    """
+    # Crear carpeta de logs si no existe
+    if not os.path.exists('logs'):
+        os.makedirs('logs')
+    
+    # Nombre del archivo con timestamp
+    log_filename = f'logs/bot_log_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'
+    
+    # Configurar formato
+    log_format = logging.Formatter(
+        '[%(asctime)s] [%(levelname)s] %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+    
+    # Handler para archivo
+    file_handler = logging.FileHandler(log_filename, encoding='utf-8')
+    file_handler.setFormatter(log_format)
+    file_handler.setLevel(logging.DEBUG)
+    
+    # Handler para consola
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(log_format)
+    console_handler.setLevel(log_level)
+    
+    # Configurar logger principal
+    logger = logging.getLogger('JWA_Bot')
+    logger.setLevel(logging.DEBUG)
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
+    
+    logger.info("="*80)
+    logger.info("🦖 JURASSIC WORLD ALIVE BOT - INICIADO")
+    logger.info("="*80)
+    logger.info(f"📁 Log guardado en: {log_filename}")
+    
+    return logger
+
+# Crear logger global
+logger = setup_logging()
+# ============================================================================
 
 
 class Bot:
@@ -20,12 +79,25 @@ class Bot:
         # stores location of the app
         self.x, self.y, self.w, self.h = -1, -1, -1, -1
         self.loc = False
+        
+        # Logger
+        self.logger = logging.getLogger('JWA_Bot')
+        self.logger.info("🔧 Inicializando Bot...")
+        
+        # Crear carpeta para debug screenshots
+        if not os.path.exists('debug_screenshots'):
+            os.makedirs('debug_screenshots')
+            self.logger.info("📁 Carpeta 'debug_screenshots' creada")
 
 
         # get the ratios (I get it from my PC to fit other screen sizes)
         self.shooting_zone_ratio = (230 / 831, 740 / 971, 10 / 481, 410 / 481)
         self.launch_button_loc_ratio = (650 / 831, 712 / 831, 132 / 481, 310 / 481)
-        self.supply_drop_text_loc_ratio = (92 / 831, 132 / 831, 110 /481, 330 / 481)
+        
+        # CORREGIDO: Área del texto descriptivo (más abajo, zona central-superior)
+        # Esta área debe capturar el nombre/tipo del objeto (SUMINISTRO, EVENTO, etc)
+        self.supply_drop_text_loc_ratio = (150 / 831, 250 / 831, 80 / 481, 400 / 481)
+        
         self.map_button_loc_ratio = (786 / 831, 222 / 481)
         self.battery_loc_ratio = (75 / 831, 76 / 831, 360 / 481, 420 / 481)
         self.dino_loading_screen_loc_ratio = (210 / 831, 230 / 481)  
@@ -45,7 +117,7 @@ class Bot:
         # (y, x)
         self.shooting_zone = (230, 720, 10, 440)
         self.launch_button_loc = (650, 712, 132, 310)
-        self.supply_drop_text_loc = (92, 132, 110, 330)
+        self.supply_drop_text_loc = (150, 250, 80, 400)  # CORREGIDO: área más grande y centrada
         self.map_button_loc = (786, 222)
         self.battery_loc = (75, 76, 360, 420)
         self.dino_loading_screen_loc = (210, 230)
@@ -60,41 +132,79 @@ class Bot:
         self.v_max = 10
         
 
-        # color
-        # (R_min, G_min, B_min, R_max, G_max, B_max)
-        # (R, G, B)
-        # normal
+        # ========================================================================
+        # CONFIGURACIÓN DE COLORES RGB PARA DETECCIÓN
+        # ========================================================================
+        # Formato: (R_min, G_min, B_min, R_max, G_max, B_max)
+        # Los píxeles que estén dentro de este rango serán detectados
+        # 
+        # 💡 CÓMO AJUSTAR:
+        # 1. Toma una captura de pantalla de BlueStacks con el objeto visible
+        # 2. Usa un color picker (ej: GIMP, Photoshop, Paint) para obtener RGB
+        # 3. Ajusta los rangos min/max para incluir variaciones de brillo
+        # 
+        # 🎨 COLORES ACTIVOS (normal):
+        
+        # 🟢 EVENTOS ESPECIALES - Verde brillante
         self.special_event_color = (0, 120, 0, 180, 255, 180)
+        # Rango: R[0-180], G[120-255], B[0-180]
+        
+        # 🟠 SUPPLY DROPS - Naranja/Amarillo
         self.supply_drop_color = (160, 60, 0, 255, 255, 120)
-        # lunar new year
+        # Rango: R[160-255], G[60-255], B[0-120]
+        
+        # ========================================================================
+        # 🎨 COLORES ALTERNATIVOS PARA EVENTOS ESPECIALES
+        # Descomenta el evento que esté activo en tu juego
+        # ========================================================================
+        
+        # 🧧 LUNAR NEW YEAR (Año Nuevo Lunar)
         # self.special_event_color = (170, 140, 50, 230, 190, 100)
         # self.supply_drop_color = (150, 120, 0, 255, 180, 60)
-        # valentine
+        
+        # 💝 VALENTINE'S DAY (San Valentín)
         # self.special_event_color = (0, 140, 0, 100, 255, 100)
-        # self.supply_drop_color = (180, 0, 0, 255, 100, 120)        
-        # st. petersburg
-        #self.special_event_color = (0, 140, 0, 45, 255, 45)
-        #self.supply_drop_color = (60, 60, 0, 210, 210, 120)      
-
+        # self.supply_drop_color = (180, 0, 0, 255, 100, 120)
+        
+        # ❄️ ST. PETERSBURG / WINTER (Invierno)
+        # self.special_event_color = (0, 140, 0, 45, 255, 45)
+        # self.supply_drop_color = (60, 60, 0, 210, 210, 120)
+        
+        # ========================================================================
+        
+        # ❌ BOTÓN X (para cerrar ventanas) - Rojo oscuro
         self.x_button_color = (117, 10, 10)
-        self.gmap_loc_color = (200, 0, 0, 255, 70, 60)  
-        # default
+        
+        # 📍 UBICACIÓN EN GOOGLE MAPS - Rojo brillante
+        self.gmap_loc_color = (200, 0, 0, 255, 70, 60)
+        
+        # ========================================================================
+        # 🪙 MONEDAS / COIN CHASE
+        # ========================================================================
+        
+        # 🟡 DEFAULT - Dorado brillante
         self.coin_color = (180, 160, 100, 240, 220, 120)
-        # lunar new year
+        # Rango: R[180-240], G[160-220], B[100-120]
+        
+        # 🧧 LUNAR NEW YEAR
         # self.coin_color = (200, 50, 20, 255, 140, 50)
-        # winter games
+        
+        # ❄️ WINTER GAMES / FESTIVAL - Azul
         # self.coin_color = (20, 35, 130, 95, 95, 170)
-        # valentine
-        # self.coin_color = (180, 0, 0, 255, 100, 120) 
-        # festival
-        # self.coin_color = (20, 35, 130, 95, 95, 170)
-        # something
+        
+        # 💝 VALENTINE
+        # self.coin_color = (180, 0, 0, 255, 100, 120)
+        
+        # 🎪 ALGO MÁS - Gris/Plateado
         # self.coin_color = (130, 150, 150, 175, 175, 200)
         # self.coin_color = (175, 175, 150, 225, 225, 225)
-        # st. petersburg
-        # self.coin_color = (60, 60, 0, 210, 210, 120)   
-
+        
+        # ========================================================================
+        
+        # 🔋 BATERÍA DE DARDOS - Azul oscuro
         self.battery_color = (10, 30, 80)
+        
+        # 📱 PANTALLA DE CARGA DINOSAURIO - Blanco brillante
         self.dino_loading_screen_color = (230, 230, 230)
 
         # other
@@ -149,7 +259,17 @@ class Bot:
         # plt.show()
 
         self.x, self.y, self.w, self.h = x, y, w, h
-        print("LOC :", self.x, self.y, "SIZE :", self.w, self.h)
+        
+        self.logger.info("="*80)
+        self.logger.info("📐 CONFIGURACIÓN DE VENTANA BLUESTACKS")
+        self.logger.info("="*80)
+        self.logger.info(f"📍 Posición X: {self.x}px")
+        self.logger.info(f"📍 Posición Y: {self.y}px")
+        self.logger.info(f"📏 Ancho (W): {self.w}px")
+        self.logger.info(f"📏 Alto (H): {self.h}px")
+        self.logger.info(f"🎯 Esquina superior izquierda: ({self.x}, {self.y})")
+        self.logger.info(f"🎯 Esquina inferior derecha: ({self.x + self.w}, {self.y + self.h})")
+        self.logger.info("="*80)
 
         self.loc = True
 
@@ -158,14 +278,19 @@ class Bot:
                               int(self.shooting_zone_ratio[1]*h), 
                               int(self.shooting_zone_ratio[2]*w), 
                               int(self.shooting_zone_ratio[3]*w))
+        self.logger.info(f"🎯 Shooting zone: Y[{self.shooting_zone[0]}-{self.shooting_zone[1]}] X[{self.shooting_zone[2]}-{self.shooting_zone[3]}]")
+        
         self.launch_button_loc = (int(self.launch_button_loc_ratio[0]*h), 
                                   int(self.launch_button_loc_ratio[1]*h),
                                   int(self.launch_button_loc_ratio[2]*w),
                                   int(self.launch_button_loc_ratio[3]*w))
+        self.logger.info(f"🚀 Launch button: Y[{self.launch_button_loc[0]}-{self.launch_button_loc[1]}] X[{self.launch_button_loc[2]}-{self.launch_button_loc[3]}]")
+        
         self.supply_drop_text_loc = (int(self.supply_drop_text_loc_ratio[0]*h),
                                      int(self.supply_drop_text_loc_ratio[1]*h),
                                      int(self.supply_drop_text_loc_ratio[2]*w),
                                      int(self.supply_drop_text_loc_ratio[3]*w))
+        self.logger.info(f"📝 Supply text area: Y[{self.supply_drop_text_loc[0]}-{self.supply_drop_text_loc[1]}] X[{self.supply_drop_text_loc[2]}-{self.supply_drop_text_loc[3]}]")
         self.map_button_loc = (int(self.map_button_loc_ratio[0]*h), 
                                int(self.map_button_loc_ratio[1]*w))
         self.battery_loc = (int(self.battery_loc_ratio[0]*h),
@@ -242,9 +367,14 @@ class Bot:
     
     def detect_supply_drop(self, background):
         """Finds supply drop by simply thresholding, but there might be false positives"""
-        print("[DEBUG] supply_drop_color =", self.supply_drop_color)
-        print("[DEBUG] special_event_color =", self.special_event_color)
-        print("[DEBUG] shooting_zone =", self.shooting_zone)
+        
+        self.logger.debug("🔍 Buscando supply drops...")
+        self.logger.debug(f"   📊 Supply color range: R[{self.supply_drop_color[0]}-{self.supply_drop_color[3]}] "
+                         f"G[{self.supply_drop_color[1]}-{self.supply_drop_color[4]}] "
+                         f"B[{self.supply_drop_color[2]}-{self.supply_drop_color[5]}]")
+        self.logger.debug(f"   📊 Event color range: R[{self.special_event_color[0]}-{self.special_event_color[3]}] "
+                         f"G[{self.special_event_color[1]}-{self.special_event_color[4]}] "
+                         f"B[{self.special_event_color[2]}-{self.special_event_color[5]}]")
 
         if keyboard.is_pressed("q"):
             raise KeyboardInterrupt
@@ -254,6 +384,9 @@ class Bot:
         # threshold + clean up
         background_cropped = background[self.shooting_zone[0]:self.shooting_zone[1],
                                         self.shooting_zone[2]:self.shooting_zone[3]]
+        
+        self.logger.debug(f"   📐 Zona analizada: {background_cropped.shape}")
+        
         t1 = (background_cropped[:,:,0] >= self.supply_drop_color[0]) * \
             (background_cropped[:,:,1] >= self.supply_drop_color[1]) * \
             (background_cropped[:,:,2] >= self.supply_drop_color[2]) * \
@@ -266,27 +399,30 @@ class Bot:
             (background_cropped[:,:,0] <= self.special_event_color[3]) * \
             (background_cropped[:,:,1] <= self.special_event_color[4]) * \
             (background_cropped[:,:,2] <= self.special_event_color[5])
+        
         mask = np.logical_or(t1, t2).astype(np.uint8)
+        self.logger.debug(f"   🎨 Píxeles detectados inicialmente: {mask.sum()}")
+        
         mask = morphology.binary_closing(mask, np.ones((5,5)))
         
         # connected components
         labels = measure.label(mask, background=0, connectivity=2)
+        self.logger.debug(f"   🔢 Componentes detectados: {labels.max()}")
 
-        # find center of mass
+        # find center of mass - REDUCIDO EL UMBRAL DE 20 A 10 píxeles
         for label in range(1, labels.max()+1):
             rows, cols = np.where(labels == label)
-            if len(rows) > 20:
-                pos.append([self.shooting_zone[0] + int(np.mean(rows)), self.shooting_zone[2] + int(np.mean(cols))])
-            sample = background_cropped[rows[0], cols[0], :]
-            print(f"[COLOR DEBUG] supply sample RGB = {sample}")
-        sample = background_cropped[50:60,50:60].mean(axis=(0,1))
-        print("[DEBUG] sample avg RGB =", sample)
-
-        print("[DEBUG] supply_positions =", pos)
-        print("[DEBUG] mask sum =", mask.sum())
-        print("[DEBUG] labels =", labels.max())
-
-
+            if len(rows) > 10:  # Cambiado de 20 a 10 para detectar supply drops más pequeños
+                center_y = self.shooting_zone[0] + int(np.mean(rows))
+                center_x = self.shooting_zone[2] + int(np.mean(cols))
+                pos.append([center_y, center_x])
+                self.logger.debug(f"   ✅ Supply drop #{label}: {len(rows)} píxeles en posición ({center_y}, {center_x})")
+        
+        if len(pos) > 0:
+            self.logger.info(f"🟠 [SUPPLY DROP] Detectados {len(pos)} supply drops: {pos}")
+        else:
+            self.logger.debug("   ❌ No se detectaron supply drops")
+        
         return pos
 
     def detect_coins(self, background):
@@ -310,18 +446,15 @@ class Bot:
         # connected components
         labels = measure.label(mask, background=0, connectivity=2)
 
-
-        # import matplotlib.pyplot as plt
-        # plt.figure(2)
-        # plt.imshow(labels)
-        # plt.show()
-
-        # find center of mass
+        # find center of mass - REDUCIDO DE 15 A 10
         for label in range(1, labels.max()+1):
             rows, cols = np.where(labels == label)
-            if len(rows) > 15:
+            if len(rows) > 10:  # Cambiado de 15 a 10
                 pos.append([self.shooting_zone[0] + int(np.mean(rows)), self.shooting_zone[2] + int(np.mean(cols))])
 
+        if len(pos) > 0:
+            print(f"[COINS] Detectadas {len(pos)} monedas")
+        
         return pos
 
     # def detect_coins(self, background):
@@ -464,35 +597,73 @@ class Bot:
             raise KeyboardInterrupt
 
         state = ""
-
         
-    
+        self.logger.debug("🔍 Determinando estado del objeto...")
+        
+        # Capturar AMBAS áreas para mejor detección
         launch_button = background[self.launch_button_loc[0]:self.launch_button_loc[1], 
                                 self.launch_button_loc[2]:self.launch_button_loc[3]].astype(np.uint8)
         
         supply_drop = background[self.supply_drop_text_loc[0]:self.supply_drop_text_loc[1],
                                 self.supply_drop_text_loc[2]:self.supply_drop_text_loc[3]]
 
-        text1 = "".join(pytesseract.image_to_string(launch_button, config = self.custom_config).split())
-        text2 = "".join(pytesseract.image_to_string(supply_drop, config = self.custom_config).split())
+        self.logger.debug(f"   📐 Área botón lanzar: {launch_button.shape}")
+        self.logger.debug(f"   📐 Área texto supply: {supply_drop.shape}")
 
-        print(text1, " - ", text2)
-        if "LANZAR" in text1 or "DISPARAR" in text1 or "DINOSAUR" in text2 or "CAPTURAR" in text2:
+        # Intentar OCR en ambas zonas
+        text1 = "".join(pytesseract.image_to_string(launch_button, config = self.custom_config).split()).upper()
+        text2 = "".join(pytesseract.image_to_string(supply_drop, config = self.custom_config).split()).upper()
+        
+        # Combinar ambos textos para mejor detección
+        combined_text = text1 + " " + text2
+
+        self.logger.info(f"📝 [OCR] Botón: '{text1}'")
+        self.logger.info(f"📝 [OCR] Texto: '{text2}'")
+        self.logger.info(f"📝 [OCR] Combinado: '{combined_text}'")
+        
+        # MEJORADO: Buscar en TEXTO COMBINADO para más robustez
+        # Prioridad: DINO > SUPPLY > EVENT > COIN
+        
+        # 1. Detectar DINOSAURIOS (más específico primero)
+        if any(word in combined_text for word in ["LANZAR", "DISPARAR", "LAUNCH", "SHOOT", "CAPTURAR", "CAPTURA"]):
             state = "dino"
-
-        elif "EVENT" in text2 or "EVEN" in text2 or "ESPECIAL" in text2 or "EVE" in text2:
-            state = "event"
-
-        elif "SUMIN" in text2 or "DROP" in text2 or "SUM" in text2 or "SU" in text2:
+            self.logger.debug("   🦖 Palabras clave de DINO detectadas")
+        
+        # 2. Detectar SUPPLY DROPS (palabras clave específicas)
+        elif any(word in combined_text for word in ["SUMINISTRO", "SUMINISTROS", "SUPPLY", "DROP", "ABASTECIMIENTO"]):
             state = "supply"
-
-        elif "COIN" in text2 or "CHASE" in text2 or "MONEDA" in text2 or "PERSE" in text2 or "ORO" in text2:
+            self.logger.debug("   📦 Palabras clave de SUPPLY detectadas")
+            
+        # 3. Detectar EVENTOS ESPECIALES
+        elif any(word in combined_text for word in ["EVENTO", "EVENT", "ESPECIAL", "SPECIAL"]):
+            state = "event"
+            self.logger.debug("   🎉 Palabras clave de EVENT detectadas")
+        
+        # 4. Detectar MONEDAS / COIN CHASE
+        elif any(word in combined_text for word in ["MONEDA", "MONEDAS", "COIN", "CHASE", "ORO", "GOLD", "PERSECUCION", "PERSECUCIÓN"]):
             state = "coin"
+            self.logger.debug("   🪙 Palabras clave de COIN detectadas")
+        
+        # 5. Detección por fragmentos parciales (fallback)
+        elif any(fragment in combined_text for fragment in ["SUMIN", "DINO", "EVEN", "MONED"]):
+            if "SUMIN" in combined_text:
+                state = "supply"
+                self.logger.debug("   📦 Fragmento 'SUMIN' detectado")
+            elif "DINO" in combined_text:
+                state = "dino"
+                self.logger.debug("   🦖 Fragmento 'DINO' detectado")
+            elif "EVEN" in combined_text:
+                state = "event"
+                self.logger.debug("   🎉 Fragmento 'EVEN' detectado")
+            elif "MONED" in combined_text:
+                state = "coin"
+                self.logger.debug("   🪙 Fragmento 'MONED' detectado")
 
-        # elif text2 
-
-        print("[OCR launch raw] =", pytesseract.image_to_string(launch_button))
-        print("[OCR supply raw] =", pytesseract.image_to_string(supply_drop))
+        if state:
+            self.logger.info(f"✅ [ESTADO DETECTADO] {state.upper()}")
+        else:
+            self.logger.warning(f"❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado")
+            self.logger.warning(f"   💡 Considera activar debug visual para ver qué captura el OCR")
 
         return state
 
@@ -639,8 +810,9 @@ class Bot:
             _, cols = np.where(mask)
             line_length = cols.max() - cols.min()
 
-        # normalize as percentage
-        return line_length /  (self.battery_loc[2] - self.battery_loc[3])
+        # normalize as percentage - CORREGIDO: Retorna batería RESTANTE (0=vacía, 1=llena)
+        battery_remaining = 1.0 - (line_length / abs(self.battery_loc[3] - self.battery_loc[2]))
+        return battery_remaining
 
     def shoot_dino(self):
         """Shoots the dino"""
@@ -698,7 +870,8 @@ class Bot:
         start = time.time()
         end = start
 
-        while not self.is_dino_loading_screen(background) and end - start < 60:
+        # INCREMENTADO EL TIMEOUT DE 60 A 120 SEGUNDOS
+        while not self.is_dino_loading_screen(background) and end - start < 120:
             
             if keyboard.is_pressed("q"):
                 raise KeyboardInterrupt
@@ -716,7 +889,7 @@ class Bot:
    
             if dino_loc:
                 dino_2_dart = np.sqrt((dino_loc[0] - dart_loc[0])**2 + (dino_loc[1] - dart_loc[1])**2)
-                battery_left = 1 - self.get_battery_left(background)
+                battery_left = self.get_battery_left(background)  # CORREGIDO: Ya no se invierte
 
                 # check if dino in dart range
                 if np.sqrt((dino_loc[0] - dart_loc[0])**2 + (dino_loc[1] - dart_loc[1])**2) <= (D + h1*battery_left):
@@ -760,7 +933,7 @@ class Bot:
                 pyautogui.mouseDown() 
             # print("DIST", np.mean((b_prev.astype(np.float) - background.astype(np.float))**2))
         
-        if end - start > 60:
+        if end - start > 120:  # CORREGIDO: Cambiado de 60 a 120
             pyautogui.mouseUp()
             time.sleep(0.25)
             pyautogui.mouseDown()
@@ -909,7 +1082,7 @@ class Bot:
 
             background_old = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
             pyautogui.click(x=self.x+pos[1], y=self.y+pos[0])
-            time.sleep(0.2)
+            time.sleep(0.3)  # AUMENTADO de 0.2 a 0.3
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
 
             # to many FPs so quick way to eliminate them
@@ -918,23 +1091,30 @@ class Bot:
                 print("NOTHING THERE")
                 continue
 
-            time.sleep(0.8)
+            time.sleep(1.0)  # AUMENTADO de 0.8 a 1.0 para dar más tiempo al OCR
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
 
             state = self.determine_state(background_new)
-            if state == "supply":
+            
+            # 🔍 DEBUG: Descomentar la siguiente línea para guardar imágenes de lo que ve el OCR
+            # self.debug_save_ocr_regions(background_new, f"supply_{pos[0]}_{pos[1]}")
+            
+            # MEJORADO: También aceptar "event" como supply drop válido
+            if state == "supply" or state == "event":
                 print("--"*10)
-                print("CLICKING SUPPLY DROP")
+                print(f"CLICKING {state.upper()}")
 
                 background_tmp = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
                 # activate the supply drop
                 pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)  
-                time.sleep(2) 
+                time.sleep(2.5)  # AUMENTADO de 2 a 2.5
                 background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                
+                # Si no cambió el background, puede que ya esté abierto o necesite cerrar
                 if not self.background_changed(background_new, background_tmp):
-                    pos = self.locate_x_button(background_new)
-                    if pos:
-                        pyautogui.click(x=self.x+pos[1], y=self.y+pos[0])
+                    pos_x = self.locate_x_button(background_new)
+                    if pos_x:
+                        pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
                         time.sleep(1) 
 
                 count = 0
@@ -942,44 +1122,70 @@ class Bot:
                 while self.max_click >= count and \
                       self.background_changed(background_old, background_new):
                     print("--"*10)
-                    print("CLICK")
+                    print(f"CLICK {count+1}/{self.max_click}")
                     pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
-                    # time.sleep(1.5) 
                     time.sleep(2.5) 
                     background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-                    # print()
-                    # collected = self.determine_supply_collected(background_new)
-                    # if collected:
-                    #     key, number = collected
-                    #     tmp = self.supply_collected.get(key, 0)
-                    #     self.supply_collected[key] = tmp + number
                     count += 1
 
                 # if clicked more than max amount something is wrong
                 if count > self.max_click:
-                    pos = self.locate_x_button(background_new)
-                    if pos:
-                        pyautogui.click(x=self.x+pos[1], y=self.y+pos[0])
+                    pos_x = self.locate_x_button(background_new)
+                    if pos_x:
+                        pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
                         time.sleep(1) 
 
-            # elif not self.background_changed(background_old, background_new):
-            #     print("--"*10)
-            #     print("NOTHING THERE")
             else:
                 print("--"*10)
-                print("NOT SUPPLY DROP")
+                print(f"NOT SUPPLY DROP (detected: {state})")
                 # find x button if not there click on map button
-                pos = self.locate_x_button(background_new)
-                pos = pos if pos else self.map_button_loc
-                pyautogui.click(x=self.x+pos[1], y=self.y+pos[0])
+                pos_x = self.locate_x_button(background_new)
+                pos_x = pos_x if pos_x else self.map_button_loc
+                pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
                 time.sleep(1)                                       
 
     # ----------------------------------------------------------
     #   HELPER
     # ----------------------------------------------------------
 
-    def background_changed(self, b1, b2, threshold=2000):
-        """Compare difference between two frames"""
+    def background_changed(self, b1, b2, threshold=1500):
+        """Compare difference between two frames - REDUCIDO DE 2000 A 1500"""
         diff = (b1.astype(float) - b2.astype(float))**2
-        print("DIFF", np.mean(diff))
-        return np.mean(diff) > threshold
+        mean_diff = np.mean(diff)
+        print(f"[DIFF] {mean_diff:.1f} (threshold: {threshold})")
+        return mean_diff > threshold
+    
+    def debug_save_ocr_regions(self, background, filename_prefix="debug"):
+        """
+        FUNCIÓN DE DEBUG: Guarda las regiones de OCR como imágenes
+        Útil para verificar qué está leyendo el bot
+        
+        Uso: Llama a esta función cuando quieras ver qué captura el OCR
+        Las imágenes se guardan en la carpeta actual
+        """
+        try:
+            import os
+            from PIL import Image
+            
+            # Crear carpeta de debug si no existe
+            debug_folder = "debug_screenshots"
+            if not os.path.exists(debug_folder):
+                os.makedirs(debug_folder)
+            
+            # Guardar región del botón de lanzar
+            launch_button = background[self.launch_button_loc[0]:self.launch_button_loc[1], 
+                                    self.launch_button_loc[2]:self.launch_button_loc[3]]
+            Image.fromarray(launch_button).save(f"{debug_folder}/{filename_prefix}_launch_button.png")
+            
+            # Guardar región del texto de supply drop
+            supply_text = background[self.supply_drop_text_loc[0]:self.supply_drop_text_loc[1],
+                                    self.supply_drop_text_loc[2]:self.supply_drop_text_loc[3]]
+            Image.fromarray(supply_text).save(f"{debug_folder}/{filename_prefix}_supply_text.png")
+            
+            # Guardar pantalla completa para referencia
+            Image.fromarray(background).save(f"{debug_folder}/{filename_prefix}_full_screen.png")
+            
+            print(f"[DEBUG] Imágenes guardadas en carpeta '{debug_folder}/'")
+            
+        except Exception as e:
+            print(f"[DEBUG] Error al guardar imágenes: {e}")
