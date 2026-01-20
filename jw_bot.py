@@ -75,7 +75,7 @@ logger = setup_logging()
 
 class Bot:
 
-    def __init__(self):
+    def __init__(self, max_run_hours=None):
         # stores location of the app
         self.x, self.y, self.w, self.h = -1, -1, -1, -1
         self.loc = False
@@ -83,6 +83,14 @@ class Bot:
         # Logger
         self.logger = logging.getLogger('JWA_Bot')
         self.logger.info("🔧 Inicializando Bot...")
+        
+        # Tiempo límite de ejecución (en horas)
+        self.max_run_hours = max_run_hours
+        self.start_time = time.time()
+        if max_run_hours:
+            self.logger.info(f"⏱️  Tiempo límite configurado: {max_run_hours} horas")
+        else:
+            self.logger.info("⏱️  Sin límite de tiempo (correrá indefinidamente)")
         
         # Crear carpeta para debug screenshots
         if not os.path.exists('debug_screenshots'):
@@ -94,9 +102,10 @@ class Bot:
         self.shooting_zone_ratio = (230 / 831, 740 / 971, 10 / 481, 410 / 481)
         self.launch_button_loc_ratio = (650 / 831, 712 / 831, 132 / 481, 310 / 481)
         
-        # CORREGIDO: Área del texto descriptivo (más abajo, zona central-superior)
-        # Esta área debe capturar el nombre/tipo del objeto (SUMINISTRO, EVENTO, etc)
-        self.supply_drop_text_loc_ratio = (150 / 831, 250 / 831, 80 / 481, 400 / 481)
+        # ✅ CORREGIDO v3.2: Área del texto en la PARTE SUPERIOR de la pantalla
+        # Esta área captura el texto "EVENTO", "SUMINISTRO", etc. que aparece ARRIBA de la cajita
+        # Coordenadas: Y[5%-15%] X[20%-80%] de la pantalla
+        self.supply_drop_text_loc_ratio = (0.05, 0.15, 0.20, 0.80)
         
         self.map_button_loc_ratio = (786 / 831, 222 / 481)
         self.battery_loc_ratio = (75 / 831, 76 / 831, 360 / 481, 420 / 481)
@@ -621,8 +630,36 @@ class Bot:
         self.logger.info(f"📝 [OCR] Texto: '{text2}'")
         self.logger.info(f"📝 [OCR] Combinado: '{combined_text}'")
         
+        # ⛔ FILTRO DE EXCLUSIÓN: Detectar objetos que NO debemos clickear
+        
+        # 1. Dinosaurios fuera de rango (VIP requerido)
+        if any(word in combined_text for word in ["UNETE", "ÚNETE", "AHORA", "JOINNOW", "JOIN"]):
+            state = "out_of_range"
+            self.logger.warning("⛔ [EXCLUIDO] Dinosaurio fuera de rango (VIP requerido)")
+            return state
+        
+        # 2. Páginas de compra/bonificación
+        if any(word in combined_text for word in ["COMPRA", "COMPRAR", "BUY", "PURCHASE", "BONIFICACION", "BONIFICACIÓN", "OFERTA", "OFFER", "PRECIO", "PRICE", "$", "USD", "PAQUETE", "PACK"]):
+            state = "out_of_range"
+            self.logger.warning("⛔ [EXCLUIDO] Página de compra/oferta detectada")
+            return state
+        
+        # 3. Pantallas de carga o menús que no son interactivos
+        if any(word in combined_text for word in ["CARGANDO", "LOADING", "ESPERA", "WAIT", "MENU", "MENÚ"]):
+            state = "out_of_range"
+            self.logger.warning("⛔ [EXCLUIDO] Pantalla de carga o menú")
+            return state
+        
+        # 4. ⚠️ EVENTOS ESPECIALES - SKIP (se queda pegado mucho tiempo aquí)
+        # Los eventos tienen animaciones largas y requieren interacción específica
+        # Mejor saltarlos para no perder tiempo
+        if any(word in combined_text for word in ["EVENTO", "EVENT", "ESPECIAL", "SPECIAL"]):
+            state = "out_of_range"
+            self.logger.warning("⛔ [EXCLUIDO] Evento especial detectado - SKIP para evitar quedarse pegado")
+            return state
+        
         # MEJORADO: Buscar en TEXTO COMBINADO para más robustez
-        # Prioridad: DINO > SUPPLY > EVENT > COIN
+        # Prioridad: DINO > SUPPLY > COIN
         
         # 1. Detectar DINOSAURIOS (más específico primero)
         if any(word in combined_text for word in ["LANZAR", "DISPARAR", "LAUNCH", "SHOOT", "CAPTURAR", "CAPTURA"]):
@@ -634,27 +671,19 @@ class Bot:
             state = "supply"
             self.logger.debug("   📦 Palabras clave de SUPPLY detectadas")
             
-        # 3. Detectar EVENTOS ESPECIALES
-        elif any(word in combined_text for word in ["EVENTO", "EVENT", "ESPECIAL", "SPECIAL"]):
-            state = "event"
-            self.logger.debug("   🎉 Palabras clave de EVENT detectadas")
-        
-        # 4. Detectar MONEDAS / COIN CHASE
+        # 3. Detectar MONEDAS / COIN CHASE
         elif any(word in combined_text for word in ["MONEDA", "MONEDAS", "COIN", "CHASE", "ORO", "GOLD", "PERSECUCION", "PERSECUCIÓN"]):
             state = "coin"
             self.logger.debug("   🪙 Palabras clave de COIN detectadas")
         
-        # 5. Detección por fragmentos parciales (fallback)
-        elif any(fragment in combined_text for fragment in ["SUMIN", "DINO", "EVEN", "MONED"]):
+        # 4. Detección por fragmentos parciales (fallback) - EVENTOS YA EXCLUIDOS ARRIBA
+        elif any(fragment in combined_text for fragment in ["SUMIN", "DINO", "MONED"]):
             if "SUMIN" in combined_text:
                 state = "supply"
                 self.logger.debug("   📦 Fragmento 'SUMIN' detectado")
             elif "DINO" in combined_text:
                 state = "dino"
                 self.logger.debug("   🦖 Fragmento 'DINO' detectado")
-            elif "EVEN" in combined_text:
-                state = "event"
-                self.logger.debug("   🎉 Fragmento 'EVEN' detectado")
             elif "MONED" in combined_text:
                 state = "coin"
                 self.logger.debug("   🪙 Fragmento 'MONED' detectado")
@@ -847,7 +876,7 @@ class Bot:
         
         # hyper parameters
         D = 2*self.D
-        v_max = self.v_max
+        v_max = self.v_max * 1.5  # ⚡ AUMENTADO 50% para centrar más rápido
         S = 4
         ms = 0.05
         h1, h2, h3 = 5, 2, 2, # 10, 2, 2
@@ -861,17 +890,17 @@ class Bot:
 
         cx = (self.launch_button_loc[2] + self.launch_button_loc[3]) / 2
         cy = (self.launch_button_loc[0] + self.launch_button_loc[1]) / 2
-        pyautogui.moveTo(self.x+cx, self.y+cy, 1)  
+        pyautogui.moveTo(self.x+cx, self.y+cy, 0.5)  # ⚡ REDUCIDO de 1 a 0.5 segundos
         pyautogui.mouseDown()
-        time.sleep(0.5)
+        time.sleep(0.3)  # ⚡ REDUCIDO de 0.5 a 0.3 segundos
         
         background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
 
         start = time.time()
         end = start
 
-        # INCREMENTADO EL TIMEOUT DE 60 A 120 SEGUNDOS
-        while not self.is_dino_loading_screen(background) and end - start < 120:
+        # ⚡ OPTIMIZADO: Reducido timeout de 60 a 45 segundos (suficiente para centrar)
+        while not self.is_dino_loading_screen(background) and end - start < 45:
             
             if keyboard.is_pressed("q"):
                 raise KeyboardInterrupt
@@ -1154,6 +1183,32 @@ class Bot:
         mean_diff = np.mean(diff)
         print(f"[DIFF] {mean_diff:.1f} (threshold: {threshold})")
         return mean_diff > threshold
+    
+    def check_time_limit(self):
+        """
+        Verifica si se ha alcanzado el tiempo límite de ejecución
+        Retorna True si se debe detener el bot
+        """
+        if not self.max_run_hours:
+            return False
+        
+        elapsed_hours = (time.time() - self.start_time) / 3600
+        
+        if elapsed_hours >= self.max_run_hours:
+            self.logger.info("="*80)
+            self.logger.info("⏰ TIEMPO LÍMITE ALCANZADO")
+            self.logger.info("="*80)
+            self.logger.info(f"⏱️  Tiempo ejecutado: {elapsed_hours:.2f} horas")
+            self.logger.info(f"⏱️  Límite configurado: {self.max_run_hours} horas")
+            self.logger.info("🛑 Deteniendo bot para prevenir baneo...")
+            return True
+        
+        # Mostrar progreso cada hora
+        if int(elapsed_hours) > 0 and int(elapsed_hours * 60) % 60 == 0:
+            remaining = self.max_run_hours - elapsed_hours
+            self.logger.info(f"⏱️  Tiempo restante: {remaining:.1f} horas")
+        
+        return False
     
     def debug_save_ocr_regions(self, background, filename_prefix="debug"):
         """

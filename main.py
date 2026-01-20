@@ -5,6 +5,20 @@ import logging
 
 from jw_bot import Bot
 
+# ============================================================================
+# ⏱️ CONFIGURACIÓN DE TIEMPO LÍMITE
+# ============================================================================
+# Establece cuántas horas quieres que corra el bot antes de detenerse
+# Esto ayuda a prevenir baneos por jugar demasiado tiempo seguido
+# 
+# Ejemplos:
+#   MAX_RUN_HOURS = 8    # Se detendrá después de 8 horas
+#   MAX_RUN_HOURS = 12   # Se detendrá después de 12 horas
+#   MAX_RUN_HOURS = None # Correrá indefinidamente (no recomendado)
+# ============================================================================
+MAX_RUN_HOURS = 8  # ⬅️ CAMBIA ESTE VALOR SEGÚN TUS NECESIDADES
+# ============================================================================
+
 if __name__ == "__main__":
     # Obtener logger
     logger = logging.getLogger('JWA_Bot')
@@ -27,7 +41,7 @@ if __name__ == "__main__":
     max_scrolls = 10
 
     x, y, w, h = -1, -1, -1, -1
-    bot = Bot()
+    bot = Bot(max_run_hours=MAX_RUN_HOURS)  # Pasamos el tiempo límite al bot
     
     try:
         while True:
@@ -51,6 +65,10 @@ if __name__ == "__main__":
             if bot.loc:
                 
                 if keyboard.is_pressed("q"):
+                    raise KeyboardInterrupt
+                
+                # Verificar tiempo límite
+                if bot.check_time_limit():
                     raise KeyboardInterrupt
 
                 # get coins
