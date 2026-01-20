@@ -101,11 +101,14 @@ class Bot:
         # get the ratios (I get it from my PC to fit other screen sizes)
         self.shooting_zone_ratio = (230 / 831, 740 / 971, 10 / 481, 410 / 481)
         
-        # ⏱️ v3.4.2: EXPANDIDA para capturar texto de cooldown "0m 9s" que aparece ARRIBA del botón
-        # Área expandida de Y[78%-86%] a Y[60%-86%] para capturar tiempo restante
-        # ANTES: (650 / 831, 712 / 831, ...) solo capturaba el botón
-        # AHORA: (500 / 831, 712 / 831, ...) captura botón + texto cooldown arriba
-        self.launch_button_loc_ratio = (500 / 831, 712 / 831, 132 / 481, 310 / 481)
+        # 🚀 LAUNCH BUTTON - Área para detectar botón "LANZAR" (dinos) y "ABRIR" (supply drops)
+        # REVERTIDO a valores originales - el área expandida rompió el OCR
+        self.launch_button_loc_ratio = (650 / 831, 712 / 831, 132 / 481, 310 / 481)
+        
+        # ⏱️ v3.4.3: NUEVA ÁREA DEDICADA solo para detectar cooldown "0m 9s"
+        # Esta área escanea ARRIBA del botón donde aparece el tiempo restante
+        # Coordenadas: Y[55%-70%] X[27%-64%] - justo arriba del launch button
+        self.cooldown_text_loc_ratio = (450 / 831, 580 / 831, 132 / 481, 310 / 481)
         
         # ✅ CORREGIDO v3.2: Área del texto en la PARTE SUPERIOR de la pantalla
         # Esta área captura el texto "EVENTO", "SUMINISTRO", etc. que aparece ARRIBA de la cajita
@@ -299,6 +302,13 @@ class Bot:
                                   int(self.launch_button_loc_ratio[2]*w),
                                   int(self.launch_button_loc_ratio[3]*w))
         self.logger.info(f"🚀 Launch button: Y[{self.launch_button_loc[0]}-{self.launch_button_loc[1]}] X[{self.launch_button_loc[2]}-{self.launch_button_loc[3]}]")
+        
+        # ⏱️ Nueva área para detectar cooldown
+        self.cooldown_text_loc = (int(self.cooldown_text_loc_ratio[0]*h),
+                                  int(self.cooldown_text_loc_ratio[1]*h),
+                                  int(self.cooldown_text_loc_ratio[2]*w),
+                                  int(self.cooldown_text_loc_ratio[3]*w))
+        self.logger.info(f"⏱️  Cooldown text area: Y[{self.cooldown_text_loc[0]}-{self.cooldown_text_loc[1]}] X[{self.cooldown_text_loc[2]}-{self.cooldown_text_loc[3]}]")
         
         self.supply_drop_text_loc = (int(self.supply_drop_text_loc_ratio[0]*h),
                                      int(self.supply_drop_text_loc_ratio[1]*h),
@@ -635,26 +645,36 @@ class Bot:
         
         self.logger.debug("🔍 Determinando estado del objeto...")
         
-        # Capturar AMBAS áreas para mejor detección
+        # Capturar áreas para detección
         launch_button = background[self.launch_button_loc[0]:self.launch_button_loc[1], 
                                 self.launch_button_loc[2]:self.launch_button_loc[3]].astype(np.uint8)
         
         supply_drop = background[self.supply_drop_text_loc[0]:self.supply_drop_text_loc[1],
                                 self.supply_drop_text_loc[2]:self.supply_drop_text_loc[3]]
+        
+        # ⏱️ v3.4.3: Área SEPARADA solo para cooldown (no interfiere con launch button)
+        cooldown_area = background[self.cooldown_text_loc[0]:self.cooldown_text_loc[1],
+                                   self.cooldown_text_loc[2]:self.cooldown_text_loc[3]]
 
         self.logger.debug(f"   📐 Área botón lanzar: {launch_button.shape}")
         self.logger.debug(f"   📐 Área texto supply: {supply_drop.shape}")
+        self.logger.debug(f"   📐 Área cooldown: {cooldown_area.shape}")
 
-        # Intentar OCR en ambas zonas
+        # Intentar OCR en las zonas principales
         text1 = "".join(pytesseract.image_to_string(launch_button, config = self.custom_config).split()).upper()
         text2 = "".join(pytesseract.image_to_string(supply_drop, config = self.custom_config).split()).upper()
         
-        # Combinar ambos textos para mejor detección
+        # OCR en área de cooldown (separado para no contaminar detección principal)
+        cooldown_text = "".join(pytesseract.image_to_string(cooldown_area, config = self.custom_config).split()).upper()
+        
+        # Combinar textos PRINCIPALES (sin cooldown para no interferir)
         combined_text = text1 + " " + text2
 
         self.logger.info(f"📝 [OCR] Botón: '{text1}'")
         self.logger.info(f"📝 [OCR] Texto: '{text2}'")
         self.logger.info(f"📝 [OCR] Combinado: '{combined_text}'")
+        if cooldown_text:
+            self.logger.debug(f"⏱️  [OCR] Cooldown: '{cooldown_text}'")
         
         # ⛔ FILTRO DE EXCLUSIÓN: Detectar objetos que NO debemos clickear
         
@@ -676,15 +696,27 @@ class Bot:
             self.logger.warning("⛔ [EXCLUIDO] Pantalla de carga o menú")
             return state
         
-        # 4. 🚫 INCUBADORAS - Eventos de combate/asalto (raids)
-        if any(word in combined_text for word in ["COMBATE", "BATTLE", "ASALTO", "RAID", "INCUBADORA", "INCUBATOR"]):
+        # 4. 🚫 INCUBADORAS - Eventos de combate/asalto
+        if any(word in combined_text for word in ["COMBATE", "BATTLE", "ASALTO", "INCUBADORA", "INCUBATOR"]):
             state = "out_of_range"
             self.logger.warning("⛔ [EXCLUIDO] Incubadora o evento de combate detectado")
             return state
         
-        # 5. ⏱️ SUPPLY DROPS EN COOLDOWN - Ya fueron recolectados recientemente
+        # 5. 🏛️ RAIDS - Detectan "JEFE" en el texto
+        if "JEFE" in combined_text or "BOSS" in combined_text:
+            state = "out_of_range"
+            self.logger.warning("⛔ [EXCLUIDO] Raid con jefe detectado")
+            return state
+        
+        # 6. 🛕 SANTUARIOS - Botón dice "ENTRAR"
+        if "ENTRAR" in text1 or "ENTER" in text1:
+            state = "out_of_range"
+            self.logger.warning("⛔ [EXCLUIDO] Santuario detectado (botón ENTRAR)")
+            return state
+        
+        # 7. ⏱️ SUPPLY DROPS EN COOLDOWN - Ya fueron recolectados recientemente
+        # v3.4.3: Usa área SEPARADA dedicada solo a cooldown, no contamina el OCR principal
         # Detecta tiempo restante en formato: "0m 9s", "14h 10m", "1h", "30m", etc.
-        # El texto aparece en el área superior donde normalmente está el nombre del supply drop
         import re
         cooldown_patterns = [
             r'\d+[HMS]',        # Formato simple: "1H", "30M", "45S"
@@ -693,11 +725,12 @@ class Bot:
             r'\d+[hms]\s*\d*[hms]?',  # Formato compuesto minúsculas: "0m 9s", "14h 10m"
         ]
         
-        has_cooldown_time = any(re.search(pattern, combined_text) for pattern in cooldown_patterns)
+        # Buscar cooldown SOLO en el área dedicada (no en combined_text)
+        has_cooldown_time = any(re.search(pattern, cooldown_text) for pattern in cooldown_patterns)
         
         if has_cooldown_time:
             state = "out_of_range"
-            self.logger.warning(f"⛔ [EXCLUIDO] Supply drop en cooldown - Texto detectado: '{combined_text[:50]}'")
+            self.logger.warning(f"⛔ [EXCLUIDO] Supply drop en cooldown - Tiempo: '{cooldown_text[:30]}'")
             return state
         
         # ✅ EVENTOS ESPECIALES SON VÁLIDOS - NO se excluyen
