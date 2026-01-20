@@ -334,6 +334,23 @@ class Bot:
         self.D = 7 * h / 831 # 10 * h / 831
         self.v_max = 10 * h / 831
 
+        # 📸 CAPTURA INICIAL: Guardar vista del mapa al inicio para analizar
+        self.logger.info("📸 Capturando vista inicial del mapa para análisis...")
+        time.sleep(0.5)  # Pequeña pausa para que se estabilice la pantalla
+        
+        background_initial = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        
+        try:
+            from PIL import Image
+            debug_folder = "debug_screenshots"
+            if not os.path.exists(debug_folder):
+                os.makedirs(debug_folder)
+            Image.fromarray(background_initial).save(f"{debug_folder}/map_initial_{timestamp}.png")
+            self.logger.info(f"✅ Captura inicial guardada: map_initial_{timestamp}.png")
+        except Exception as e:
+            self.logger.warning(f"⚠️  Error al guardar captura inicial: {e}")
+
         # scroll down
         # pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
         # time.sleep(1)
@@ -418,10 +435,14 @@ class Bot:
         labels = measure.label(mask, background=0, connectivity=2)
         self.logger.debug(f"   🔢 Componentes detectados: {labels.max()}")
 
-        # find center of mass - REDUCIDO EL UMBRAL DE 20 A 10 píxeles
+        # ⚡ OPTIMIZADO: Tamaño mínimo ajustado para reducir falsos positivos
+        # Cambio: 10 píxeles es demasiado pequeño y genera 300+ detecciones falsas
+        # Nuevo umbral: 50 píxeles = tamaño mínimo realista de un supply drop visible
+        min_pixels = 50
+        
         for label in range(1, labels.max()+1):
             rows, cols = np.where(labels == label)
-            if len(rows) > 10:  # Cambiado de 20 a 10 para detectar supply drops más pequeños
+            if len(rows) > min_pixels:
                 center_y = self.shooting_zone[0] + int(np.mean(rows))
                 center_x = self.shooting_zone[2] + int(np.mean(cols))
                 pos.append([center_y, center_x])
@@ -650,13 +671,9 @@ class Bot:
             self.logger.warning("⛔ [EXCLUIDO] Pantalla de carga o menú")
             return state
         
-        # 4. ⚠️ EVENTOS ESPECIALES - SKIP (se queda pegado mucho tiempo aquí)
-        # Los eventos tienen animaciones largas y requieren interacción específica
-        # Mejor saltarlos para no perder tiempo
-        if any(word in combined_text for word in ["EVENTO", "EVENT", "ESPECIAL", "SPECIAL"]):
-            state = "out_of_range"
-            self.logger.warning("⛔ [EXCLUIDO] Evento especial detectado - SKIP para evitar quedarse pegado")
-            return state
+        # ✅ EVENTOS ESPECIALES SON VÁLIDOS - NO se excluyen
+        # Los supply drops que dicen "EVENTO ESPECIAL TERMINA EN..." SON cajitas verdes con suministros
+        # Los dinosaurios de evento también son válidos para disparar y recolectar ADN
         
         # MEJORADO: Buscar en TEXTO COMBINADO para más robustez
         # Prioridad: DINO > SUPPLY > COIN
@@ -780,6 +797,20 @@ class Bot:
         """"Rotates the screen after everthing is collected"""
         print("--"*10)
         print("CHANGING VIEW")
+        
+        # 📸 CAPTURA DE ANÁLISIS: Guardar pantalla antes de rotar para analizar detecciones
+        background_before = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+        timestamp = datetime.now().strftime("%H%M%S")
+        
+        try:
+            from PIL import Image
+            debug_folder = "debug_screenshots"
+            if not os.path.exists(debug_folder):
+                os.makedirs(debug_folder)
+            Image.fromarray(background_before).save(f"{debug_folder}/map_view_{timestamp}.png")
+            self.logger.debug(f"📸 Captura guardada: map_view_{timestamp}.png")
+        except Exception as e:
+            self.logger.debug(f"⚠️  Error al guardar captura: {e}")
         
         pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
         time.sleep(1)
@@ -913,8 +944,9 @@ class Bot:
             end = time.time()
 
             if not dino_loc and prev_dino_loc:
-                dino_loc = [prev_dino_loc[0] + vel[0],
-                            prev_dino_loc[1] + vel[1]]
+                # ⚡ MEJORADO: Predicción más agresiva cuando no se detecta el dino
+                dino_loc = [prev_dino_loc[0] + vel[0] * 2,  # Multiplicado por 2 para seguir mejor el movimiento
+                            prev_dino_loc[1] + vel[1] * 2]
    
             if dino_loc:
                 dino_2_dart = np.sqrt((dino_loc[0] - dart_loc[0])**2 + (dino_loc[1] - dart_loc[1])**2)
@@ -931,9 +963,11 @@ class Bot:
                 else: # if not move screen to dino
                     v_max_new = v_max + h2*battery_left
 
-                    # predict future location
-                    dino_loc_pred = [dino_loc[0] + vel[0] * (dino_2_dart / v_max_new),  
-                                    dino_loc[1] + vel[1] * (dino_2_dart / v_max_new)] 
+                    # ⚡ MEJORADO: Factor de predicción más agresivo para dinosaurios en movimiento
+                    # Aumentado de 1x a 3x para anticipar mejor el movimiento
+                    prediction_factor = 3.0
+                    dino_loc_pred = [dino_loc[0] + vel[0] * prediction_factor * (dino_2_dart / v_max_new),  
+                                    dino_loc[1] + vel[1] * prediction_factor * (dino_2_dart / v_max_new)] 
 
                     # get direction and multiply with v_max
                     dino_pred_2_dart = np.sqrt((dino_loc_pred[0] - dart_loc[0])**2 + (dino_loc_pred[1] - dart_loc[1])**2)
