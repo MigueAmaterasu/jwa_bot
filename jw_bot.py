@@ -146,7 +146,7 @@ class Bot:
         self.dino_collected_amount_loc = (280, 330, 220, 350)
         self.center_loc = (587, 257)
         self.D = 10
-        self.v_max = 10
+        self.v_max = 20  # ⚡ v3.4.6: DUPLICADO de 10 a 20 para seguir dinos rápidos
         
 
         # ========================================================================
@@ -971,9 +971,9 @@ class Bot:
         
         # hyper parameters
         D = 2*self.D
-        v_max = self.v_max * 1.5  # ⚡ AUMENTADO 50% para centrar más rápido
+        v_max = self.v_max * 2.0  # ⚡ v3.4.6: AUMENTADO de 1.5x a 2.0x para seguir dinos más rápido
         S = 4
-        ms = 0.05
+        ms = 0.02  # ⚡ v3.4.6: REDUCIDO de 0.05 a 0.02 = mouse más rápido
         h1, h2, h3 = 5, 2, 2, # 10, 2, 2
         
         # detect dart location 
@@ -993,6 +993,8 @@ class Bot:
 
         start = time.time()
         end = start
+        shots_attempted = 0  # Contador de intentos de disparo
+        last_shot_attempt = start
 
         # ⚡ OPTIMIZADO: Reducido timeout de 60 a 45 segundos (suficiente para centrar)
         while not self.is_dino_loading_screen(background) and end - start < 45:
@@ -1006,6 +1008,16 @@ class Bot:
             dino_loc, _ = dino_location(background_cropped, self.dino_shoot_loc[0], 2*self.D)
             
             end = time.time()
+            
+            # ⚡ NUEVO v3.4.6: Forzar disparo cada 10 segundos si no se ha disparado
+            if end - last_shot_attempt > 10 and shots_attempted < 3:
+                self.logger.warning(f"⚠️  Forzando disparo #{shots_attempted + 1} (timeout 10s)")
+                pyautogui.mouseUp()
+                time.sleep(0.3)
+                pyautogui.mouseDown()
+                time.sleep(0.5)
+                shots_attempted += 1
+                last_shot_attempt = end
 
             if not dino_loc and prev_dino_loc:
                 # ⚡ MEJORADO: Predicción más agresiva cuando no se detecta el dino
@@ -1016,8 +1028,9 @@ class Bot:
                 dino_2_dart = np.sqrt((dino_loc[0] - dart_loc[0])**2 + (dino_loc[1] - dart_loc[1])**2)
                 battery_left = self.get_battery_left(background)  # CORREGIDO: Ya no se invierte
 
-                # check if dino in dart range
-                if np.sqrt((dino_loc[0] - dart_loc[0])**2 + (dino_loc[1] - dart_loc[1])**2) <= (D + h1*battery_left):
+                # check if dino in dart range - v3.4.6: Rango ampliado 1.5x para disparar más fácil
+                shoot_range = (D + h1*battery_left) * 1.5
+                if dino_2_dart <= shoot_range:
                     print("--"*10)
                     print("DINO CLOSE SHOOTING")
                     pyautogui.mouseUp()
@@ -1027,9 +1040,9 @@ class Bot:
                 else: # if not move screen to dino
                     v_max_new = v_max + h2*battery_left
 
-                    # ⚡ MEJORADO: Factor de predicción más agresivo para dinosaurios en movimiento
-                    # Aumentado de 1x a 3x para anticipar mejor el movimiento
-                    prediction_factor = 3.0
+                    # ⚡ v3.4.6: Factor de predicción AUMENTADO para dinos rápidos
+                    # Aumentado de 3x a 5x para anticipar mejor el movimiento
+                    prediction_factor = 5.0
                     dino_loc_pred = [dino_loc[0] + vel[0] * prediction_factor * (dino_2_dart / v_max_new),  
                                     dino_loc[1] + vel[1] * prediction_factor * (dino_2_dart / v_max_new)] 
 
@@ -1059,6 +1072,12 @@ class Bot:
                 pyautogui.moveTo(self.x+cx, self.y+cy, 0.1)  
                 pyautogui.mouseDown() 
             # print("DIST", np.mean((b_prev.astype(np.float) - background.astype(np.float))**2))
+        
+        # ⚡ v3.4.6: Si salió del loop sin disparar, fuerza un disparo final
+        if not self.is_dino_loading_screen(background):
+            self.logger.warning("⚠️  Salió del loop sin detectar pantalla de carga - Forzando disparo final")
+            pyautogui.mouseUp()
+            time.sleep(0.5)
         
         if end - start > 120:  # CORREGIDO: Cambiado de 60 a 120
             pyautogui.mouseUp()
