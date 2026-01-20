@@ -1,0 +1,1083 @@
+[2026-01-19 20:38:51] [INFO] ================================================================================
+[2026-01-19 20:38:51] [INFO] 🦖 JURASSIC WORLD ALIVE BOT - INICIADO
+[2026-01-19 20:38:51] [INFO] ================================================================================
+[2026-01-19 20:38:51] [INFO] 📁 Log guardado en: logs/bot_log_20260119_203851.log
+[2026-01-19 20:38:51] [INFO] ================================================================================
+[2026-01-19 20:38:51] [INFO] 🎮 INSTRUCCIONES DE CALIBRACIÓN
+[2026-01-19 20:38:51] [INFO] ================================================================================
+[2026-01-19 20:38:51] [INFO] 1️⃣  Abre BlueStacks con Jurassic World Alive en el MAPA
+[2026-01-19 20:38:51] [INFO] 2️⃣  Presiona 'a' y haz click en ESQUINA SUPERIOR IZQUIERDA del juego
+[2026-01-19 20:38:51] [INFO] 3️⃣  Presiona 'a' otra vez y haz click en ESQUINA INFERIOR DERECHA
+[2026-01-19 20:38:51] [INFO] 4️⃣  El bot empezará a funcionar automáticamente
+[2026-01-19 20:38:51] [INFO] ❌ Presiona 'q' para detener el bot en cualquier momento
+[2026-01-19 20:38:51] [INFO] ================================================================================
+[2026-01-19 20:38:51] [INFO] 🔧 Inicializando Bot...
+[2026-01-19 20:38:59] [INFO] 🔘 Tecla 'a' presionada
+[2026-01-19 20:38:59] [INFO] ✅ Primer punto capturado: (887, 72)
+[2026-01-19 20:38:59] [INFO] 👉 Ahora presiona 'a' de nuevo y haz click en la esquina inferior derecha
+[2026-01-19 20:39:03] [INFO] 🔘 Tecla 'a' presionada
+[2026-01-19 20:39:03] [INFO] ✅ Segundo punto capturado: (1454, 1023)
+[2026-01-19 20:39:03] [INFO] ================================================================================
+[2026-01-19 20:39:03] [INFO] 📐 CONFIGURACIÓN DE VENTANA BLUESTACKS
+[2026-01-19 20:39:03] [INFO] ================================================================================
+[2026-01-19 20:39:03] [INFO] 📍 Posición X: 887px
+[2026-01-19 20:39:03] [INFO] 📍 Posición Y: 72px
+[2026-01-19 20:39:03] [INFO] 📏 Ancho (W): 567px
+[2026-01-19 20:39:03] [INFO] 📏 Alto (H): 951px
+[2026-01-19 20:39:03] [INFO] 🎯 Esquina superior izquierda: (887, 72)
+[2026-01-19 20:39:03] [INFO] 🎯 Esquina inferior derecha: (1454, 1023)
+[2026-01-19 20:39:03] [INFO] ================================================================================
+[2026-01-19 20:39:03] [INFO] 🎯 Shooting zone: Y[263-724] X[11-483]
+[2026-01-19 20:39:03] [INFO] 🚀 Launch button: Y[743-814] X[155-365]
+[2026-01-19 20:39:03] [INFO] 📝 Supply text area: Y[171-286] X[94-471]
+[2026-01-19 20:39:03] [INFO] 🚀 Calibración completa! El bot comenzará a operar...
+[2026-01-19 20:39:04] [DEBUG] 🪙 Verificando monedas...
+[2026-01-19 20:39:04] [DEBUG] 📦 Verificando supply drops...
+[2026-01-19 20:39:04] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-19 20:39:04] [DEBUG]    📊 Supply color range: R[160-255] G[60-255] B[0-120]
+[2026-01-19 20:39:04] [DEBUG]    📊 Event color range: R[0-180] G[120-255] B[0-180]
+[2026-01-19 20:39:04] [DEBUG]    📐 Zona analizada: (461, 472, 3)
+[2026-01-19 20:39:04] [DEBUG]    🎨 Píxeles detectados inicialmente: 12052
+[2026-01-19 20:39:04] [DEBUG]    🔢 Componentes detectados: 259
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #1: 1888 píxeles en posición (322, 121)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #2: 113 píxeles en posición (268, 180)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #3: 54 píxeles en posición (269, 242)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #4: 316 píxeles en posición (269, 283)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #5: 150 píxeles en posición (266, 445)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #12: 15 píxeles en posición (284, 193)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #13: 65 píxeles en posición (286, 242)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #14: 11 píxeles en posición (281, 220)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #15: 26 píxeles en posición (289, 205)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #18: 25 píxeles en posición (291, 253)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #25: 16 píxeles en posición (300, 284)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #27: 17 píxeles en posición (302, 314)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #29: 1148 píxeles en posición (338, 437)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #31: 110 píxeles en posición (311, 358)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #33: 11 píxeles en posición (310, 161)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #36: 2619 píxeles en posición (377, 186)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #52: 332 píxeles en posición (342, 364)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #59: 58 píxeles en posición (342, 256)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #60: 55 píxeles en posición (339, 313)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #67: 52 píxeles en posición (346, 282)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #83: 275 píxeles en posición (376, 36)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #84: 11 píxeles en posición (354, 125)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #88: 570 píxeles en posición (418, 441)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #97: 289 píxeles en posición (393, 63)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #108: 26 píxeles en posición (393, 246)
+[2026-01-19 20:39:04] [DEBUG]    ✅ Supply drop #109: 752 píxeles en posición (415, 273)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #117: 35 píxeles en posición (413, 295)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #127: 16 píxeles en posición (421, 202)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #132: 21 píxeles en posición (440, 394)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #141: 80 píxeles en posición (467, 204)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #142: 97 píxeles en posición (472, 145)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #145: 69 píxeles en posición (478, 247)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #147: 628 píxeles en posición (516, 149)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #155: 56 píxeles en posición (493, 297)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #157: 362 píxeles en posición (536, 366)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #158: 83 píxeles en posición (501, 251)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #161: 145 píxeles en posición (512, 294)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #164: 148 píxeles en posición (522, 335)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #166: 35 píxeles en posición (526, 93)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #171: 64 píxeles en posición (559, 60)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #177: 168 píxeles en posición (599, 328)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #180: 74 píxeles en posición (587, 72)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #181: 118 píxeles en posición (586, 295)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #184: 40 píxeles en posición (596, 47)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #190: 18 píxeles en posición (606, 11)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #192: 258 píxeles en posición (611, 42)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #193: 134 píxeles en posición (611, 76)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #199: 19 píxeles en posición (622, 15)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #202: 195 píxeles en posición (640, 22)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #203: 781 píxeles en posición (643, 465)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #205: 288 píxeles en posición (655, 39)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #210: 12 píxeles en posición (645, 28)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #214: 216 píxeles en posición (666, 243)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #229: 476 píxeles en posición (693, 476)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #232: 12 píxeles en posición (673, 31)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #250: 142 píxeles en posición (700, 270)
+[2026-01-19 20:39:05] [DEBUG]    ✅ Supply drop #258: 1363 píxeles en posición (715, 52)
+[2026-01-19 20:39:05] [INFO] 🟠 [SUPPLY DROP] Detectados 57 supply drops: [[322, 121], [268, 180], [269, 242], [269, 283], [266, 445], [284, 193], [286, 242], [281, 220], [289, 205], [291, 253], [300, 284], [302, 314], [338, 437], [311, 358], [310, 161], [377, 186], [342, 364], [342, 256], [339, 313], [346, 282], [376, 36], [354, 125], [418, 441], [393, 63], [393, 246], [415, 273], [413, 295], [421, 202], [440, 394], [467, 204], [472, 145], [478, 247], [516, 149], [493, 297], [536, 366], [501, 251], [512, 294], [522, 335], [526, 93], [559, 60], [599, 328], [587, 72], [586, 295], [596, 47], [606, 11], [611, 42], [611, 76], [622, 15], [640, 22], [643, 465], [655, 39], [645, 28], [666, 243], [693, 476], [673, 31], [700, 270], [715, 52]]
+[2026-01-19 20:39:08] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:39:08] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:39:08] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:39:09] [INFO] 📝 [OCR] Botón: 'PEEYASSORES'
+[2026-01-19 20:39:09] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:39:09] [INFO] 📝 [OCR] Combinado: 'PEEYASSORES '
+[2026-01-19 20:39:09] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:39:09] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:39:12] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:39:12] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:39:12] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:39:12] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:39:12] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:39:12] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:39:12] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:39:12] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:39:18] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:39:18] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:39:18] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:39:19] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:39:19] [INFO] 📝 [OCR] Texto: 'I\INTENTOSSEE'
+[2026-01-19 20:39:19] [INFO] 📝 [OCR] Combinado: 'LANZAR I\INTENTOSSEE'
+[2026-01-19 20:39:19] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:39:19] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:39:23] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:39:23] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:39:23] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:39:23] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:39:23] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:39:23] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:39:23] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:39:23] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:39:27] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:39:27] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:39:27] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:39:28] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:39:28] [INFO] 📝 [OCR] Texto: 'PA.@O/00'
+[2026-01-19 20:39:28] [INFO] 📝 [OCR] Combinado: 'LANZAR PA.@O/00'
+[2026-01-19 20:39:28] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:39:28] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:39:36] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:39:36] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:39:36] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:39:37] [INFO] 📝 [OCR] Botón: 'PEEYARVEREAN—Y'
+[2026-01-19 20:39:37] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:39:37] [INFO] 📝 [OCR] Combinado: 'PEEYARVEREAN—Y '
+[2026-01-19 20:39:37] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:39:37] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:39:51] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:39:51] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:39:51] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:39:52] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:39:52] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:39:52] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:39:52] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:39:52] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:39:55] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:39:55] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:39:55] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:39:56] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:39:56] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:39:56] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:39:56] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:39:56] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:39:58] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:39:58] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:39:58] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:39:59] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:39:59] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:39:59] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:39:59] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:39:59] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:40:02] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:40:02] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:40:02] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:40:03] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:40:03] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:40:03] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:40:03] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:40:03] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:40:06] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:40:06] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:40:06] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:40:07] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:40:07] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:40:07] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:40:07] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:40:07] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:40:10] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:40:10] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:40:10] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:40:11] [INFO] 📝 [OCR] Botón: 'VERARRNTAN'
+[2026-01-19 20:40:11] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:40:11] [INFO] 📝 [OCR] Combinado: 'VERARRNTAN '
+[2026-01-19 20:40:11] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:40:11] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:40:14] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:40:14] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:40:14] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:40:15] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:40:15] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:40:15] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:40:15] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:40:15] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:40:18] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:40:18] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:40:18] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:40:19] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:40:19] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:40:19] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:40:19] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:40:19] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:40:22] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:40:22] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:40:22] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:40:23] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:40:23] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:40:23] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:40:23] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:40:23] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:40:26] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:40:26] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:40:26] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:40:27] [INFO] 📝 [OCR] Botón: 'IGUANODONAI'
+[2026-01-19 20:40:27] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:40:27] [INFO] 📝 [OCR] Combinado: 'IGUANODONAI '
+[2026-01-19 20:40:27] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:40:27] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:40:28] [DEBUG] 🦖 Verificando dinosaurios...
+[2026-01-19 20:40:30] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:40:30] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:40:30] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:40:31] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:40:31] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:40:31] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:40:31] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:40:31] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:40:33] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:40:33] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:40:33] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:40:34] [INFO] 📝 [OCR] Botón: '——'
+[2026-01-19 20:40:34] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:40:34] [INFO] 📝 [OCR] Combinado: '—— '
+[2026-01-19 20:40:34] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:40:34] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:40:36] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:40:36] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:40:36] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:40:37] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:40:37] [INFO] 📝 [OCR] Texto: 'I”/18|4948/2000'
+[2026-01-19 20:40:37] [INFO] 📝 [OCR] Combinado: 'LANZAR I”/18|4948/2000'
+[2026-01-19 20:40:37] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:40:37] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:41:48] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:41:48] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:41:48] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:41:50] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:41:50] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:41:50] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:41:50] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:41:50] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:41:52] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:41:52] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:41:52] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:41:53] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:41:53] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:41:53] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-19 20:41:53] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:41:53] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:42:53] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:42:53] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:42:53] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:42:54] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:42:54] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:42:54] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:42:54] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:42:54] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:42:56] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:42:56] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:42:56] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:42:57] [INFO] 📝 [OCR] Botón: '~LANZAR'
+[2026-01-19 20:42:57] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:42:57] [INFO] 📝 [OCR] Combinado: '~LANZAR '
+[2026-01-19 20:42:57] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:42:57] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:44:01] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:01] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:01] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:02] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:44:02] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:44:02] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:44:02] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:44:02] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:44:04] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:04] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:04] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:05] [INFO] 📝 [OCR] Botón: 'VERARRNTAN'
+[2026-01-19 20:44:05] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:44:05] [INFO] 📝 [OCR] Combinado: 'VERARRNTAN '
+[2026-01-19 20:44:05] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:44:05] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:44:07] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:07] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:07] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:08] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:44:08] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:44:08] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:44:08] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:44:08] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:44:12] [DEBUG] 🪙 Verificando monedas...
+[2026-01-19 20:44:12] [DEBUG] 📦 Verificando supply drops...
+[2026-01-19 20:44:12] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-19 20:44:12] [DEBUG]    📊 Supply color range: R[160-255] G[60-255] B[0-120]
+[2026-01-19 20:44:12] [DEBUG]    📊 Event color range: R[0-180] G[120-255] B[0-180]
+[2026-01-19 20:44:12] [DEBUG]    📐 Zona analizada: (461, 472, 3)
+[2026-01-19 20:44:12] [DEBUG]    🎨 Píxeles detectados inicialmente: 13086
+[2026-01-19 20:44:12] [DEBUG]    🔢 Componentes detectados: 251
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #1: 329 píxeles en posición (267, 50)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #2: 672 píxeles en posición (272, 207)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #3: 191 píxeles en posición (286, 343)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #4: 20 píxeles en posición (264, 372)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #5: 39 píxeles en posición (267, 407)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #17: 14 píxeles en posición (275, 416)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #21: 16 píxeles en posición (286, 22)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #24: 15 píxeles en posición (288, 440)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #31: 45 píxeles en posición (297, 84)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #33: 49 píxeles en posición (297, 432)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #34: 23 píxeles en posición (292, 474)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #35: 3450 píxeles en posición (359, 346)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #38: 370 píxeles en posición (341, 221)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #39: 27 píxeles en posición (297, 457)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #47: 49 píxeles en posición (306, 476)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #51: 15 píxeles en posición (310, 384)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #53: 14 píxeles en posición (309, 130)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #58: 19 píxeles en posición (310, 105)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #60: 1744 píxeles en posición (339, 38)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #69: 313 píxeles en posición (359, 130)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #79: 37 píxeles en posición (345, 155)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #81: 14 píxeles en posición (343, 324)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #83: 439 píxeles en posición (376, 202)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #91: 27 píxeles en posición (358, 380)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #94: 61 píxeles en posición (363, 455)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #95: 12 píxeles en posición (362, 51)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #97: 108 píxeles en posición (368, 23)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #105: 37 píxeles en posición (374, 475)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #125: 17 píxeles en posición (394, 11)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #129: 12 píxeles en posición (396, 21)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #139: 660 píxeles en posición (436, 393)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #140: 86 píxeles en posición (417, 423)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #141: 139 píxeles en posición (421, 317)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #143: 20 píxeles en posición (424, 355)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #148: 85 píxeles en posición (445, 442)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #149: 90 píxeles en posición (454, 276)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #150: 82 píxeles en posición (466, 329)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #153: 521 píxeles en posición (492, 259)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #155: 35 píxeles en posición (486, 204)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #157: 67 píxeles en posición (490, 365)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #161: 53 píxeles en posición (504, 163)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #162: 276 píxeles en posición (530, 377)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #163: 63 píxeles en posición (520, 402)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #165: 68 píxeles en posición (527, 103)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #169: 290 píxeles en posición (548, 117)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #176: 187 píxeles en posición (563, 425)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #183: 375 píxeles en posición (594, 438)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #186: 1128 píxeles en posición (620, 38)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #194: 29 píxeles en posición (600, 357)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #195: 252 píxeles en posición (610, 76)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #206: 18 píxeles en posición (622, 15)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #207: 18 píxeles en posición (625, 383)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #209: 767 píxeles en posición (642, 465)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #210: 351 píxeles en posición (657, 256)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #214: 12 píxeles en posición (645, 28)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #215: 86 píxeles en posición (652, 13)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #226: 1918 píxeles en posición (708, 51)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #228: 11 píxeles en posición (671, 269)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #231: 496 píxeles en posición (693, 475)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #234: 12 píxeles en posición (673, 31)
+[2026-01-19 20:44:12] [DEBUG]    ✅ Supply drop #249: 265 píxeles en posición (707, 258)
+[2026-01-19 20:44:12] [INFO] 🟠 [SUPPLY DROP] Detectados 61 supply drops: [[267, 50], [272, 207], [286, 343], [264, 372], [267, 407], [275, 416], [286, 22], [288, 440], [297, 84], [297, 432], [292, 474], [359, 346], [341, 221], [297, 457], [306, 476], [310, 384], [309, 130], [310, 105], [339, 38], [359, 130], [345, 155], [343, 324], [376, 202], [358, 380], [363, 455], [362, 51], [368, 23], [374, 475], [394, 11], [396, 21], [436, 393], [417, 423], [421, 317], [424, 355], [445, 442], [454, 276], [466, 329], [492, 259], [486, 204], [490, 365], [504, 163], [530, 377], [520, 402], [527, 103], [548, 117], [563, 425], [594, 438], [620, 38], [600, 357], [610, 76], [622, 15], [625, 383], [642, 465], [657, 256], [645, 28], [652, 13], [708, 51], [671, 269], [693, 475], [673, 31], [707, 258]]
+[2026-01-19 20:44:14] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:14] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:14] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:15] [INFO] 📝 [OCR] Botón: 'GESVANEON'
+[2026-01-19 20:44:15] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:44:15] [INFO] 📝 [OCR] Combinado: 'GESVANEON '
+[2026-01-19 20:44:15] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:44:15] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:44:18] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:18] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:18] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:18] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:44:18] [INFO] 📝 [OCR] Texto: 'IT)2349/3001'
+[2026-01-19 20:44:18] [INFO] 📝 [OCR] Combinado: 'LANZAR IT)2349/3001'
+[2026-01-19 20:44:18] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:44:18] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:44:21] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:21] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:21] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:22] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:44:22] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:44:22] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:44:22] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:44:22] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:44:25] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:25] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:25] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:26] [INFO] 📝 [OCR] Botón: 'UNETEAHORA'
+[2026-01-19 20:44:26] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:44:26] [INFO] 📝 [OCR] Combinado: 'UNETEAHORA '
+[2026-01-19 20:44:26] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:44:26] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:44:29] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:29] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:29] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:30] [INFO] 📝 [OCR] Botón: 'UNETEAHORA'
+[2026-01-19 20:44:30] [INFO] 📝 [OCR] Texto: 'TILTINTENTOS'
+[2026-01-19 20:44:30] [INFO] 📝 [OCR] Combinado: 'UNETEAHORA TILTINTENTOS'
+[2026-01-19 20:44:30] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:44:30] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:44:36] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:36] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:36] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:36] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:44:36] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:44:36] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:44:36] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:44:36] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:44:41] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:41] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:41] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:42] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:44:42] [INFO] 📝 [OCR] Texto: 'OE*@ONO'
+[2026-01-19 20:44:42] [INFO] 📝 [OCR] Combinado: 'LANZAR OE*@ONO'
+[2026-01-19 20:44:42] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:44:42] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:44:45] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:45] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:45] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:46] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:44:46] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:44:46] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-19 20:44:46] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:44:46] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:44:49] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:49] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:49] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:50] [INFO] 📝 [OCR] Botón: 'ENTRAR'
+[2026-01-19 20:44:50] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:44:50] [INFO] 📝 [OCR] Combinado: 'ENTRAR '
+[2026-01-19 20:44:50] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:44:50] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:44:55] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:44:55] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:44:55] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:44:56] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:44:56] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:44:56] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:44:56] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:44:56] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:00] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:00] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:00] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:01] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:45:01] [INFO] 📝 [OCR] Texto: '-U/0INTENTOS|'
+[2026-01-19 20:45:01] [INFO] 📝 [OCR] Combinado: 'LANZAR -U/0INTENTOS|'
+[2026-01-19 20:45:01] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:45:01] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:45:04] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:04] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:04] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:05] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:45:05] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:05] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:45:05] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:05] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:09] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:09] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:09] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:09] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:45:09] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:09] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:45:09] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:09] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:21] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:21] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:21] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:22] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:45:22] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:22] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:45:22] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:22] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:26] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:26] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:26] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:27] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:45:27] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:27] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:45:27] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:27] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:29] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:29] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:29] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:30] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:45:30] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:30] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:45:30] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:30] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:34] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:34] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:34] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:35] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:45:35] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:35] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:45:35] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:35] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:38] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:38] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:38] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:39] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:45:39] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:39] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:45:39] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:39] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:42] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:42] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:42] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:43] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:45:43] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:43] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:45:43] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:43] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:46] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:46] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:46] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:47] [INFO] 📝 [OCR] Botón: 'IGUANODON'
+[2026-01-19 20:45:47] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:47] [INFO] 📝 [OCR] Combinado: 'IGUANODON '
+[2026-01-19 20:45:47] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:47] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:50] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:50] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:50] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:51] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:45:51] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:51] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:45:51] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:51] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:54] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:54] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:54] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:55] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:45:55] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:55] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:45:55] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:55] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:45:57] [DEBUG] 🦖 Verificando dinosaurios...
+[2026-01-19 20:45:58] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:45:58] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:45:58] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:45:59] [INFO] 📝 [OCR] Botón: 'UNETEAHORA'
+[2026-01-19 20:45:59] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:45:59] [INFO] 📝 [OCR] Combinado: 'UNETEAHORA '
+[2026-01-19 20:45:59] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:45:59] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:46:01] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:46:01] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:46:01] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:46:02] [INFO] 📝 [OCR] Botón: 'PEEYEEVEREAN—'
+[2026-01-19 20:46:02] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:46:02] [INFO] 📝 [OCR] Combinado: 'PEEYEEVEREAN— '
+[2026-01-19 20:46:02] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:46:02] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:46:05] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:46:05] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:46:05] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:46:05] [INFO] 📝 [OCR] Botón: 'UNETEAHORA'
+[2026-01-19 20:46:05] [INFO] 📝 [OCR] Texto: 'LTINTENTOS'
+[2026-01-19 20:46:05] [INFO] 📝 [OCR] Combinado: 'UNETEAHORA LTINTENTOS'
+[2026-01-19 20:46:05] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:46:05] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:46:08] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:46:08] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:46:08] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:46:08] [INFO] 📝 [OCR] Botón: 'UNETEAHORA'
+[2026-01-19 20:46:08] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:46:08] [INFO] 📝 [OCR] Combinado: 'UNETEAHORA '
+[2026-01-19 20:46:08] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:46:08] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:46:11] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:46:11] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:46:11] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:46:11] [INFO] 📝 [OCR] Botón: 'UNETEAHORA'
+[2026-01-19 20:46:11] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:46:11] [INFO] 📝 [OCR] Combinado: 'UNETEAHORA '
+[2026-01-19 20:46:11] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:46:11] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:46:14] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:46:14] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:46:14] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:46:14] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:46:14] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:46:14] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-19 20:46:14] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:46:14] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:47:20] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:47:20] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:47:20] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:47:21] [INFO] 📝 [OCR] Botón: 'VERARRNTAN'
+[2026-01-19 20:47:21] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:47:21] [INFO] 📝 [OCR] Combinado: 'VERARRNTAN '
+[2026-01-19 20:47:21] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:47:21] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:47:23] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:47:23] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:47:23] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:47:24] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:47:24] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:47:24] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:47:24] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:47:24] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:47:27] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:47:27] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:47:27] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:47:28] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:47:28] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:47:28] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:47:28] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:47:28] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:47:30] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:47:30] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:47:30] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:47:31] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:47:31] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:47:31] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:47:31] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:47:31] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:47:33] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:47:33] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:47:33] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:47:34] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:47:34] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:47:34] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:47:34] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:47:34] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:47:36] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:47:36] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:47:36] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:47:37] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:47:37] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:47:37] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:47:37] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:47:37] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:47:41] [DEBUG] 🪙 Verificando monedas...
+[2026-01-19 20:47:41] [DEBUG] 📦 Verificando supply drops...
+[2026-01-19 20:47:41] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-19 20:47:41] [DEBUG]    📊 Supply color range: R[160-255] G[60-255] B[0-120]
+[2026-01-19 20:47:41] [DEBUG]    📊 Event color range: R[0-180] G[120-255] B[0-180]
+[2026-01-19 20:47:41] [DEBUG]    📐 Zona analizada: (461, 472, 3)
+[2026-01-19 20:47:41] [DEBUG]    🎨 Píxeles detectados inicialmente: 11242
+[2026-01-19 20:47:41] [DEBUG]    🔢 Componentes detectados: 217
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #1: 15 píxeles en posición (265, 16)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #3: 119 píxeles en posición (276, 47)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #4: 451 píxeles en posición (267, 244)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #5: 11 píxeles en posición (263, 284)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #6: 45 píxeles en posición (268, 476)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #9: 279 píxeles en posición (294, 99)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #10: 141 píxeles en posición (281, 204)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #11: 3314 píxeles en posición (352, 282)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #12: 21 píxeles en posición (284, 16)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #15: 21 píxeles en posición (287, 33)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #23: 32 píxeles en posición (300, 28)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #24: 794 píxeles en posición (313, 450)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #27: 188 píxeles en posición (311, 65)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #36: 170 píxeles en posición (319, 184)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #39: 54 píxeles en posición (317, 409)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #47: 300 píxeles en posición (351, 349)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #55: 44 píxeles en posición (339, 480)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #59: 15 píxeles en posición (340, 444)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #64: 309 píxeles en posición (381, 428)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #73: 308 píxeles en posición (396, 411)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #76: 14 píxeles en posición (377, 441)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #99: 1841 píxeles en posición (490, 213)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #109: 50 píxeles en posición (495, 347)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #111: 226 píxeles en posición (514, 332)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #115: 63 píxeles en posición (516, 404)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #121: 56 píxeles en posición (532, 453)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #124: 314 píxeles en posición (553, 438)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #129: 18 píxeles en posición (606, 11)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #131: 258 píxeles en posición (611, 42)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #132: 134 píxeles en posición (611, 76)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #142: 781 píxeles en posición (643, 465)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #145: 13 píxeles en posición (639, 33)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #146: 288 píxeles en posición (655, 39)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #150: 12 píxeles en posición (645, 28)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #154: 176 píxeles en posición (657, 279)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #168: 634 píxeles en posición (693, 474)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #176: 12 píxeles en posición (673, 31)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #180: 122 píxeles en posición (680, 239)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #207: 44 píxeles en posición (695, 360)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #208: 17 píxeles en posición (697, 176)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #213: 183 píxeles en posición (716, 402)
+[2026-01-19 20:47:41] [DEBUG]    ✅ Supply drop #215: 1363 píxeles en posición (715, 52)
+[2026-01-19 20:47:41] [INFO] 🟠 [SUPPLY DROP] Detectados 42 supply drops: [[265, 16], [276, 47], [267, 244], [263, 284], [268, 476], [294, 99], [281, 204], [352, 282], [284, 16], [287, 33], [300, 28], [313, 450], [311, 65], [319, 184], [317, 409], [351, 349], [339, 480], [340, 444], [381, 428], [396, 411], [377, 441], [490, 213], [495, 347], [514, 332], [516, 404], [532, 453], [553, 438], [606, 11], [611, 42], [611, 76], [643, 465], [639, 33], [655, 39], [645, 28], [657, 279], [693, 474], [673, 31], [680, 239], [695, 360], [697, 176], [716, 402], [715, 52]]
+[2026-01-19 20:47:44] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:47:44] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:47:44] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:47:45] [INFO] 📝 [OCR] Botón: 'UNETEAHORA'
+[2026-01-19 20:47:45] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:47:45] [INFO] 📝 [OCR] Combinado: 'UNETEAHORA '
+[2026-01-19 20:47:45] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:47:45] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:47:52] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:47:52] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:47:52] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:47:53] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:47:53] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:47:53] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:47:53] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:47:53] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:47:58] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:47:58] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:47:58] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:47:59] [INFO] 📝 [OCR] Botón: 'ENTRAR'
+[2026-01-19 20:47:59] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:47:59] [INFO] 📝 [OCR] Combinado: 'ENTRAR '
+[2026-01-19 20:47:59] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:47:59] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:08] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:08] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:08] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:09] [INFO] 📝 [OCR] Botón: 'VERARRNTAN'
+[2026-01-19 20:48:09] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:09] [INFO] 📝 [OCR] Combinado: 'VERARRNTAN '
+[2026-01-19 20:48:09] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:48:09] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:12] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:12] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:12] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:12] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:48:12] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:12] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:48:12] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:48:12] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:15] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:15] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:15] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:16] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:48:16] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:16] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:48:16] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:48:16] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:19] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:19] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:19] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:20] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:48:20] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:20] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:48:20] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:48:20] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:23] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:23] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:23] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:24] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:48:24] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:24] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:48:24] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:48:24] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:27] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:27] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:27] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:28] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:48:28] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:28] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:48:28] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:48:28] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:31] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:31] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:31] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:32] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:48:32] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:32] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:48:32] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:48:32] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:35] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:35] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:35] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:36] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:48:36] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:36] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:48:36] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:48:36] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:41] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:41] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:41] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:42] [INFO] 📝 [OCR] Botón: 'IGUANODONAI'
+[2026-01-19 20:48:42] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:42] [INFO] 📝 [OCR] Combinado: 'IGUANODONAI '
+[2026-01-19 20:48:42] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:48:42] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:43] [DEBUG] 🦖 Verificando dinosaurios...
+[2026-01-19 20:48:45] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:45] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:45] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:45] [INFO] 📝 [OCR] Botón: 'UNETEAHORA'
+[2026-01-19 20:48:45] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:45] [INFO] 📝 [OCR] Combinado: 'UNETEAHORA '
+[2026-01-19 20:48:45] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:48:45] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:48] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:48] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:48] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:49] [INFO] 📝 [OCR] Botón: 'UNETEAHORA'
+[2026-01-19 20:48:49] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:49] [INFO] 📝 [OCR] Combinado: 'UNETEAHORA '
+[2026-01-19 20:48:49] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:48:49] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:48:51] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:48:51] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:48:51] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:48:52] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:48:52] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:48:52] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-19 20:48:52] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:48:52] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:50:10] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:50:10] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:50:10] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:50:11] [INFO] 📝 [OCR] Botón: 'VERARRNTAN'
+[2026-01-19 20:50:11] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:50:11] [INFO] 📝 [OCR] Combinado: 'VERARRNTAN '
+[2026-01-19 20:50:11] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:50:11] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:50:13] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:50:13] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:50:13] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:50:14] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:50:14] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:50:14] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:50:14] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:50:14] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:50:17] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:50:17] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:50:17] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:50:18] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:50:18] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:50:18] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:50:18] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:50:18] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:50:21] [DEBUG] 🪙 Verificando monedas...
+[2026-01-19 20:50:22] [DEBUG] 📦 Verificando supply drops...
+[2026-01-19 20:50:22] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-19 20:50:22] [DEBUG]    📊 Supply color range: R[160-255] G[60-255] B[0-120]
+[2026-01-19 20:50:22] [DEBUG]    📊 Event color range: R[0-180] G[120-255] B[0-180]
+[2026-01-19 20:50:22] [DEBUG]    📐 Zona analizada: (461, 472, 3)
+[2026-01-19 20:50:22] [DEBUG]    🎨 Píxeles detectados inicialmente: 9458
+[2026-01-19 20:50:22] [DEBUG]    🔢 Componentes detectados: 196
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #1: 2686 píxeles en posición (288, 38)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #3: 72 píxeles en posición (265, 166)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #5: 29 píxeles en posición (267, 329)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #7: 38 píxeles en posición (274, 354)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #9: 21 píxeles en posición (271, 376)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #11: 49 píxeles en posición (276, 207)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #13: 18 píxeles en posición (276, 167)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #16: 79 píxeles en posición (289, 279)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #17: 82 píxeles en posición (290, 223)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #18: 14 píxeles en posición (284, 241)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #20: 74 píxeles en posición (294, 337)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #22: 58 píxeles en posición (294, 305)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #30: 69 píxeles en posición (303, 282)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #31: 16 píxeles en posición (302, 318)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #34: 259 píxeles en posición (331, 397)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #38: 32 píxeles en posición (315, 376)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #40: 59 píxeles en posición (319, 478)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #44: 56 píxeles en posición (323, 412)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #47: 69 píxeles en posición (333, 455)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #48: 1430 píxeles en posición (364, 27)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #50: 24 píxeles en posición (367, 467)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #53: 1277 píxeles en posición (479, 32)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #54: 15 píxeles en posición (497, 12)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #55: 39 píxeles en posición (500, 147)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #57: 34 píxeles en posición (510, 48)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #58: 32 píxeles en posición (510, 140)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #66: 23 píxeles en posición (530, 14)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #71: 11 píxeles en posición (539, 54)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #72: 11 píxeles en posición (540, 44)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #75: 15 píxeles en posición (542, 69)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #94: 29 píxeles en posición (569, 76)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #96: 53 píxeles en posición (573, 60)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #97: 12 píxeles en posición (570, 126)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #103: 12 píxeles en posición (577, 15)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #111: 357 píxeles en posición (602, 447)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #113: 216 píxeles en posición (602, 164)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #118: 497 píxeles en posición (611, 34)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #121: 134 píxeles en posición (611, 76)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #134: 824 píxeles en posición (642, 465)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #137: 13 píxeles en posición (639, 33)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #138: 288 píxeles en posición (655, 39)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #144: 198 píxeles en posición (653, 264)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #145: 12 píxeles en posición (645, 28)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #158: 322 píxeles en posición (694, 292)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #162: 540 píxeles en posición (693, 475)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #169: 12 píxeles en posición (673, 31)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #186: 55 píxeles en posición (690, 245)
+[2026-01-19 20:50:22] [DEBUG]    ✅ Supply drop #194: 1363 píxeles en posición (715, 52)
+[2026-01-19 20:50:22] [INFO] 🟠 [SUPPLY DROP] Detectados 48 supply drops: [[288, 38], [265, 166], [267, 329], [274, 354], [271, 376], [276, 207], [276, 167], [289, 279], [290, 223], [284, 241], [294, 337], [294, 305], [303, 282], [302, 318], [331, 397], [315, 376], [319, 478], [323, 412], [333, 455], [364, 27], [367, 467], [479, 32], [497, 12], [500, 147], [510, 48], [510, 140], [530, 14], [539, 54], [540, 44], [542, 69], [569, 76], [573, 60], [570, 126], [577, 15], [602, 447], [602, 164], [611, 34], [611, 76], [642, 465], [639, 33], [655, 39], [653, 264], [645, 28], [694, 292], [693, 475], [673, 31], [690, 245], [715, 52]]
+[2026-01-19 20:50:24] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:50:24] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:50:24] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:50:24] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:50:24] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:50:24] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:50:24] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:50:24] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:50:38] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:50:38] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:50:38] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:50:38] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:50:38] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:50:38] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-19 20:50:38] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:50:38] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:50:42] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:50:42] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:50:42] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:50:43] [INFO] 📝 [OCR] Botón: 'PAREYASSORET'
+[2026-01-19 20:50:43] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:50:43] [INFO] 📝 [OCR] Combinado: 'PAREYASSORET '
+[2026-01-19 20:50:43] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:50:43] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:50:46] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:50:46] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:50:46] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:50:46] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:50:46] [INFO] 📝 [OCR] Texto: 'OLINTENTOS6/2500'
+[2026-01-19 20:50:46] [INFO] 📝 [OCR] Combinado: 'LANZAR OLINTENTOS6/2500'
+[2026-01-19 20:50:46] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:50:46] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:50:50] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:50:50] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:50:50] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:50:51] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:50:51] [INFO] 📝 [OCR] Texto: 'POESED6/2500~WEINTENTOS'
+[2026-01-19 20:50:51] [INFO] 📝 [OCR] Combinado: 'LANZAR POESED6/2500~WEINTENTOS'
+[2026-01-19 20:50:51] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:50:51] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:50:55] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:50:55] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:50:55] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:50:55] [INFO] 📝 [OCR] Botón: '—LANZAR'
+[2026-01-19 20:50:55] [INFO] 📝 [OCR] Texto: 'NTOTLLTWAHWOINTENTOS62500*'
+[2026-01-19 20:50:55] [INFO] 📝 [OCR] Combinado: '—LANZAR NTOTLLTWAHWOINTENTOS62500*'
+[2026-01-19 20:50:55] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:50:55] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:50:58] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:50:58] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:50:58] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:50:59] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:50:59] [INFO] 📝 [OCR] Texto: 'NTOTLTWAHWOINTENTOS19)6/2500'
+[2026-01-19 20:50:59] [INFO] 📝 [OCR] Combinado: 'LANZAR NTOTLTWAHWOINTENTOS19)6/2500'
+[2026-01-19 20:50:59] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:50:59] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:51:02] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:02] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:02] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:03] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:51:03] [INFO] 📝 [OCR] Texto: 'TILT.INTENTOS'
+[2026-01-19 20:51:03] [INFO] 📝 [OCR] Combinado: 'LANZAR TILT.INTENTOS'
+[2026-01-19 20:51:03] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:51:03] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:51:06] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:06] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:06] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:07] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:51:07] [INFO] 📝 [OCR] Texto: 'TILT-©INTENTOS6/2500.'
+[2026-01-19 20:51:07] [INFO] 📝 [OCR] Combinado: 'LANZAR TILT-©INTENTOS6/2500.'
+[2026-01-19 20:51:07] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:51:07] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:51:09] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:09] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:09] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:10] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:51:10] [INFO] 📝 [OCR] Texto: 'HDTLLTINTENTOS-6/2500'
+[2026-01-19 20:51:10] [INFO] 📝 [OCR] Combinado: 'LANZAR HDTLLTINTENTOS-6/2500'
+[2026-01-19 20:51:10] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:51:10] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:51:13] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:13] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:13] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:14] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:51:14] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:51:14] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-19 20:51:14] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:51:14] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:51:18] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:18] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:18] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:19] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:51:19] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:51:19] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:51:19] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:51:19] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:51:22] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:22] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:22] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:23] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:51:23] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:51:23] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:51:23] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:51:23] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:51:26] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:26] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:26] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:27] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:51:27] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:51:27] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:51:27] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:51:27] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:51:30] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:30] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:30] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:31] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:51:31] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:51:31] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:51:31] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:51:31] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:51:34] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:34] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:34] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:35] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:51:35] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:51:35] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:51:35] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:51:35] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:51:38] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:38] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:38] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:39] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:51:39] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:51:39] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:51:39] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:51:39] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:51:43] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:43] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:43] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:43] [INFO] 📝 [OCR] Botón: ''
+[2026-01-19 20:51:43] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:51:43] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-19 20:51:43] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:51:43] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:51:46] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:46] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:46] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:47] [INFO] 📝 [OCR] Botón: 'VERARRNTSAN'
+[2026-01-19 20:51:47] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:51:47] [INFO] 📝 [OCR] Combinado: 'VERARRNTSAN '
+[2026-01-19 20:51:47] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:51:47] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:51:51] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:51] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:51] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:52] [INFO] 📝 [OCR] Botón: 'IGUANODONI'
+[2026-01-19 20:51:52] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:51:52] [INFO] 📝 [OCR] Combinado: 'IGUANODONI '
+[2026-01-19 20:51:52] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-19 20:51:52] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-19 20:51:53] [DEBUG] 🦖 Verificando dinosaurios...
+[2026-01-19 20:51:55] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-19 20:51:55] [DEBUG]    📐 Área botón lanzar: (71, 210, 3)
+[2026-01-19 20:51:55] [DEBUG]    📐 Área texto supply: (115, 377, 3)
+[2026-01-19 20:51:55] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-19 20:51:55] [INFO] 📝 [OCR] Texto: ''
+[2026-01-19 20:51:55] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-19 20:51:55] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-19 20:51:55] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-19 20:52:56] [INFO] ================================================================================
+[2026-01-19 20:52:56] [INFO] ⛔ BOT DETENIDO POR USUARIO
+[2026-01-19 20:52:56] [INFO] ================================================================================
+[2026-01-19 20:52:56] [INFO] 📊 RESUMEN DE RECURSOS COLECTADOS:
+[2026-01-19 20:52:56] [INFO] --------------------------------------------------------------------------------
+[2026-01-19 20:52:56] [INFO] 📦 SUMINISTROS: Ninguno
+[2026-01-19 20:52:56] [INFO] 🦖 DINOSAURIOS: Ninguno
+[2026-01-19 20:52:56] [INFO] ================================================================================
+[2026-01-19 20:52:56] [INFO] ✅ Sesión finalizada. Log guardado en carpeta 'logs/'
+[2026-01-19 20:52:56] [INFO] ================================================================================

@@ -1106,7 +1106,7 @@ class Bot:
 
                 background_tmp = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
                 # activate the supply drop
-                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)  
+                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
                 time.sleep(2.5)  # AUMENTADO de 2 a 2.5
                 background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
                 
