@@ -36,3 +36,4 @@ htmlcov/
 
 # mypy
 .mypy_cache/
+__pycache__/jw_bot.cpython-39.pyc

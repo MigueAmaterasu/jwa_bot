@@ -191,13 +191,13 @@ if __name__ == "__main__":
                 elif dinos:
                     logger.info("🦖 Dinos detectados pero TODOS en zonas prohibidas - SKIP")
 
-                if bot.number_of_scrolls > max_scrolls:
-                    # move location
-                    logger.info("="*80)
-                    logger.info("📍 CAMBIANDO UBICACIÓN EN EL MAPA")
-                    logger.info("="*80)
-                    bot.change_location()
-                    bot.number_of_scrolls = 0
+                # if bot.number_of_scrolls > max_scrolls:
+                #     # move location
+                #     logger.info("="*80)
+                #     logger.info("📍 CAMBIANDO UBICACIÓN EN EL MAPA")
+                #     logger.info("="*80)
+                #     bot.change_location()
+                #     bot.number_of_scrolls = 0
                     
                 # if not something_there:
                 bot.change_view()
