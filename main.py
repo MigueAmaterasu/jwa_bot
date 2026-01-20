@@ -79,6 +79,13 @@ if __name__ == "__main__":
             logger.error(f"❌ Error al intentar apagar: {e}")
             logger.info("💡 En Windows, ejecuta manualmente: shutdown /s /t 60")
     
+    # ================================================================
+    # v3.4.8.4: Sistema de detección de pantalla atascada
+    # ================================================================
+    stuck_counter = 0  # Contador de iteraciones sin recolectar
+    last_collection_time = time.time()  # Última vez que recolectó algo
+    STUCK_THRESHOLD = 30  # Segundos sin recolectar antes de presionar X
+    
     try:
         while True:
             # set location of the app
@@ -142,9 +149,13 @@ if __name__ == "__main__":
                         valid_coins.append(coin_pos)  # Agregar a lista de válidas
                 
                 if valid_coins:
+                    logger.info(f"🪙 Recolectando {len(valid_coins)} monedas...")
                     bot.collect_coin(filtered_positions=valid_coins)  # Pasar lista filtrada
+                    logger.info(f"✅ Monedas procesadas")
+                    last_collection_time = time.time()  # Resetear contador de atascado
+                    stuck_counter = 0
                 elif coins:
-                    logger.info("🪙 Monedas detectadas pero TODAS en zonas prohibidas - SKIP")
+                    logger.info(f"🪙 {len(coins)} monedas detectadas pero TODAS en zonas prohibidas - SKIP")
                 
                 # ============================================================
                 # 📦 SUPPLY DROPS - Verificar zonas prohibidas
@@ -163,9 +174,13 @@ if __name__ == "__main__":
                         valid_drops.append(drop_pos)  # Agregar a lista de válidos
                 
                 if valid_drops:
+                    logger.info(f"📦 Recolectando {len(valid_drops)} supply drops...")
                     bot.collect_supply_drop(filtered_positions=valid_drops)  # Pasar lista filtrada
+                    logger.info(f"✅ Supply drops procesados")
+                    last_collection_time = time.time()  # Resetear contador de atascado
+                    stuck_counter = 0
                 elif supply_drops:
-                    logger.info("📦 Supply drops detectados pero TODOS en zonas prohibidas - SKIP")
+                    logger.info(f"📦 {len(supply_drops)} supply drops detectados pero TODOS en zonas prohibidas - SKIP")
                 
                 # ============================================================
                 # 🦖 DINOS - Verificar zonas prohibidas
@@ -184,9 +199,64 @@ if __name__ == "__main__":
                         valid_dinos.append(dino_pos)  # Agregar a lista de válidos
                 
                 if valid_dinos:
+                    logger.info(f"🦖 Cazando {len(valid_dinos)} dinosaurios...")
                     bot.collect_dino(filtered_positions=valid_dinos)  # Pasar lista filtrada
+                    logger.info(f"✅ Dinos procesados")
+                    last_collection_time = time.time()  # Resetear contador de atascado
+                    stuck_counter = 0
                 elif dinos:
-                    logger.info("🦖 Dinos detectados pero TODOS en zonas prohibidas - SKIP")
+                    logger.info(f"🦖 {len(dinos)} dinos detectados pero TODOS en zonas prohibidas - SKIP")
+
+                # ================================================================
+                # v3.4.8.5: DETECCIÓN DE PANTALLA ATASCADA MEJORADA
+                # ================================================================
+                # Si no se recolectó nada en los últimos STUCK_THRESHOLD segundos,
+                # intentar salir de pantalla atascada presionando X
+                time_since_last_collection = time.time() - last_collection_time
+                
+                if time_since_last_collection > STUCK_THRESHOLD:
+                    stuck_counter += 1
+                    logger.warning(f"⚠️  POSIBLE PANTALLA ATASCADA - {int(time_since_last_collection)}s sin recolectar")
+                    logger.warning(f"🔄 Intentando recuperación #{stuck_counter} - Buscando botón X...")
+                    
+                    # Intentar detectar y presionar el botón X
+                    background_stuck = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
+                    x_button_pos = bot.locate_x_button(background_stuck)
+                    
+                    if x_button_pos:
+                        logger.info(f"✅ Botón X detectado en posición: {x_button_pos}")
+                        pyautogui.click(bot.x + x_button_pos[1], bot.y + x_button_pos[0])
+                        time.sleep(1)
+                        logger.info("🔙 Click en X ejecutado - Esperando volver al mapa...")
+                        last_collection_time = time.time()  # Resetear contador
+                        stuck_counter = 0
+                    else:
+                        logger.warning("❌ No se detectó botón X - Intentando ESC...")
+                        pyautogui.press('esc')
+                        time.sleep(0.5)
+                        
+                        # Si después de 3 intentos sigue atascado, presionar múltiples veces
+                        if stuck_counter >= 3:
+                            logger.warning("🚨 ATASCADO PERSISTENTE - Presionando ESC múltiples veces...")
+                            for _ in range(5):
+                                pyautogui.press('esc')
+                                time.sleep(0.3)
+                            
+                            # Si después de 5 intentos sigue atascado, presionar X en ubicaciones comunes
+                            if stuck_counter >= 5:
+                                logger.error("🚨🚨 ATASCADO CRÍTICO - Clickeando posiciones comunes de X...")
+                                # Posiciones comunes del botón X (relativas a la ventana)
+                                common_x_positions = [
+                                    (50, 50),   # Esquina superior izquierda
+                                    (bot.w - 50, 50),  # Esquina superior derecha
+                                    (bot.w // 2, 50),  # Centro superior
+                                ]
+                                for pos_x, pos_y in common_x_positions:
+                                    pyautogui.click(bot.x + pos_x, bot.y + pos_y)
+                                    time.sleep(0.5)
+                            
+                            last_collection_time = time.time()  # Resetear de todas formas
+                            stuck_counter = 0
 
                 # if bot.number_of_scrolls > max_scrolls:
                 #     # move location
@@ -197,6 +267,7 @@ if __name__ == "__main__":
                 #     bot.number_of_scrolls = 0
                     
                 # if not something_there:
+                logger.debug(f"🔄 Cambiando vista del mapa (scroll #{bot.number_of_scrolls + 1})")
                 bot.change_view()
                 bot.number_of_scrolls += 1
                 
