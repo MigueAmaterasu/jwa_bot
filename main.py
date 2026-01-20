@@ -4,6 +4,7 @@ import time
 import logging
 import platform
 import subprocess
+import numpy as np
 
 from jw_bot import Bot
 
@@ -106,13 +107,51 @@ if __name__ == "__main__":
                 if bot.check_time_limit():
                     raise KeyboardInterrupt
 
+                # 🛡️ v3.4.8.1: PRE-VERIFICAR ZONAS PROHIBIDAS en el main loop
+                # Tomar screenshot para detectar círculos ANTES de llamar collect functions
+                background_check = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
+                
+                # Detectar supply drops visibles
+                supply_drops = bot.detect_supply_drop(background_check)
+                
+                # Definir zonas excluidas (eventos fijos en esquinas inferiores)
+                excluded_zones = [
+                    {'name': 'Inferior izquierda (Especial/Extra)', 'x_min': 0, 'x_max': 180, 'y_min': 600, 'y_max': 952},
+                    {'name': 'Inferior derecha (Nuevo/Mochila)', 'x_min': 385, 'x_max': 565, 'y_min': 600, 'y_max': 952}
+                ]
+                
+                # Bandera para determinar si hay círculos válidos (fuera de zonas prohibidas)
+                has_valid_drops = False
+                has_prohibited_drops = False
+                
+                for pos in supply_drops:
+                    center_y, center_x = pos[0], pos[1]
+                    is_in_excluded = False
+                    
+                    for zone in excluded_zones:
+                        if (zone['x_min'] <= center_x <= zone['x_max'] and 
+                            zone['y_min'] <= center_y <= zone['y_max']):
+                            logger.warning(f"⛔ [ZONA PROHIBIDA] Círculo detectado en {zone['name']} (x={center_x}, y={center_y}) - SKIP")
+                            is_in_excluded = True
+                            has_prohibited_drops = True
+                            break
+                    
+                    if not is_in_excluded:
+                        has_valid_drops = True
+                
                 # get coins
                 logger.debug("🪙 Verificando monedas...")
                 bot.collect_coin()
 
-                # get supply drops
-                logger.debug("📦 Verificando supply drops...")
-                bot.collect_supply_drop()                                 
+                # get supply drops - SOLO si hay círculos válidos fuera de zonas prohibidas
+                if supply_drops:
+                    if has_valid_drops:
+                        logger.debug("📦 Verificando supply drops válidos...")
+                        bot.collect_supply_drop()
+                    else:
+                        logger.info("📦 Supply drops detectados pero TODOS en zonas prohibidas - SKIP recolección")
+                else:
+                    logger.debug("📦 No hay supply drops visibles")                                 
 
                 # get dinos
                 logger.debug("🦖 Verificando dinosaurios...")

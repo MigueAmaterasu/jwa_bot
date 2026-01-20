@@ -664,16 +664,6 @@ class Bot:
 
         state = ""
         
-        # 🛡️ v3.4.7: FALLBACK DE SEGURIDAD - Buscar X para salir de pantallas problemáticas
-        # Si entramos a un círculo de evento por error, detectar la X y clickearla
-        pos_x = self.locate_x_button(background)
-        if pos_x:
-            self.logger.warning("⚠️  [FALLBACK] Detectada X de salida - Clickeando para salir de pantalla problemática")
-            pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
-            time.sleep(1)
-            state = "out_of_range"
-            return state
-        
         self.logger.debug("🔍 Determinando estado del objeto...")
         
         # Capturar áreas para detección
@@ -804,6 +794,15 @@ class Bot:
         else:
             self.logger.warning(f"❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado")
             self.logger.warning(f"   💡 Considera activar debug visual para ver qué captura el OCR")
+            
+            # 🛡️ v3.4.8: FALLBACK DE SEGURIDAD - Solo si NO identificamos nada
+            # Y hay una X visible (significa pantalla incorrecta, no un supply drop válido)
+            pos_x = self.locate_x_button(background)
+            if pos_x:
+                self.logger.warning("⚠️  [FALLBACK] Pantalla no identificada CON X visible - Saliendo")
+                pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                time.sleep(1)
+                state = "out_of_range"
 
         return state
 
