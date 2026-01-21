@@ -456,33 +456,14 @@ class Bot:
         # Nuevo umbral: 15 píxeles = captura todos sin generar falsos positivos
         min_pixels = 15
         
-        # v3.4.7: Zonas de exclusión para círculos de evento fijos
-        # Coordenadas aproximadas en 565x952 (ajustar según necesidad)
-        # Esquina inferior izquierda: X[0-180] Y[600-952] (Especial + Extra/Radar)
-        # Esquina inferior derecha: X[385-565] Y[600-952] (Nuevo + Mochila)
-        excluded_zones = [
-            {'name': 'Inferior izquierda (Especial/Extra)', 'x_min': 0, 'x_max': 180, 'y_min': 600, 'y_max': 952},
-            {'name': 'Inferior derecha (Nuevo/Mochila)', 'x_min': 385, 'x_max': 565, 'y_min': 600, 'y_max': 952}
-        ]
-        
+        # v3.4.8.7: Filtrado removido - ahora se hace en main.py de forma centralizada
         for label in range(1, labels.max()+1):
             rows, cols = np.where(labels == label)
             if len(rows) > min_pixels:
                 center_y = self.shooting_zone[0] + int(np.mean(rows))
                 center_x = self.shooting_zone[2] + int(np.mean(cols))
-                
-                # Verificar si está en zona excluida
-                is_excluded = False
-                for zone in excluded_zones:
-                    if (zone['x_min'] <= center_x <= zone['x_max'] and 
-                        zone['y_min'] <= center_y <= zone['y_max']):
-                        self.logger.debug(f"   ⛔ Supply drop #{label} en zona excluida: {zone['name']} ({center_y}, {center_x})")
-                        is_excluded = True
-                        break
-                
-                if not is_excluded:
-                    pos.append([center_y, center_x])
-                    self.logger.debug(f"   ✅ Supply drop #{label}: {len(rows)} píxeles en posición ({center_y}, {center_x})")
+                pos.append([center_y, center_x])
+                self.logger.debug(f"   ✅ Supply drop #{label}: {len(rows)} píxeles en posición ({center_y}, {center_x})")
         
         if len(pos) > 0:
             self.logger.info(f"🟠 [SUPPLY DROP] Detectados {len(pos)} supply drops: {pos}")
