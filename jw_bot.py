@@ -747,8 +747,8 @@ class Bot:
             self.logger.warning("⛔ [EXCLUIDO] Incubadora o evento de combate detectado")
             return state
         
-        # 5. 🏛️ RAIDS - Detectan "JEFE" en el texto
-        if "JEFE" in combined_text or "BOSS" in combined_text:
+        # 5. 🏛️ RAIDS - Detectan "JEFE" o "NIVEL" en el texto
+        if "JEFE" in combined_text or "BOSS" in combined_text or "NIVEL" in combined_text or "LEVEL" in combined_text or "RECOMPENSAS" in combined_text or "REWARDS" in combined_text:
             state = "out_of_range"
             self.logger.warning("⛔ [EXCLUIDO] Raid con jefe detectado")
             return state
@@ -1346,8 +1346,16 @@ class Bot:
                         pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
                         time.sleep(1)
 
-            # 🔧 v3.4.8.7: ELIMINADO else block que causaba click en X cuando OCR fallaba
-            # Ahora confiamos en las posiciones filtradas y no re-verificamos con OCR
+            else:
+                # 🔧 v3.4.8.7.2: Si OCR no identifica el objeto, salir
+                # Esto maneja casos de RAIDS, JEFES, dinos VIP, etc.
+                print("--"*10)
+                print(f"NOT SUPPLY DROP (detected: {state})")
+                self.logger.warning(f"⚠️  Objeto no identificado como supply drop - Saliendo...")
+                pos_x = self.locate_x_button(background_new)
+                pos_x = pos_x if pos_x else self.map_button_loc
+                pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                time.sleep(1)
                                        
 
     # ----------------------------------------------------------
