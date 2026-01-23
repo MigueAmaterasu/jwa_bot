@@ -1311,8 +1311,15 @@ class Bot:
 
             state = self.determine_state(background_new)
             
-            # 🔍 DEBUG: Descomentar la siguiente línea para guardar imágenes de lo que ve el OCR
-            self.debug_save_ocr_regions(background_new, f"supply_{pos[0]}_{pos[1]}")
+            # 🔍 DEBUG: Guardar imágenes de lo que ve el OCR cuando no es supply
+            if state != "supply" and state != "event":
+                self.debug_save_ocr_regions(background_new, f"supply_{pos[0]}_{pos[1]}")
+            
+            # � v3.4.8.7.4: Si viene de filtered_positions y OCR falla, FORZAR como supply
+            # Esto evita perder supply drops cuando el OCR lee basura
+            if filtered_positions is not None and state not in ["supply", "event"]:
+                self.logger.warning(f"⚠️  OCR detectó '{state}' pero viene de filtered_positions - FORZANDO como SUPPLY")
+                state = "supply"
             
             # MEJORADO: También aceptar "event" como supply drop válido
             if state == "supply" or state == "event":
