@@ -753,10 +753,11 @@ class Bot:
             self.logger.warning("⛔ [EXCLUIDO] Raid con jefe detectado")
             return state
         
-        # 6. 🛕 SANTUARIOS - Botón dice "ENTRAR"
-        if "ENTRAR" in text1 or "ENTER" in text1:
+        # 6. 🛕 SANTUARIOS - Botón dice "ENTRAR" o texto dice "SANTUARIO"
+        # OCR puede leer mal "ENTRAR" como "FNTRAR", "FMTRAR", etc.
+        if ("ENTRAR" in text1 or "ENTER" in text1 or "NTRAR" in text1 or "TRAR" in text1) or "SANTUARIO" in combined_text or "SANCTUARY" in combined_text:
             state = "out_of_range"
-            self.logger.warning("⛔ [EXCLUIDO] Santuario detectado (botón ENTRAR)")
+            self.logger.warning("⛔ [EXCLUIDO] Santuario detectado")
             return state
         
         # 7. ⏱️ SUPPLY DROPS EN COOLDOWN - Ya fueron recolectados recientemente
