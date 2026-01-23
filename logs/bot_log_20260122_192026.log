@@ -1,0 +1,164 @@
+[2026-01-22 19:20:26] [INFO] ================================================================================
+[2026-01-22 19:20:26] [INFO] 🦖 JURASSIC WORLD ALIVE BOT - INICIADO
+[2026-01-22 19:20:26] [INFO] ================================================================================
+[2026-01-22 19:20:26] [INFO] 📁 Log guardado en: logs/bot_log_20260122_192026.log
+[2026-01-22 19:20:26] [INFO] ================================================================================
+[2026-01-22 19:20:26] [INFO] 🎮 INSTRUCCIONES DE CALIBRACIÓN
+[2026-01-22 19:20:26] [INFO] ================================================================================
+[2026-01-22 19:20:26] [INFO] 1️⃣  Abre BlueStacks con Jurassic World Alive en el MAPA
+[2026-01-22 19:20:26] [INFO] 2️⃣  Presiona 'a' y haz click en ESQUINA SUPERIOR IZQUIERDA del juego
+[2026-01-22 19:20:26] [INFO] 3️⃣  Presiona 'a' otra vez y haz click en ESQUINA INFERIOR DERECHA
+[2026-01-22 19:20:26] [INFO] 4️⃣  El bot empezará a funcionar automáticamente
+[2026-01-22 19:20:26] [INFO] ❌ Presiona 'q' para detener el bot en cualquier momento
+[2026-01-22 19:20:26] [INFO] ================================================================================
+[2026-01-22 19:20:26] [INFO] 🔧 Inicializando Bot...
+[2026-01-22 19:20:26] [INFO] ⏱️  Tiempo límite configurado: 4 horas
+[2026-01-22 19:20:26] [INFO] 📁 Carpeta 'debug_screenshots' creada
+[2026-01-22 19:20:34] [INFO] 🔘 Tecla 'a' presionada
+[2026-01-22 19:20:34] [INFO] ✅ Primer punto capturado: (771, 50)
+[2026-01-22 19:20:34] [INFO] 👉 Ahora presiona 'a' de nuevo y haz click en la esquina inferior derecha
+[2026-01-22 19:20:37] [INFO] 🔘 Tecla 'a' presionada
+[2026-01-22 19:20:37] [INFO] ✅ Segundo punto capturado: (1338, 1000)
+[2026-01-22 19:20:37] [INFO] ================================================================================
+[2026-01-22 19:20:37] [INFO] 📐 CONFIGURACIÓN DE VENTANA BLUESTACKS
+[2026-01-22 19:20:37] [INFO] ================================================================================
+[2026-01-22 19:20:37] [INFO] 📍 Posición X: 771px
+[2026-01-22 19:20:37] [INFO] 📍 Posición Y: 50px
+[2026-01-22 19:20:37] [INFO] 📏 Ancho (W): 567px
+[2026-01-22 19:20:37] [INFO] 📏 Alto (H): 950px
+[2026-01-22 19:20:37] [INFO] 🎯 Esquina superior izquierda: (771, 50)
+[2026-01-22 19:20:37] [INFO] 🎯 Esquina inferior derecha: (1338, 1000)
+[2026-01-22 19:20:37] [INFO] ================================================================================
+[2026-01-22 19:20:37] [INFO] 🎯 Shooting zone: Y[262-723] X[11-483]
+[2026-01-22 19:20:37] [INFO] 🚀 Launch button: Y[743-813] X[155-365]
+[2026-01-22 19:20:37] [INFO] ⏱️  Cooldown text area: Y[514-663] X[155-365]
+[2026-01-22 19:20:37] [INFO] 📝 Supply text area: Y[47-142] X[113-453]
+[2026-01-22 19:20:37] [INFO] 📸 Capturando vista inicial del mapa para análisis...
+[2026-01-22 19:20:38] [INFO] ✅ Captura inicial guardada: map_initial_20260122_192038.png
+[2026-01-22 19:20:38] [INFO] 🚀 Calibración completa! El bot comenzará a operar...
+[2026-01-22 19:20:39] [DEBUG] 🪙 Verificando monedas...
+[2026-01-22 19:20:39] [DEBUG] 📦 Verificando supply drops...
+[2026-01-22 19:20:39] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-22 19:20:39] [DEBUG]    📊 Supply color range: R[160-255] G[60-255] B[0-120]
+[2026-01-22 19:20:39] [DEBUG]    📊 Event color range: R[0-180] G[120-255] B[0-180]
+[2026-01-22 19:20:39] [DEBUG]    📐 Zona analizada: (461, 472, 3)
+[2026-01-22 19:20:39] [DEBUG]    🎨 Píxeles detectados inicialmente: 12519
+[2026-01-22 19:20:39] [DEBUG]    🔢 Componentes detectados: 213
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #2: 106 píxeles en posición (289, 61)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #3: 1404 píxeles en posición (290, 112)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #5: 108 píxeles en posición (268, 252)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #6: 469 píxeles en posición (310, 293)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #7: 240 píxeles en posición (298, 368)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #8: 178 píxeles en posición (278, 388)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #10: 39 píxeles en posición (268, 118)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #14: 24 píxeles en posición (274, 238)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #18: 86 píxeles en posición (293, 225)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #21: 22 píxeles en posición (285, 405)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #25: 16 píxeles en posición (293, 455)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #30: 614 píxeles en posición (345, 457)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #33: 265 píxeles en posición (325, 149)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #36: 26 píxeles en posición (303, 413)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #39: 528 píxeles en posición (355, 424)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #42: 198 píxeles en posición (324, 344)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #50: 89 píxeles en posición (329, 115)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #63: 2108 píxeles en posición (403, 346)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #70: 74 píxeles en posición (352, 270)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #75: 601 píxeles en posición (415, 389)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #79: 26 píxeles en posición (357, 70)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #81: 157 píxeles en posición (381, 283)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #85: 75 píxeles en posición (372, 22)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #86: 36 píxeles en posición (369, 55)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #95: 65 píxeles en posición (384, 35)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #98: 1080 píxeles en posición (412, 67)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #103: 154 píxeles en posición (444, 28)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #109: 30 píxeles en posición (452, 334)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #110: 561 píxeles en posición (469, 34)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #121: 28 píxeles en posición (475, 58)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #126: 286 píxeles en posición (496, 21)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #142: 31 píxeles en posición (517, 12)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #145: 466 píxeles en posición (526, 327)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #153: 21 píxeles en posición (522, 72)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #160: 79 píxeles en posición (539, 358)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #178: 338 píxeles en posición (605, 329)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #180: 2275 píxeles en posición (611, 55)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #184: 93 píxeles en posición (637, 469)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #186: 2124 píxeles en posición (665, 37)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #198: 210 píxeles en posición (701, 476)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #202: 136 píxeles en posición (696, 99)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #206: 179 píxeles en posición (712, 313)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #207: 23 píxeles en posición (704, 18)
+[2026-01-22 19:20:39] [DEBUG]    ✅ Supply drop #212: 59 píxeles en posición (720, 235)
+[2026-01-22 19:20:39] [INFO] 🟠 [SUPPLY DROP] Detectados 44 supply drops: [[289, 61], [290, 112], [268, 252], [310, 293], [298, 368], [278, 388], [268, 118], [274, 238], [293, 225], [285, 405], [293, 455], [345, 457], [325, 149], [303, 413], [355, 424], [324, 344], [329, 115], [403, 346], [352, 270], [415, 389], [357, 70], [381, 283], [372, 22], [369, 55], [384, 35], [412, 67], [444, 28], [452, 334], [469, 34], [475, 58], [496, 21], [517, 12], [526, 327], [522, 72], [539, 358], [605, 329], [611, 55], [637, 469], [665, 37], [701, 476], [696, 99], [712, 313], [704, 18], [720, 235]]
+[2026-01-22 19:20:39] [DEBUG] ⛔ [SUPPLY] Posición (611, 55) en zona excluida: Inferior izquierda (Especial/Extra)
+[2026-01-22 19:20:39] [DEBUG] ⛔ [SUPPLY] Posición (637, 469) en zona excluida: Inferior derecha (Nuevo/Mochila)
+[2026-01-22 19:20:39] [DEBUG] ⛔ [SUPPLY] Posición (665, 37) en zona excluida: Inferior izquierda (Especial/Extra)
+[2026-01-22 19:20:39] [DEBUG] ⛔ [SUPPLY] Posición (701, 476) en zona excluida: Inferior derecha (Nuevo/Mochila)
+[2026-01-22 19:20:39] [DEBUG] ⛔ [SUPPLY] Posición (696, 99) en zona excluida: Inferior izquierda (Especial/Extra)
+[2026-01-22 19:20:39] [DEBUG] ⛔ [SUPPLY] Posición (704, 18) en zona excluida: Inferior izquierda (Especial/Extra)
+[2026-01-22 19:20:39] [INFO] 📦 Recolectando 38 supply drops válidos...
+[2026-01-22 19:20:42] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-22 19:20:42] [DEBUG]    📐 Área botón lanzar: (70, 210, 3)
+[2026-01-22 19:20:42] [DEBUG]    📐 Área texto supply: (95, 340, 3)
+[2026-01-22 19:20:42] [DEBUG]    📐 Área cooldown: (149, 210, 3)
+[2026-01-22 19:20:43] [INFO] 📝 [OCR] Botón: 'ENTRAR'
+[2026-01-22 19:20:43] [INFO] 📝 [OCR] Texto: 'SANTUARIO'
+[2026-01-22 19:20:43] [INFO] 📝 [OCR] Combinado: 'ENTRAR SANTUARIO'
+[2026-01-22 19:20:43] [DEBUG] ⏱️  [OCR] Cooldown: '—A____—MEJORESCRIATURAS:SETECANTUARIGESTAVACI'
+[2026-01-22 19:20:43] [WARNING] ⛔ [EXCLUIDO] Santuario detectado
+[2026-01-22 19:20:43] [WARNING] ⚠️  Objeto no identificado como supply drop - Saliendo...
+[2026-01-22 19:20:46] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-22 19:20:46] [DEBUG]    📐 Área botón lanzar: (70, 210, 3)
+[2026-01-22 19:20:46] [DEBUG]    📐 Área texto supply: (95, 340, 3)
+[2026-01-22 19:20:46] [DEBUG]    📐 Área cooldown: (149, 210, 3)
+[2026-01-22 19:20:47] [INFO] 📝 [OCR] Botón: '4\UNETEAHORA'
+[2026-01-22 19:20:47] [INFO] 📝 [OCR] Texto: ''
+[2026-01-22 19:20:47] [INFO] 📝 [OCR] Combinado: '4\UNETEAHORA '
+[2026-01-22 19:20:47] [WARNING] ⛔ [EXCLUIDO] Dinosaurio fuera de rango (VIP requerido)
+[2026-01-22 19:20:47] [WARNING] ⚠️  Objeto no identificado como supply drop - Saliendo...
+[2026-01-22 19:20:53] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-22 19:20:53] [DEBUG]    📐 Área botón lanzar: (70, 210, 3)
+[2026-01-22 19:20:53] [DEBUG]    📐 Área texto supply: (95, 340, 3)
+[2026-01-22 19:20:53] [DEBUG]    📐 Área cooldown: (149, 210, 3)
+[2026-01-22 19:20:54] [INFO] 📝 [OCR] Botón: '/\UNETEAHORA'
+[2026-01-22 19:20:54] [INFO] 📝 [OCR] Texto: ''
+[2026-01-22 19:20:54] [INFO] 📝 [OCR] Combinado: '/\UNETEAHORA '
+[2026-01-22 19:20:54] [WARNING] ⛔ [EXCLUIDO] Dinosaurio fuera de rango (VIP requerido)
+[2026-01-22 19:20:55] [WARNING] ⚠️  Objeto no identificado como supply drop - Saliendo...
+[2026-01-22 19:20:57] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-22 19:20:57] [DEBUG]    📐 Área botón lanzar: (70, 210, 3)
+[2026-01-22 19:20:57] [DEBUG]    📐 Área texto supply: (95, 340, 3)
+[2026-01-22 19:20:57] [DEBUG]    📐 Área cooldown: (149, 210, 3)
+[2026-01-22 19:20:58] [INFO] 📝 [OCR] Botón: '/\UNETEAHORA'
+[2026-01-22 19:20:58] [INFO] 📝 [OCR] Texto: ''
+[2026-01-22 19:20:58] [INFO] 📝 [OCR] Combinado: '/\UNETEAHORA '
+[2026-01-22 19:20:58] [WARNING] ⛔ [EXCLUIDO] Dinosaurio fuera de rango (VIP requerido)
+[2026-01-22 19:20:59] [WARNING] ⚠️  Objeto no identificado como supply drop - Saliendo...
+[2026-01-22 19:21:02] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-22 19:21:02] [DEBUG]    📐 Área botón lanzar: (70, 210, 3)
+[2026-01-22 19:21:02] [DEBUG]    📐 Área texto supply: (95, 340, 3)
+[2026-01-22 19:21:02] [DEBUG]    📐 Área cooldown: (149, 210, 3)
+[2026-01-22 19:21:04] [INFO] 📝 [OCR] Botón: '/\UNETEAHORA'
+[2026-01-22 19:21:04] [INFO] 📝 [OCR] Texto: ''
+[2026-01-22 19:21:04] [INFO] 📝 [OCR] Combinado: '/\UNETEAHORA '
+[2026-01-22 19:21:04] [WARNING] ⛔ [EXCLUIDO] Dinosaurio fuera de rango (VIP requerido)
+[2026-01-22 19:21:04] [WARNING] ⚠️  Objeto no identificado como supply drop - Saliendo...
+[2026-01-22 19:21:07] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-22 19:21:07] [DEBUG]    📐 Área botón lanzar: (70, 210, 3)
+[2026-01-22 19:21:07] [DEBUG]    📐 Área texto supply: (95, 340, 3)
+[2026-01-22 19:21:07] [DEBUG]    📐 Área cooldown: (149, 210, 3)
+[2026-01-22 19:21:08] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-22 19:21:08] [INFO] 📝 [OCR] Texto: ''
+[2026-01-22 19:21:08] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-22 19:21:08] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-22 19:21:08] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-22 19:21:08] [WARNING] ⚠️  OCR detectó 'dino' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-22 19:21:30] [INFO] ================================================================================
+[2026-01-22 19:21:30] [INFO] ⛔ BOT DETENIDO POR USUARIO (Ctrl+C o 'q')
+[2026-01-22 19:21:30] [INFO] ================================================================================
+[2026-01-22 19:21:30] [INFO] 📊 RESUMEN DE RECURSOS COLECTADOS:
+[2026-01-22 19:21:30] [INFO] --------------------------------------------------------------------------------
+[2026-01-22 19:21:30] [INFO] 📦 SUMINISTROS: Ninguno
+[2026-01-22 19:21:30] [INFO] 🦖 DINOSAURIOS: Ninguno
+[2026-01-22 19:21:30] [INFO] ================================================================================
+[2026-01-22 19:21:30] [INFO] ✅ Sesión finalizada. Log guardado en carpeta 'logs/'
+[2026-01-22 19:21:30] [INFO] ================================================================================
