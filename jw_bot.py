@@ -783,29 +783,33 @@ class Bot:
         # Los dinosaurios de evento también son válidos para disparar y recolectar ADN
         
         # MEJORADO: Buscar en TEXTO COMBINADO para más robustez
-        # Prioridad: DINO > SUPPLY > COIN
+        # Prioridad: SUPPLY > COIN > DINO (supply primero para evitar falsos positivos con "LANZAR")
         
-        # 1. Detectar DINOSAURIOS (más específico primero)
-        if any(word in combined_text for word in ["LANZAR", "DISPARAR", "LAUNCH", "SHOOT", "CAPTURAR", "CAPTURA"]):
-            state = "dino"
-            self.logger.debug("   🦖 Palabras clave de DINO detectadas")
-        
-        # 2. Detectar SUPPLY DROPS (palabras clave específicas)
+        # 1. Detectar SUPPLY DROPS (palabras clave específicas) - PRIMERO
         # INCLUYE "EVENTO" para farolitos verdes que dicen "EVENTO ESPECIAL TERMINA EN..."
-        elif any(word in combined_text for word in ["SUMINISTRO", "SUMINISTROS", "SUPPLY", "DROP", "ABASTECIMIENTO", "EVENTO", "EVENT", "ESPECIAL", "SPECIAL"]):
+        if any(word in combined_text for word in ["SUMINISTRO", "SUMINISTROS", "SUPPLY", "DROP", "ABASTECIMIENTO", "EVENTO", "EVENT", "ESPECIAL", "SPECIAL"]):
             state = "supply"
             self.logger.debug("   📦 Palabras clave de SUPPLY detectadas")
             
-        # 3. Detectar MONEDAS / COIN CHASE
+        # 2. Detectar MONEDAS / COIN CHASE
         elif any(word in combined_text for word in ["MONEDA", "MONEDAS", "COIN", "CHASE", "ORO", "GOLD", "PERSECUCION", "PERSECUCIÓN"]):
             state = "coin"
             self.logger.debug("   🪙 Palabras clave de COIN detectadas")
         
-        # 4. Detección por fragmentos parciales (fallback) - EVENTOS YA EXCLUIDOS ARRIBA
+        # 3. Detectar DINOSAURIOS (al final para evitar falsos positivos)
+        # "LANZAR" puede aparecer en supply drops, así que verificamos esto último
+        elif any(word in combined_text for word in ["LANZAR", "DISPARAR", "LAUNCH", "SHOOT", "CAPTURAR", "CAPTURA"]):
+            state = "dino"
+            self.logger.debug("   🦖 Palabras clave de DINO detectadas")
+        
+        # 4. Detección por fragmentos parciales (fallback)
         elif any(fragment in combined_text for fragment in ["SUMIN", "DINO", "MONED"]):
             if "SUMIN" in combined_text:
                 state = "supply"
                 self.logger.debug("   📦 Fragmento 'SUMIN' detectado")
+            elif "MONED" in combined_text:
+                state = "coin"
+                self.logger.debug("   🪙 Fragmento 'MONED' detectado")
             elif "DINO" in combined_text:
                 state = "dino"
                 self.logger.debug("   🦖 Fragmento 'DINO' detectado")
