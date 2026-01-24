@@ -1318,7 +1318,8 @@ class Bot:
             
             # � v3.4.8.7.4: Si viene de filtered_positions y OCR falla, FORZAR como supply
             # Esto evita perder supply drops cuando el OCR lee basura
-            if filtered_positions is not None and state not in ["supply", "event", "out_of_range"]:
+            # v3.4.8.7.7: No forzar dinos como supply (respetar detección correcta de OCR)
+            if filtered_positions is not None and state not in ["supply", "event", "out_of_range", "dino"]:
                 self.logger.warning(f"⚠️  OCR detectó '{state}' pero viene de filtered_positions - FORZANDO como SUPPLY")
                 state = "supply"
             
