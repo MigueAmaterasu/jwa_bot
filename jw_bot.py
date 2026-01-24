@@ -678,15 +678,16 @@ class Bot:
 
         state = ""
         
-        # 🛡️ v3.4.7: FALLBACK DE SEGURIDAD - Buscar X para salir de pantallas problemáticas
-        # Si entramos a un círculo de evento por error, detectar la X y clickearla
-        pos_x = self.locate_x_button(background)
-        if pos_x:
-            self.logger.warning("⚠️  [FALLBACK] Detectada X de salida - Clickeando para salir de pantalla problemática")
-            pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
-            time.sleep(1)
-            state = "out_of_range"
-            return state
+        # 🛡️ v3.4.7: FALLBACK DESACTIVADO - Causa falsos positivos con supply drops
+        # Los supply drops también tienen X, no se debe clickear automáticamente
+        # La X se clickea SOLO cuando OCR confirma que NO es supply/event
+        # pos_x = self.locate_x_button(background)
+        # if pos_x:
+        #     self.logger.warning("⚠️  [FALLBACK] Detectada X de salida - Clickeando para salir de pantalla problemática")
+        #     pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+        #     time.sleep(1)
+        #     state = "out_of_range"
+        #     return state
         
         self.logger.debug("🔍 Determinando estado del objeto...")
         
