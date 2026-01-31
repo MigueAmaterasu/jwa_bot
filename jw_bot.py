@@ -1366,39 +1366,41 @@ class Bot:
             
             # MEJORADO: También aceptar "event" como supply drop válido
             if state == "supply" or state == "event":
-                print("--"*10)
-                print(f"CLICKING {state.upper()}")
+                self.logger.info(f"🎁 Recolectando {state.upper()}...")
 
-                background_tmp = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-                # activate the supply drop
-                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
-                time.sleep(2.5)  # AUMENTADO de 2 a 2.5
-                background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                # Tomar screenshot antes del primer click
+                background_before_clicks = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
                 
-                # Si no cambió el background, puede que ya esté abierto o necesite cerrar
-                if not self.background_changed(background_new, background_tmp):
-                    pos_x = self.locate_x_button(background_new)
-                    if pos_x:
-                        pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
-                        time.sleep(1) 
-
+                # Click en el centro para girar/abrir el supply drop
+                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
+                time.sleep(2.5)
+                
+                # Click adicionales para asegurar recolección
                 count = 0
-                # loop until max click is reached or we are in the old background
-                while self.max_click >= count and \
-                      self.background_changed(background_old, background_new):
-                    print("--"*10)
-                    print(f"CLICK {count+1}/{self.max_click}")
+                max_collection_clicks = 3  # Máximo 3 clicks para recolectar
+                
+                while count < max_collection_clicks:
                     pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
-                    time.sleep(2.5) 
-                    background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                    time.sleep(1.5)
                     count += 1
-
-                # if clicked more than max amount something is wrong
-                if count > self.max_click:
-                    pos_x = self.locate_x_button(background_new)
+                    self.logger.debug(f"   Click recolección {count}/{max_collection_clicks}")
+                
+                # Verificar si regresamos al mapa (supply se cerró automáticamente)
+                background_after = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                
+                # Si no se cerró automáticamente, buscar botón X o mapa
+                if self.background_changed(background_before_clicks, background_after):
+                    self.logger.debug("   Supply aún abierto, buscando botón para cerrar...")
+                    pos_x = self.locate_x_button(background_after)
                     if pos_x:
                         pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
                         time.sleep(1)
+                    else:
+                        # Si no hay X, clickear botón de mapa
+                        pyautogui.click(x=self.x+self.map_button_loc[1], y=self.y+self.map_button_loc[0])
+                        time.sleep(1)
+                
+                self.logger.info(f"✅ {state.upper()} procesado")
 
             else:
                 # 🔧 v3.4.8.7.2: Si OCR no identifica el objeto, salir
