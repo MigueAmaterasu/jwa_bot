@@ -1399,6 +1399,11 @@ class Bot:
                     self.logger.warning(f"⚠️  OCR detectó '{state}' pero viene de filtered_positions - FORZANDO como SUPPLY")
                     state = "supply"
             
+            # 🐛 DEBUG: Verificar valor de state antes del if
+            self.logger.debug(f"🔍 Valor de state antes del if: '{state}' (type: {type(state)})")
+            self.logger.debug(f"🔍 Evaluando: state == 'supply' → {state == 'supply'}")
+            self.logger.debug(f"🔍 Evaluando: state == 'event' → {state == 'event'}")
+            
             # MEJORADO: También aceptar "event" como supply drop válido
             if state == "supply" or state == "event":
                 self.logger.info(f"🎁 Recolectando {state.upper()}...")
