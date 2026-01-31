@@ -1262,7 +1262,40 @@ class Bot:
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
             state = self.determine_state(background_new)
 
-            if state == "dino":
+            # 🔧 FIX: Si detectamos supply/coin en vez de dino, recolectarlo apropiadamente
+            if state == "supply" or state == "event":
+                self.logger.info(f"🎁 Detectado {state.upper()} en loop de dinos - Recolectando como supply...")
+                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
+                time.sleep(2.5)
+                for i in range(3):
+                    pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
+                    time.sleep(1.5)
+                background_after = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                if self.background_changed(background_new, background_after):
+                    pos_x = self.locate_x_button(background_after)
+                    if pos_x:
+                        pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                    else:
+                        pyautogui.click(x=self.x+self.map_button_loc[1], y=self.y+self.map_button_loc[0])
+                    time.sleep(1)
+                self.logger.info(f"✅ {state.upper()} recolectado desde loop de dinos")
+                
+            elif state == "coin":
+                self.logger.info("🪙 Detectada COIN en loop de dinos - Recolectando...")
+                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
+                time.sleep(2.5)
+                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
+                background_after = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                if self.background_changed(background_new, background_after):
+                    pos_x = self.locate_x_button(background_after)
+                    if pos_x:
+                        pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                    else:
+                        pyautogui.click(x=self.x+self.map_button_loc[1], y=self.y+self.map_button_loc[0])
+                    time.sleep(1)
+                self.logger.info("✅ COIN recolectada desde loop de dinos")
+                
+            elif state == "dino":
                 cx = (self.launch_button_loc[2] + self.launch_button_loc[3]) / 2
                 cy = (self.launch_button_loc[0] + self.launch_button_loc[1]) / 2
                 pyautogui.click(x=self.x+cx, y=self.y+cy)  
@@ -1326,7 +1359,28 @@ class Bot:
             time.sleep(0.8)
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
             state = self.determine_state(background_new)
-            if state == "coin":
+            
+            # 🔧 FIX: Si detectamos supply en vez de coin, recolectarlo como supply
+            # Esto pasa porque los rangos de color se solapan
+            if state == "supply" or state == "event":
+                self.logger.info(f"🎁 Detectado {state.upper()} en loop de coins - Recolectando como supply...")
+                pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
+                time.sleep(2.5)
+                for i in range(3):
+                    pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
+                    time.sleep(1.5)
+                # Cerrar si quedó abierto
+                background_after = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                if self.background_changed(background_new, background_after):
+                    pos_x = self.locate_x_button(background_after)
+                    if pos_x:
+                        pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                    else:
+                        pyautogui.click(x=self.x+self.map_button_loc[1], y=self.y+self.map_button_loc[0])
+                    time.sleep(1)
+                self.logger.info(f"✅ {state.upper()} recolectado desde loop de coins")
+                
+            elif state == "coin":
                 print("--"*10)
                 print("CLICKING COIN")
                 pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2) 
@@ -1386,11 +1440,11 @@ class Bot:
             time.sleep(1.2)  # AUMENTADO para dar más tiempo al OCR antes de leer texto
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
 
+            # 🔍 DEBUG: SIEMPRE guardar imágenes de supply drops para analizar OCR
+            # Esto nos ayuda a entender POR QUÉ el OCR falla en supplies
+            self.debug_save_ocr_regions(background_new, f"supply_{pos[0]}_{pos[1]}")
+
             state = self.determine_state(background_new)
-            
-            # 🔍 DEBUG: Guardar imágenes de lo que ve el OCR cuando no es supply
-            if state != "supply" and state != "event":
-                self.debug_save_ocr_regions(background_new, f"supply_{pos[0]}_{pos[1]}")
             
             # 🛡️ v3.4.8.8.0: VALIDACIÓN MEJORADA para force-supply
             # Solo forzar como supply si:
