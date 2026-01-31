@@ -36,3 +36,4 @@ htmlcov/
 
 # mypy
 .mypy_cache/
+/debug_screenshots

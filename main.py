@@ -20,13 +20,13 @@ from jw_bot import Bot
 #   MAX_RUN_HOURS = 12   # Se detendrá después de 12 horas
 #   MAX_RUN_HOURS = None # Correrá indefinidamente (no recomendado)
 # ============================================================================
-MAX_RUN_HOURS = 4  # ⬅️ CAMBIA ESTE VALOR SEGÚN TUS NECESIDADES
+MAX_RUN_HOURS = 10  # ⬅️ CAMBIA ESTE VALOR SEGÚN TUS NECESIDADES
 
 # 💻 APAGADO AUTOMÁTICO DE PC
 # Si es True, apagará la PC cuando termine el tiempo límite
 # Si es False, solo detendrá el bot
-SHUTDOWN_WHEN_DONE = True  # ⬅️ CAMBIA A False SI NO QUIERES APAGADO AUTOMÁTICO
-# ============================================================================
+
+SHUTDOWN_WHEN_DONE = True
 
 if __name__ == "__main__":
     # Obtener logger
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     logger.info("❌ Presiona 'q' para detener el bot en cualquier momento")
     logger.info("="*80)
     
-    DEBUG = True
+    DEBUG = False
 
     # for changing location
     something_there = False
