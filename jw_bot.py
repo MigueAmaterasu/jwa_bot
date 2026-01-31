@@ -647,9 +647,20 @@ class Bot:
         Returns:
             Lista filtrada de posiciones válidas
         """
+        # v3.4.8.8.0: ZONAS EXCLUIDAS EXPANDIDAS
+        # Basado en análisis de logs: objetos en [690, 264], [707, 240], [669, 267] se repiten constantemente
+        # Son elementos fijos de la UI, NO supply drops reales
         excluded_zones = [
-            {'name': 'Inferior izquierda (Especial/Extra)', 'x_min': 0, 'x_max': 180, 'y_min': 600, 'y_max': 952},
-            {'name': 'Inferior derecha (Nuevo/Mochila)', 'x_min': 385, 'x_max': 565, 'y_min': 600, 'y_max': 952}
+            # Barra inferior completa (botones del juego)
+            {'name': 'Barra inferior completa', 'x_min': 0, 'x_max': 566, 'y_min': 630, 'y_max': 953},
+            
+            # Esquinas superiores (menú, notificaciones)
+            {'name': 'Esquina superior izquierda', 'x_min': 0, 'x_max': 100, 'y_min': 0, 'y_max': 100},
+            {'name': 'Esquina superior derecha', 'x_min': 466, 'x_max': 566, 'y_min': 0, 'y_max': 100},
+            
+            # Bordes laterales (pueden tener iconos de UI)
+            {'name': 'Borde izquierdo', 'x_min': 0, 'x_max': 50, 'y_min': 0, 'y_max': 630},
+            {'name': 'Borde derecho', 'x_min': 516, 'x_max': 566, 'y_min': 0, 'y_max': 630},
         ]
         
         valid_positions = []
@@ -1319,12 +1330,40 @@ class Bot:
             if state != "supply" and state != "event":
                 self.debug_save_ocr_regions(background_new, f"supply_{pos[0]}_{pos[1]}")
             
-            # � v3.4.8.7.4: Si viene de filtered_positions y OCR falla, FORZAR como supply
-            # Esto evita perder supply drops cuando el OCR lee basura
+            # 🛡️ v3.4.8.8.0: VALIDACIÓN MEJORADA para force-supply
+            # Solo forzar como supply si:
+            # 1. Viene de filtered_positions (detección por color)
+            # 2. OCR no detectó supply/event/out_of_range/dino
+            # 3. El texto OCR es razonable (vacío o contiene letras, NO símbolos raros)
+            def is_garbage_ocr(text):
+                """Detecta si OCR leyó basura (símbolos extraños, números puros, caracteres especiales)"""
+                if not text or text == "":
+                    return False  # Texto vacío es aceptable (OCR pudo fallar)
+                
+                # Contar caracteres extraños
+                special_chars = sum(1 for c in text if c in '~»)(%=+-°<>[]{}|\\/@#$^&*_')
+                letters = sum(1 for c in text if c.isalpha())
+                
+                # Si >50% son símbolos especiales, es basura
+                if len(text) > 0 and special_chars / len(text) > 0.5:
+                    return True
+                
+                # Si tiene símbolos Y pocas letras, es basura
+                if special_chars > 2 and letters < 3:
+                    return True
+                
+                return False
+            
+            # v3.4.8.7.4: Si viene de filtered_positions y OCR falla, FORZAR como supply
             # v3.4.8.7.7: No forzar dinos como supply (respetar detección correcta de OCR)
+            # v3.4.8.8.0: NO forzar si OCR leyó basura/símbolos
             if filtered_positions is not None and state not in ["supply", "event", "out_of_range", "dino"]:
-                self.logger.warning(f"⚠️  OCR detectó '{state}' pero viene de filtered_positions - FORZANDO como SUPPLY")
-                state = "supply"
+                if is_garbage_ocr(state):
+                    self.logger.warning(f"❌ OCR leyó BASURA: '{state}' - NO FORZANDO como supply (saltando objeto)")
+                    continue  # Saltar este objeto, claramente es falso positivo
+                else:
+                    self.logger.warning(f"⚠️  OCR detectó '{state}' pero viene de filtered_positions - FORZANDO como SUPPLY")
+                    state = "supply"
             
             # MEJORADO: También aceptar "event" como supply drop válido
             if state == "supply" or state == "event":
