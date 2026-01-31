@@ -1054,35 +1054,29 @@ class Bot:
 
         start = time.time()
         end = start
-        shots_attempted = 0  # Contador de intentos de disparo
+        shots_attempted = 0
         last_shot_attempt = start
+        
+        # 🎯 v3.4.8.9.0: SISTEMA HÍBRIDO DE 2 FASES
+        # FASE 1: Intento rápido de centrado (5s)
+        # FASE 2: Disparo rápido garantizado si no centró
+        phase_1_duration = 5  # Intentar trackear por 5 segundos
+        phase_1_end = start + phase_1_duration
+        successfully_centered = False
 
-        # ⚡ OPTIMIZADO: Reducido timeout de 60 a 45 segundos (suficiente para centrar)
-        while not self.is_dino_loading_screen(background) and end - start < 45:
+        # ========== FASE 1: INTENTO DE CENTRADO RÁPIDO ==========
+        self.logger.info("🎯 [FASE 1] Intentando centrar dino (5s)...")
+        
+        while not self.is_dino_loading_screen(background) and end < phase_1_end:
             
             if keyboard.is_pressed("q"):
                 raise KeyboardInterrupt
 
-            # b_prev = background
             background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
             background_cropped = background[self.dino_shoot_loc[0]:,:self.dino_shoot_loc[1],:]
             dino_loc, _ = dino_location(background_cropped, self.dino_shoot_loc[0], 2*self.D)
             
             end = time.time()
-            
-            # ⚡ v3.4.8: REDUCIDO timeout de 10s→6s para disparar más rápido
-            if end - last_shot_attempt > 6 and shots_attempted < 5:
-                self.logger.warning(f"⚠️  Forzando disparo #{shots_attempted + 1} (timeout 6s)")
-                pyautogui.mouseUp()
-                time.sleep(0.1)  # Reducido de 0.3s a 0.1s
-                pyautogui.mouseDown()
-                time.sleep(0.3)  # Reducido de 0.5s a 0.3s
-                shots_attempted += 1
-                last_shot_attempt = end
-                
-                # 🚀 v3.4.8: PERSEGUIR INMEDIATAMENTE después de soltar
-                # No esperar, continuar el loop para actualizar posición del dino
-                continue
 
             if not dino_loc and prev_dino_loc:
                 # ⚡ MEJORADO: Predicción más agresiva cuando no se detecta el dino
@@ -1140,11 +1134,52 @@ class Bot:
                 pyautogui.mouseDown() 
             # print("DIST", np.mean((b_prev.astype(np.float) - background.astype(np.float))**2))
         
-        # ⚡ v3.4.6: Si salió del loop sin disparar, fuerza un disparo final
-        if not self.is_dino_loading_screen(background):
-            self.logger.warning("⚠️  Salió del loop sin detectar pantalla de carga - Forzando disparo final")
+        # ========== VERIFICAR SI FASE 1 TUVO ÉXITO ==========
+        if self.is_dino_loading_screen(background):
+            successfully_centered = True
+            self.logger.info("✅ [FASE 1] Dino centrado correctamente - Pantalla de carga detectada")
+        else:
+            self.logger.warning("⚠️  [FASE 1] No se centró en 5s - Pasando a FASE 2...")
+            
+            # ========== FASE 2: DISPARO RÁPIDO GARANTIZADO ==========
+            self.logger.info("🎯 [FASE 2] Disparos rápidos en patrón (garantiza dardos para alianza)")
+            
+            # Soltar mouse antes de disparar
             pyautogui.mouseUp()
-            time.sleep(0.5)
+            time.sleep(0.3)
+            
+            # Patrón de disparo: 4 posiciones estratégicas para maximizar cobertura
+            shoot_positions = [
+                (self.w//2, self.h//2),              # Centro
+                (self.w//2 + 80, self.h//2 - 60),    # Arriba-derecha
+                (self.w//2 - 80, self.h//2 + 60),    # Abajo-izquierda  
+                (self.w//2, self.h//2 + 40),         # Centro-abajo
+            ]
+            
+            for i, (offset_x, offset_y) in enumerate(shoot_positions, 1):
+                self.logger.debug(f"   💉 Disparo rápido {i}/4...")
+                
+                # Mover a posición
+                pyautogui.moveTo(self.x + offset_x, self.y + offset_y, 0.1)
+                
+                # Disparar (press + hold + release)
+                pyautogui.mouseDown()
+                time.sleep(0.4)  # Hold brevemente
+                pyautogui.mouseUp()
+                time.sleep(0.3)  # Pausa entre disparos
+                
+                # Verificar si ya disparó todo (detectó loading screen)
+                background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                if self.is_dino_loading_screen(background):
+                    self.logger.info(f"✅ [FASE 2] Dardos agotados después de {i} disparos")
+                    successfully_centered = True  # Marcamos como exitoso
+                    break
+            
+            self.logger.info("✅ [FASE 2] Disparos completados")
+        
+        # ========== FINALIZACIÓN ==========
+        # Ya no necesitamos el bloque de "Si salió sin disparar"
+        # porque FASE 2 garantiza que siempre se disparan dardos
         
         if end - start > 120:  # CORREGIDO: Cambiado de 60 a 120
             pyautogui.mouseUp()
