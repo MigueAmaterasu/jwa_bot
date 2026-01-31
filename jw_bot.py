@@ -1419,9 +1419,12 @@ class Bot:
             # v3.4.8.7.4: Si viene de filtered_positions y OCR falla, FORZAR como supply
             # v3.4.8.7.7: No forzar dinos como supply (respetar detección correcta de OCR)
             # v3.4.8.8.0: NO forzar si OCR leyó basura/símbolos
+            self.logger.debug(f"🔍 Evaluando force-supply: filtered_positions={filtered_positions is not None}, state='{state}'")
+            
             if filtered_positions is not None and state not in ["supply", "event", "out_of_range", "dino"]:
                 if is_garbage_ocr(state):
                     self.logger.warning(f"❌ OCR leyó BASURA: '{state}' - NO FORZANDO como supply (saltando objeto)")
+                    self.logger.debug(f"🔍 Texto OCR considerado basura: '{state}'")
                     continue  # Saltar este objeto, claramente es falso positivo
                 else:
                     self.logger.warning(f"⚠️  OCR detectó '{state}' pero viene de filtered_positions - FORZANDO como SUPPLY")
