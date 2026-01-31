@@ -13,6 +13,24 @@ from skimage import measure, morphology, filters, feature, color, transform
 from scipy import ndimage
 
 # ============================================================================
+# 🦖 JURASSIC WORLD ALIVE BOT - v3.4.8.9.2
+# ============================================================================
+# CHANGELOG:
+# v3.4.8.9.2 (31-Ene-2026): 🔴 BUG CRÍTICO CORREGIDO - Supply drops rechazados
+#   - FIX: Reordenado checks en determine_state() para verificar "SUMINISTRO" ANTES de "ASALTO"
+#   - PROBLEMA: Supply drops legítimos rechazados con "⛔ Incubadora o evento de combate"
+#   - CAUSA: OCR leía "ACTUALIZACIÓN DE SUMINISTRO" → malinterpretaba "EVENTO DE ASALTO"
+#   - SOLUCIÓN: Check de SUPPLY ahora tiene prioridad alta, se ejecuta antes de rechazar
+#   - IMPACTO: De 8 detectados/0 recolectados → Ahora recolectará todos los legítimos
+#
+# v3.4.8.9.1 (31-Ene-2026): Debug logging para diagnosticar state comparison
+# v3.4.8.9.0 (31-Ene-2026): Sistema híbrido 2 fases para dinos (tracking + rapid fire)
+# v3.4.8.8.2 (30-Ene-2026): Fix infinite loop en supply collection (3 clicks + close)
+# v3.4.8.8.1 (30-Ene-2026): Restaurado background_changed check (skip empty clicks)
+# v3.4.8.8.0 (29-Ene-2026): OCR garbage validation + expanded excluded zones
+# ============================================================================
+
+# ============================================================================
 # CONFIGURACIÓN DE TESSERACT
 # ============================================================================
 # Para BlueStacks en Windows, descomenta y ajusta la siguiente línea:
@@ -753,26 +771,35 @@ class Bot:
             self.logger.warning("⛔ [EXCLUIDO] Pantalla de carga o menú")
             return state
         
-        # 4. 🚫 INCUBADORAS - Eventos de combate/asalto
+        # 4. ✅ SUPPLY DROPS LEGÍTIMOS - VERIFICAR PRIMERO antes de rechazar por "ASALTO"/"EVENTO"
+        # CRÍTICO: Algunos supply drops dicen "ACTUALIZACIÓN DE SUMINISTRO" o "EVENTO ESPECIAL"
+        # Si el OCR lee mal "EVENTO DE ASALTO" pero también detecta "SUMINISTRO", es un supply legítimo
+        if any(word in combined_text for word in ["SUMINISTRO", "SUMINISTROS", "SUPPLY", "DROP", "ABASTECIMIENTO"]):
+            state = "supply"
+            self.logger.debug("   📦 Palabras clave de SUPPLY detectadas (prioridad alta)")
+            return state
+        
+        # 5. 🚫 INCUBADORAS - Eventos de combate/asalto (DESPUÉS de verificar supply)
+        # Solo rechazar si tiene "ASALTO"/"COMBATE" pero NO tiene "SUMINISTRO"
         if any(word in combined_text for word in ["COMBATE", "BATTLE", "ASALTO", "INCUBADORA", "INCUBATOR"]):
             state = "out_of_range"
             self.logger.warning("⛔ [EXCLUIDO] Incubadora o evento de combate detectado")
             return state
         
-        # 5. 🏛️ RAIDS - Detectan "JEFE" o "NIVEL" en el texto
+        # 6. 🏛️ RAIDS - Detectan "JEFE" o "NIVEL" en el texto
         if "JEFE" in combined_text or "BOSS" in combined_text or "NIVEL" in combined_text or "LEVEL" in combined_text or "RECOMPENSAS" in combined_text or "REWARDS" in combined_text:
             state = "out_of_range"
             self.logger.warning("⛔ [EXCLUIDO] Raid con jefe detectado")
             return state
         
-        # 6. 🛕 SANTUARIOS - Botón dice "ENTRAR" o texto dice "SANTUARIO"
+        # 7. 🛕 SANTUARIOS - Botón dice "ENTRAR" o texto dice "SANTUARIO"
         # OCR puede leer mal "ENTRAR" como "FNTRAR", "FMTRAR", etc.
         if ("ENTRAR" in text1 or "ENTER" in text1 or "NTRAR" in text1 or "TRAR" in text1) or "SANTUARIO" in combined_text or "SANCTUARY" in combined_text:
             state = "out_of_range"
             self.logger.warning("⛔ [EXCLUIDO] Santuario detectado")
             return state
         
-        # 7. ⏱️ SUPPLY DROPS EN COOLDOWN - Ya fueron recolectados recientemente
+        # 8. ⏱️ SUPPLY DROPS EN COOLDOWN - Ya fueron recolectados recientemente
         # v3.4.3: Usa área SEPARADA dedicada solo a cooldown, no contamina el OCR principal
         # Detecta tiempo restante en formato: "0m 9s", "14h 10m", "1h", "30m", etc.
         import re
@@ -797,12 +824,13 @@ class Bot:
         
         # MEJORADO: Buscar en TEXTO COMBINADO para más robustez
         # Prioridad: SUPPLY > COIN > DINO (supply primero para evitar falsos positivos con "LANZAR")
+        # NOTA: SUPPLY ya se verificó arriba (líneas 757-760) con prioridad alta
         
-        # 1. Detectar SUPPLY DROPS (palabras clave específicas) - PRIMERO
-        # INCLUYE "EVENTO" para farolitos verdes que dicen "EVENTO ESPECIAL TERMINA EN..."
-        if any(word in combined_text for word in ["SUMINISTRO", "SUMINISTROS", "SUPPLY", "DROP", "ABASTECIMIENTO", "EVENTO", "EVENT", "ESPECIAL", "SPECIAL"]):
-            state = "supply"
-            self.logger.debug("   📦 Palabras clave de SUPPLY detectadas")
+        # 1. Detectar EVENTOS VERDES (cajitas de evento especial) - Ahora separado de supply drops normales
+        # Estos pueden decir "EVENTO ESPECIAL TERMINA EN..." y son legítimos
+        if any(word in combined_text for word in ["EVENTO", "EVENT", "ESPECIAL", "SPECIAL"]) and state != "supply":
+            state = "event"
+            self.logger.debug("   � Evento especial detectado")
             
         # 2. Detectar MONEDAS / COIN CHASE
         elif any(word in combined_text for word in ["MONEDA", "MONEDAS", "COIN", "CHASE", "ORO", "GOLD", "PERSECUCION", "PERSECUCIÓN"]):
