@@ -1,0 +1,436 @@
+[2026-01-31 15:25:52] [INFO] ================================================================================
+[2026-01-31 15:25:52] [INFO] 🦖 JURASSIC WORLD ALIVE BOT - INICIADO
+[2026-01-31 15:25:52] [INFO] ================================================================================
+[2026-01-31 15:25:52] [INFO] 📁 Log guardado en: logs/bot_log_20260131_152552.log
+[2026-01-31 15:25:52] [INFO] ================================================================================
+[2026-01-31 15:25:52] [INFO] 🎮 INSTRUCCIONES DE CALIBRACIÓN
+[2026-01-31 15:25:52] [INFO] ================================================================================
+[2026-01-31 15:25:52] [INFO] 1️⃣  Abre BlueStacks con Jurassic World Alive en el MAPA
+[2026-01-31 15:25:52] [INFO] 2️⃣  Presiona 'a' y haz click en ESQUINA SUPERIOR IZQUIERDA del juego
+[2026-01-31 15:25:52] [INFO] 3️⃣  Presiona 'a' otra vez y haz click en ESQUINA INFERIOR DERECHA
+[2026-01-31 15:25:52] [INFO] 4️⃣  El bot empezará a funcionar automáticamente
+[2026-01-31 15:25:52] [INFO] ❌ Presiona 'q' para detener el bot en cualquier momento
+[2026-01-31 15:25:52] [INFO] ================================================================================
+[2026-01-31 15:25:52] [INFO] 🔧 Inicializando Bot...
+[2026-01-31 15:25:52] [INFO] ⏱️  Tiempo límite configurado: 10 horas
+[2026-01-31 15:25:52] [INFO] 📁 Carpeta 'debug_screenshots' creada
+[2026-01-31 15:25:55] [INFO] 🔘 Tecla 'a' presionada
+[2026-01-31 15:25:55] [INFO] ✅ Primer punto capturado: (746, 35)
+[2026-01-31 15:25:55] [INFO] 👉 Ahora presiona 'a' de nuevo y haz click en la esquina inferior derecha
+[2026-01-31 15:26:01] [INFO] 🔘 Tecla 'a' presionada
+[2026-01-31 15:26:01] [INFO] ✅ Segundo punto capturado: (1347, 1046)
+[2026-01-31 15:26:01] [INFO] ================================================================================
+[2026-01-31 15:26:01] [INFO] 📐 CONFIGURACIÓN DE VENTANA BLUESTACKS
+[2026-01-31 15:26:01] [INFO] ================================================================================
+[2026-01-31 15:26:01] [INFO] 📍 Posición X: 746px
+[2026-01-31 15:26:01] [INFO] 📍 Posición Y: 35px
+[2026-01-31 15:26:01] [INFO] 📏 Ancho (W): 601px
+[2026-01-31 15:26:01] [INFO] 📏 Alto (H): 1011px
+[2026-01-31 15:26:01] [INFO] 🎯 Esquina superior izquierda: (746, 35)
+[2026-01-31 15:26:01] [INFO] 🎯 Esquina inferior derecha: (1347, 1046)
+[2026-01-31 15:26:01] [INFO] ================================================================================
+[2026-01-31 15:26:01] [INFO] 🎯 Shooting zone: Y[279-770] X[12-512]
+[2026-01-31 15:26:01] [INFO] 🚀 Launch button: Y[790-866] X[164-387]
+[2026-01-31 15:26:01] [INFO] ⏱️  Cooldown text area: Y[547-705] X[164-387]
+[2026-01-31 15:26:01] [INFO] 📝 Supply text area: Y[50-151] X[120-480]
+[2026-01-31 15:26:01] [INFO] 📸 Capturando vista inicial del mapa para análisis...
+[2026-01-31 15:26:02] [INFO] ✅ Captura inicial guardada: map_initial_20260131_152601.png
+[2026-01-31 15:26:02] [INFO] 🚀 Calibración completa! El bot comenzará a operar...
+[2026-01-31 15:26:03] [DEBUG] 🪙 Verificando monedas...
+[2026-01-31 15:26:03] [DEBUG] 📦 Verificando supply drops...
+[2026-01-31 15:26:03] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 15:26:03] [DEBUG]    📊 Supply color range: R[160-255] G[60-255] B[0-120]
+[2026-01-31 15:26:03] [DEBUG]    📊 Event color range: R[0-180] G[120-255] B[0-180]
+[2026-01-31 15:26:03] [DEBUG]    📐 Zona analizada: (491, 500, 3)
+[2026-01-31 15:26:03] [DEBUG]    🎨 Píxeles detectados inicialmente: 45131
+[2026-01-31 15:26:03] [DEBUG]    🔢 Componentes detectados: 328
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #1: 40050 píxeles en posición (413, 215)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #2: 50 píxeles en posición (290, 71)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #4: 138 píxeles en posición (282, 409)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #5: 517 píxeles en posición (293, 485)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #19: 452 píxeles en posición (319, 483)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #21: 133 píxeles en posición (320, 309)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #23: 35 píxeles en posición (324, 236)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #29: 409 píxeles en posición (359, 334)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #35: 27 píxeles en posición (378, 345)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #40: 62 píxeles en posición (384, 438)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #47: 50 píxeles en posición (381, 333)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #52: 25 píxeles en posición (385, 195)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #53: 21 píxeles en posición (387, 182)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #59: 41 píxeles en posición (398, 172)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #65: 24 píxeles en posición (402, 446)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #70: 53 píxeles en posición (410, 39)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #72: 1115 píxeles en posición (434, 305)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #74: 99 píxeles en posición (423, 437)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #75: 323 píxeles en posición (425, 23)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #79: 77 píxeles en posición (415, 377)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #97: 191 píxeles en posición (437, 484)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #100: 771 píxeles en posición (443, 54)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #103: 32 píxeles en posición (444, 426)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #107: 320 píxeles en posición (454, 498)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #112: 32 píxeles en posición (456, 421)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #113: 403 píxeles en posición (468, 28)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #121: 39 píxeles en posición (468, 415)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #134: 657 píxeles en posición (499, 32)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #137: 246 píxeles en posición (491, 389)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #138: 45 píxeles en posición (485, 408)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #150: 353 píxeles en posición (505, 460)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #151: 52 píxeles en posición (500, 402)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #154: 46 píxeles en posición (510, 112)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #157: 58 píxeles en posición (516, 395)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #158: 54 píxeles en posición (514, 146)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #159: 1575 píxeles en posición (525, 329)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #168: 61 píxeles en posición (525, 59)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #170: 536 píxeles en posición (539, 24)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #186: 66 píxeles en posición (538, 386)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #187: 1349 píxeles en posición (545, 465)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #212: 74 píxeles en posición (559, 379)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #226: 2063 píxeles en posición (598, 322)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #241: 346 píxeles en posición (585, 43)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #245: 258 píxeles en posición (590, 494)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #251: 459 píxeles en posición (621, 427)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #259: 83 píxeles en posición (633, 172)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #260: 58 píxeles en posición (635, 351)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #265: 259 píxeles en posición (661, 484)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #271: 64 píxeles en posición (703, 27)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #272: 16 píxeles en posición (685, 62)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #274: 54 píxeles en posición (694, 44)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #276: 25 píxeles en posición (695, 13)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #283: 49 píxeles en posición (707, 41)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #284: 75 píxeles en posición (719, 320)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #300: 19 píxeles en posición (728, 59)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #316: 199 píxeles en posición (759, 306)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #320: 876 píxeles en posición (760, 71)
+[2026-01-31 15:26:03] [DEBUG]    ✅ Supply drop #323: 116 píxeles en posición (764, 16)
+[2026-01-31 15:26:03] [INFO] 🟠 [SUPPLY DROP] Detectados 58 supply drops: [[413, 215], [290, 71], [282, 409], [293, 485], [319, 483], [320, 309], [324, 236], [359, 334], [378, 345], [384, 438], [381, 333], [385, 195], [387, 182], [398, 172], [402, 446], [410, 39], [434, 305], [423, 437], [425, 23], [415, 377], [437, 484], [443, 54], [444, 426], [454, 498], [456, 421], [468, 28], [468, 415], [499, 32], [491, 389], [485, 408], [505, 460], [500, 402], [510, 112], [516, 395], [514, 146], [525, 329], [525, 59], [539, 24], [538, 386], [545, 465], [559, 379], [598, 322], [585, 43], [590, 494], [621, 427], [633, 172], [635, 351], [661, 484], [703, 27], [685, 62], [694, 44], [695, 13], [707, 41], [719, 320], [728, 59], [759, 306], [760, 71], [764, 16]]
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (410, 39) en zona excluida: Borde izquierdo
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (425, 23) en zona excluida: Borde izquierdo
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (468, 28) en zona excluida: Borde izquierdo
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (499, 32) en zona excluida: Borde izquierdo
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (539, 24) en zona excluida: Borde izquierdo
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (585, 43) en zona excluida: Borde izquierdo
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (633, 172) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (635, 351) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (661, 484) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (703, 27) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (685, 62) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (694, 44) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (695, 13) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (707, 41) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (719, 320) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (728, 59) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (759, 306) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (760, 71) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [DEBUG] ⛔ [SUPPLY] Posición (764, 16) en zona excluida: Barra inferior completa
+[2026-01-31 15:26:03] [INFO] 📦 Recolectando 39 supply drops válidos...
+[2026-01-31 15:26:05] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:26:05] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:26:05] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:26:05] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:26:07] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:26:07] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:26:07] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:26:07] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:26:07] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:26:07] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:26:12] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:26:12] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:26:12] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:26:12] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:26:13] [INFO] 📝 [OCR] Botón: 'TEMASENELMU'
+[2026-01-31 15:26:13] [INFO] 📝 [OCR] Texto: '——™—=—EEEEEVENTODEASALTO'
+[2026-01-31 15:26:13] [INFO] 📝 [OCR] Combinado: 'TEMASENELMU ——™—=—EEEEEVENTODEASALTO'
+[2026-01-31 15:26:13] [WARNING] ⛔ [EXCLUIDO] Incubadora o evento de combate detectado
+[2026-01-31 15:26:14] [WARNING] ⚠️  Objeto no identificado como supply drop - Saliendo...
+[2026-01-31 15:26:17] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:26:17] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:26:17] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:26:17] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:26:18] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:26:18] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:26:18] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:26:18] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:26:18] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:26:19] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:26:32] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:26:32] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:26:32] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:26:32] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:26:33] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:26:33] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:26:33] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:26:33] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:26:33] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:26:34] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:26:39] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:26:39] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:26:39] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:26:39] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:26:40] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:26:40] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:26:40] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:26:40] [DEBUG] ⏱️  [OCR] Cooldown: '='
+[2026-01-31 15:26:40] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:26:40] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:26:40] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:26:45] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:26:45] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:26:45] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:26:45] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:26:47] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:26:47] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:26:47] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:26:47] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:26:47] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:26:47] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:26:52] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:26:52] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:26:52] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:26:52] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:26:54] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:26:54] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:26:54] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:26:54] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:26:54] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:26:54] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:26:59] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:26:59] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:26:59] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:26:59] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:27:00] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:27:00] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:27:00] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:27:00] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:27:00] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:27:01] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:27:06] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:27:06] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:27:06] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:27:06] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:27:07] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:27:07] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:27:07] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:27:07] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:27:07] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:27:07] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:27:12] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:27:12] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:27:12] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:27:12] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:27:14] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 15:27:14] [INFO] 📝 [OCR] Texto: 'COMUN'
+[2026-01-31 15:27:14] [INFO] 📝 [OCR] Combinado: 'LANZAR COMUN'
+[2026-01-31 15:27:14] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 15:27:14] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 15:27:14] [WARNING] ⚠️  Objeto no identificado como supply drop - Saliendo...
+[2026-01-31 15:27:17] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:27:17] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:27:17] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:27:17] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:27:19] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:27:19] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:27:19] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:27:19] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:27:19] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:27:19] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:27:24] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:27:24] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:27:24] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:27:24] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:27:25] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:27:25] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:27:25] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:27:25] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:27:25] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:27:26] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:27:31] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:27:31] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:27:31] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:27:31] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:27:32] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:27:32] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:27:32] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:27:32] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:27:32] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:27:32] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:27:38] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:27:38] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:27:38] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:27:38] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:27:39] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:27:39] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:27:39] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:27:39] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:27:39] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:27:39] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:27:44] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:27:44] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:27:44] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:27:44] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:27:46] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:27:46] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:27:46] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:27:46] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:27:46] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:27:46] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:27:51] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:27:51] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:27:51] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:27:51] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:27:53] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:27:53] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:27:53] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:27:53] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:27:53] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:27:53] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:27:58] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:27:58] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:27:58] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:27:58] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:27:59] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:27:59] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:27:59] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:27:59] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:27:59] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:28:00] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:28:05] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:28:05] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:28:05] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:28:05] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:28:06] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:28:06] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:28:06] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:28:06] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:28:06] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:28:06] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:28:11] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:28:11] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:28:11] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:28:11] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:28:13] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:28:13] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:28:13] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:28:13] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:28:13] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:28:13] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:28:18] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:28:18] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:28:18] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:28:18] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:28:20] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:28:20] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:28:20] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:28:20] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:28:20] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:28:20] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:28:25] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:28:25] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:28:25] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:28:25] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:28:26] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:28:26] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:28:26] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:28:26] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:28:26] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:28:27] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:28:32] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:28:32] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:28:32] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:28:32] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:28:33] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:28:33] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:28:33] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:28:33] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:28:33] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:28:33] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:28:38] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:28:38] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:28:38] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:28:38] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:28:40] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:28:40] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:28:40] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:28:40] [DEBUG] ⏱️  [OCR] Cooldown: 'EEL'
+[2026-01-31 15:28:40] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:28:40] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:28:40] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:28:45] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:28:45] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:28:45] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:28:45] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:28:47] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:28:47] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:28:47] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:28:47] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:28:47] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:28:47] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:28:52] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:28:52] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:28:52] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:28:52] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:28:53] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:28:53] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:28:53] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:28:53] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:28:53] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:28:54] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:28:59] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:28:59] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:28:59] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:28:59] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:29:00] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:29:00] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:29:00] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:29:00] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:29:00] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:29:00] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:29:06] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:29:06] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:29:06] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:29:06] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:29:07] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:29:07] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:29:07] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:29:07] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:29:07] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:29:07] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:29:12] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:29:12] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:29:12] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:29:12] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:29:14] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:29:14] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:29:14] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:29:14] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:29:14] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:29:14] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:29:19] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:29:19] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:29:19] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:29:19] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:29:21] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:29:21] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:29:21] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:29:21] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:29:21] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:29:21] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:29:26] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 15:29:26] [DEBUG]    📐 Área botón lanzar: (76, 223, 3)
+[2026-01-31 15:29:26] [DEBUG]    📐 Área texto supply: (101, 360, 3)
+[2026-01-31 15:29:26] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 15:29:27] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 15:29:27] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 15:29:27] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 15:29:27] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 15:29:27] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 15:29:28] [WARNING] ⚠️  OCR detectó '' pero viene de filtered_positions - FORZANDO como SUPPLY
+[2026-01-31 15:29:30] [INFO] ================================================================================
+[2026-01-31 15:29:30] [INFO] ⛔ BOT DETENIDO POR USUARIO (Ctrl+C o 'q')
+[2026-01-31 15:29:30] [INFO] ================================================================================
+[2026-01-31 15:29:30] [INFO] 📊 RESUMEN DE RECURSOS COLECTADOS:
+[2026-01-31 15:29:30] [INFO] --------------------------------------------------------------------------------
+[2026-01-31 15:29:30] [INFO] 📦 SUMINISTROS: Ninguno
+[2026-01-31 15:29:30] [INFO] 🦖 DINOSAURIOS: Ninguno
+[2026-01-31 15:29:30] [INFO] ================================================================================
+[2026-01-31 15:29:30] [INFO] ✅ Sesión finalizada. Log guardado en carpeta 'logs/'
+[2026-01-31 15:29:30] [INFO] ================================================================================
