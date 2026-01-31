@@ -1313,13 +1313,12 @@ class Bot:
             time.sleep(0.8)  # AUMENTADO para dar más tiempo a abrir supply drop
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
 
-            # v3.4.8.7.9: NO hacer continue si background no cambia
-            # Supply drops NO cambian el mapa, solo abren ventana encima
-            # Dejamos que OCR determine si es válido o no
-            # if not self.background_changed(background_old, background_new):
-            #     print("--"*10)
-            #     print("NOTHING THERE")
-            #     continue
+            # v3.4.8.8.1: RESTAURAR background_changed check para validar que el click abrió ALGO
+            # Si después del click la pantalla no cambió = clickeamos en vacío (árbol, pasto, nada)
+            # Supply drops SÍ cambian la pantalla (aparece ventana encima del mapa)
+            if not self.background_changed(background_old, background_new):
+                self.logger.debug(f"⏭️  Click en ({pos[0]}, {pos[1]}) no abrió nada - Saltando objeto")
+                continue
 
             time.sleep(1.2)  # AUMENTADO para dar más tiempo al OCR antes de leer texto
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
