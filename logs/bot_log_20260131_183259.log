@@ -1,0 +1,584 @@
+[2026-01-31 18:32:59] [INFO] ================================================================================
+[2026-01-31 18:32:59] [INFO] 🦖 JURASSIC WORLD ALIVE BOT - INICIADO
+[2026-01-31 18:32:59] [INFO] ================================================================================
+[2026-01-31 18:32:59] [INFO] 📁 Log guardado en: logs/bot_log_20260131_183259.log
+[2026-01-31 18:32:59] [INFO] ================================================================================
+[2026-01-31 18:32:59] [INFO] 🎮 INSTRUCCIONES DE CALIBRACIÓN
+[2026-01-31 18:32:59] [INFO] ================================================================================
+[2026-01-31 18:32:59] [INFO] 1️⃣  Abre BlueStacks con Jurassic World Alive en el MAPA
+[2026-01-31 18:32:59] [INFO] 2️⃣  Presiona 'a' y haz click en ESQUINA SUPERIOR IZQUIERDA del juego
+[2026-01-31 18:32:59] [INFO] 3️⃣  Presiona 'a' otra vez y haz click en ESQUINA INFERIOR DERECHA
+[2026-01-31 18:32:59] [INFO] 4️⃣  El bot empezará a funcionar automáticamente
+[2026-01-31 18:32:59] [INFO] ❌ Presiona 'q' para detener el bot en cualquier momento
+[2026-01-31 18:32:59] [INFO] ================================================================================
+[2026-01-31 18:32:59] [INFO] 🔧 Inicializando Bot...
+[2026-01-31 18:32:59] [INFO] ⏱️  Tiempo límite configurado: 10 horas
+[2026-01-31 18:32:59] [INFO] 📁 Carpeta 'debug_screenshots' creada
+[2026-01-31 18:33:02] [INFO] 🔘 Tecla 'a' presionada
+[2026-01-31 18:33:02] [INFO] ✅ Primer punto capturado: (680, 39)
+[2026-01-31 18:33:02] [INFO] 👉 Ahora presiona 'a' de nuevo y haz click en la esquina inferior derecha
+[2026-01-31 18:33:07] [INFO] 🔘 Tecla 'a' presionada
+[2026-01-31 18:33:07] [INFO] ✅ Segundo punto capturado: (1283, 1049)
+[2026-01-31 18:33:07] [INFO] ================================================================================
+[2026-01-31 18:33:07] [INFO] 📐 CONFIGURACIÓN DE VENTANA BLUESTACKS
+[2026-01-31 18:33:07] [INFO] ================================================================================
+[2026-01-31 18:33:07] [INFO] 📍 Posición X: 680px
+[2026-01-31 18:33:07] [INFO] 📍 Posición Y: 39px
+[2026-01-31 18:33:07] [INFO] 📏 Ancho (W): 603px
+[2026-01-31 18:33:07] [INFO] 📏 Alto (H): 1010px
+[2026-01-31 18:33:07] [INFO] 🎯 Esquina superior izquierda: (680, 39)
+[2026-01-31 18:33:07] [INFO] 🎯 Esquina inferior derecha: (1283, 1049)
+[2026-01-31 18:33:07] [INFO] ================================================================================
+[2026-01-31 18:33:07] [INFO] 🎯 Shooting zone: Y[279-769] X[12-513]
+[2026-01-31 18:33:07] [INFO] 🚀 Launch button: Y[790-865] X[165-388]
+[2026-01-31 18:33:07] [INFO] ⏱️  Cooldown text area: Y[546-704] X[165-388]
+[2026-01-31 18:33:07] [INFO] 📝 Supply text area: Y[50-151] X[120-482]
+[2026-01-31 18:33:07] [INFO] 📸 Capturando vista inicial del mapa para análisis...
+[2026-01-31 18:33:08] [INFO] ✅ Captura inicial guardada: map_initial_20260131_183307.png
+[2026-01-31 18:33:08] [INFO] 🚀 Calibración completa! El bot comenzará a operar...
+[2026-01-31 18:33:09] [DEBUG] 🔍 Escaneando mapa...
+[2026-01-31 18:33:09] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 18:33:09] [DEBUG]    📊 Supply color range: R[233-255] G[120-165] B[0-30]
+[2026-01-31 18:33:09] [DEBUG]    📊 Event color range: R[10-40] G[200-235] B[5-30]
+[2026-01-31 18:33:09] [DEBUG]    📐 Zona analizada: (490, 501, 3)
+[2026-01-31 18:33:09] [DEBUG]    🎨 Píxeles detectados inicialmente: 1663
+[2026-01-31 18:33:09] [DEBUG]    🔢 Componentes detectados: 26
+[2026-01-31 18:33:09] [DEBUG]    ✅ Supply drop #21: 908 píxeles en posición (416, 42)
+[2026-01-31 18:33:09] [DEBUG]    ✅ Supply drop #24: 696 píxeles en posición (426, 329)
+[2026-01-31 18:33:09] [INFO] 🟠 [SUPPLY DROP] Detectados 2 supply drops: [[416, 42], [426, 329]]
+[2026-01-31 18:33:09] [DEBUG] ⛔ [DINO] Posición (357, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:33:09] [DEBUG] ⛔ [DINO] Posición (424, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:33:09] [DEBUG] ⛔ [DINO] Posición (518, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:33:09] [DEBUG] ⛔ [DINO] Posición (688, 140) en zona excluida: Barra inferior completa
+[2026-01-31 18:33:09] [DEBUG] ⛔ [DINO] Posición (744, 12) en zona excluida: Barra inferior completa
+[2026-01-31 18:33:09] [INFO] 📊 Objetos detectados: 3🪙 2📦 4🦖 (Total: 9)
+[2026-01-31 18:33:09] [INFO] 🪙 Recolectando 3 monedas...
+[2026-01-31 18:33:11] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:33:11] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:33:11] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:33:11] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:33:12] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:33:12] [INFO] 📝 [OCR] Texto: 'EPICO'
+[2026-01-31 18:33:12] [INFO] 📝 [OCR] Combinado: 'LANZAR EPICO'
+[2026-01-31 18:33:12] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:33:12] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:33:15] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:33:15] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:33:15] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:33:15] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:33:16] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:33:16] [INFO] 📝 [OCR] Texto: '—_"T;.-EPICO33IS'
+[2026-01-31 18:33:16] [INFO] 📝 [OCR] Combinado: 'LANZAR —_"T;.-EPICO33IS'
+[2026-01-31 18:33:16] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:33:16] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:33:17] [INFO] 📦 Recolectando 2 supply drops...
+[2026-01-31 18:33:20] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:33:20] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:33:20] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:33:20] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:33:21] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 18:33:21] [INFO] 📝 [OCR] Texto: '(ALIZACIONDESUMINISTRO:'
+[2026-01-31 18:33:21] [INFO] 📝 [OCR] Combinado: ' (ALIZACIONDESUMINISTRO:'
+[2026-01-31 18:33:21] [DEBUG]    📦 Palabras clave de SUPPLY detectadas (prioridad alta)
+[2026-01-31 18:33:21] [DEBUG] 🔍 Evaluando force-supply: filtered_positions=True, state='supply'
+[2026-01-31 18:33:21] [DEBUG] 🔍 Valor de state antes del if: 'supply' (type: <class 'str'>)
+[2026-01-31 18:33:21] [DEBUG] 🔍 Evaluando: state == 'supply' → True
+[2026-01-31 18:33:21] [DEBUG] 🔍 Evaluando: state == 'event' → False
+[2026-01-31 18:33:21] [INFO] 🎁 Recolectando SUPPLY...
+[2026-01-31 18:33:25] [DEBUG]    Click recolección 1/3
+[2026-01-31 18:33:27] [DEBUG]    Click recolección 2/3
+[2026-01-31 18:33:29] [DEBUG]    Click recolección 3/3
+[2026-01-31 18:33:29] [DEBUG]    Supply aún abierto, buscando botón para cerrar...
+[2026-01-31 18:33:30] [INFO] ✅ SUPPLY procesado
+[2026-01-31 18:33:32] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:33:32] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:33:32] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:33:32] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:33:34] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 18:33:34] [INFO] 📝 [OCR] Texto: 'EVENTOESPECIALTANAN:1D1DH'
+[2026-01-31 18:33:34] [INFO] 📝 [OCR] Combinado: ' EVENTOESPECIALTANAN:1D1DH'
+[2026-01-31 18:33:34] [DEBUG]    � Evento especial detectado
+[2026-01-31 18:33:34] [INFO] ✅ [ESTADO DETECTADO] EVENT
+[2026-01-31 18:33:34] [DEBUG] 🔍 Evaluando force-supply: filtered_positions=True, state='event'
+[2026-01-31 18:33:34] [DEBUG] 🔍 Valor de state antes del if: 'event' (type: <class 'str'>)
+[2026-01-31 18:33:34] [DEBUG] 🔍 Evaluando: state == 'supply' → False
+[2026-01-31 18:33:34] [DEBUG] 🔍 Evaluando: state == 'event' → True
+[2026-01-31 18:33:34] [INFO] 🎁 Recolectando EVENT...
+[2026-01-31 18:33:38] [DEBUG]    Click recolección 1/3
+[2026-01-31 18:33:39] [DEBUG]    Click recolección 2/3
+[2026-01-31 18:33:41] [DEBUG]    Click recolección 3/3
+[2026-01-31 18:33:41] [DEBUG]    Supply aún abierto, buscando botón para cerrar...
+[2026-01-31 18:33:42] [INFO] ✅ EVENT procesado
+[2026-01-31 18:33:42] [INFO] 🦖 Disparando a 4 dinosaurios...
+[2026-01-31 18:33:44] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:33:44] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:33:44] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:33:44] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:33:45] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 18:33:45] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:33:45] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 18:33:45] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 18:33:45] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 18:33:47] [INFO] 🔄 Revisando misma zona de nuevo para limpiar completamente...
+[2026-01-31 18:33:47] [DEBUG] 🔍 Escaneando mapa...
+[2026-01-31 18:33:47] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 18:33:47] [DEBUG]    📊 Supply color range: R[233-255] G[120-165] B[0-30]
+[2026-01-31 18:33:47] [DEBUG]    📊 Event color range: R[10-40] G[200-235] B[5-30]
+[2026-01-31 18:33:47] [DEBUG]    📐 Zona analizada: (490, 501, 3)
+[2026-01-31 18:33:47] [DEBUG]    🎨 Píxeles detectados inicialmente: 332
+[2026-01-31 18:33:47] [DEBUG]    🔢 Componentes detectados: 19
+[2026-01-31 18:33:47] [DEBUG]    ✅ Supply drop #2: 123 píxeles en posición (283, 67)
+[2026-01-31 18:33:47] [DEBUG]    ✅ Supply drop #18: 129 píxeles en posición (472, 53)
+[2026-01-31 18:33:47] [INFO] 🟠 [SUPPLY DROP] Detectados 2 supply drops: [[283, 67], [472, 53]]
+[2026-01-31 18:33:47] [DEBUG] ⛔ [DINO] Posición (518, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:33:47] [DEBUG] ⛔ [DINO] Posición (682, 293) en zona excluida: Barra inferior completa
+[2026-01-31 18:33:47] [DEBUG] ⛔ [DINO] Posición (699, 196) en zona excluida: Barra inferior completa
+[2026-01-31 18:33:47] [DEBUG] ⛔ [DINO] Posición (745, 463) en zona excluida: Barra inferior completa
+[2026-01-31 18:33:47] [DEBUG] ⛔ [DINO] Posición (744, 12) en zona excluida: Barra inferior completa
+[2026-01-31 18:33:47] [DEBUG] ⛔ [DINO] Posición (753, 439) en zona excluida: Barra inferior completa
+[2026-01-31 18:33:47] [DEBUG] ⛔ [DINO] Posición (768, 428) en zona excluida: Barra inferior completa
+[2026-01-31 18:33:47] [INFO] 📊 Objetos detectados: 2🪙 2📦 7🦖 (Total: 11)
+[2026-01-31 18:33:47] [INFO] 🪙 Recolectando 2 monedas...
+[2026-01-31 18:33:49] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:33:49] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:33:49] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:33:49] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:33:50] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:33:50] [INFO] 📝 [OCR] Texto: 'EPICO'
+[2026-01-31 18:33:50] [INFO] 📝 [OCR] Combinado: 'LANZAR EPICO'
+[2026-01-31 18:33:50] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:33:50] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:33:52] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:33:52] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:33:52] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:33:52] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:33:54] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:33:54] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:33:54] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 18:33:54] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:33:54] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:33:55] [INFO] 📦 Recolectando 2 supply drops...
+[2026-01-31 18:33:57] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:33:57] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:33:57] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:33:57] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:33:59] [INFO] 📝 [OCR] Botón: 'PALAQUEVOLDAULENEE'
+[2026-01-31 18:33:59] [INFO] 📝 [OCR] Texto: '(ALIZACIONDESUMINISTRO'
+[2026-01-31 18:33:59] [INFO] 📝 [OCR] Combinado: 'PALAQUEVOLDAULENEE (ALIZACIONDESUMINISTRO'
+[2026-01-31 18:33:59] [DEBUG]    📦 Palabras clave de SUPPLY detectadas (prioridad alta)
+[2026-01-31 18:33:59] [DEBUG] 🔍 Evaluando force-supply: filtered_positions=True, state='supply'
+[2026-01-31 18:33:59] [DEBUG] 🔍 Valor de state antes del if: 'supply' (type: <class 'str'>)
+[2026-01-31 18:33:59] [DEBUG] 🔍 Evaluando: state == 'supply' → True
+[2026-01-31 18:33:59] [DEBUG] 🔍 Evaluando: state == 'event' → False
+[2026-01-31 18:33:59] [INFO] 🎁 Recolectando SUPPLY...
+[2026-01-31 18:34:03] [DEBUG]    Click recolección 1/3
+[2026-01-31 18:34:04] [DEBUG]    Click recolección 2/3
+[2026-01-31 18:34:06] [DEBUG]    Click recolección 3/3
+[2026-01-31 18:34:06] [DEBUG]    Supply aún abierto, buscando botón para cerrar...
+[2026-01-31 18:34:07] [INFO] ✅ SUPPLY procesado
+[2026-01-31 18:34:08] [DEBUG] ⏭️  Click en (472, 53) no abrió nada - Saltando objeto
+[2026-01-31 18:34:08] [INFO] 🦖 Disparando a 7 dinosaurios...
+[2026-01-31 18:34:11] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:34:11] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:34:11] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:34:11] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:34:12] [INFO] 📝 [OCR] Botón: 'COMRATE'
+[2026-01-31 18:34:12] [INFO] 📝 [OCR] Texto: '—_ESALTODEESTADISTICA'
+[2026-01-31 18:34:12] [INFO] 📝 [OCR] Combinado: 'COMRATE —_ESALTODEESTADISTICA'
+[2026-01-31 18:34:12] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 18:34:12] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 18:34:14] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:34:14] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:34:14] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:34:14] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:34:15] [INFO] 📝 [OCR] Botón: '1'
+[2026-01-31 18:34:15] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:34:15] [INFO] 📝 [OCR] Combinado: '1 '
+[2026-01-31 18:34:15] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 18:34:15] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 18:34:18] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:34:18] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:34:18] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:34:18] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:34:19] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 18:34:19] [INFO] 📝 [OCR] Texto: 'EVENTOESPECIALTERMINAEN:1414H'
+[2026-01-31 18:34:19] [INFO] 📝 [OCR] Combinado: ' EVENTOESPECIALTERMINAEN:1414H'
+[2026-01-31 18:34:19] [DEBUG]    � Evento especial detectado
+[2026-01-31 18:34:19] [INFO] ✅ [ESTADO DETECTADO] EVENT
+[2026-01-31 18:34:19] [INFO] 🎁 Detectado EVENT en loop de dinos - Recolectando como supply...
+[2026-01-31 18:34:28] [INFO] ✅ EVENT recolectado desde loop de dinos
+[2026-01-31 18:34:28] [INFO] 🔄 Revisando misma zona de nuevo para limpiar completamente...
+[2026-01-31 18:34:28] [DEBUG] 🔍 Escaneando mapa...
+[2026-01-31 18:34:28] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 18:34:28] [DEBUG]    📊 Supply color range: R[233-255] G[120-165] B[0-30]
+[2026-01-31 18:34:28] [DEBUG]    📊 Event color range: R[10-40] G[200-235] B[5-30]
+[2026-01-31 18:34:28] [DEBUG]    📐 Zona analizada: (490, 501, 3)
+[2026-01-31 18:34:28] [DEBUG]    🎨 Píxeles detectados inicialmente: 251
+[2026-01-31 18:34:28] [DEBUG]    🔢 Componentes detectados: 17
+[2026-01-31 18:34:28] [DEBUG]    ✅ Supply drop #16: 104 píxeles en posición (472, 53)
+[2026-01-31 18:34:28] [INFO] 🟠 [SUPPLY DROP] Detectados 1 supply drops: [[472, 53]]
+[2026-01-31 18:34:28] [DEBUG] ⛔ [DINO] Posición (424, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:34:28] [DEBUG] ⛔ [DINO] Posición (518, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:34:28] [DEBUG] ⛔ [DINO] Posición (744, 12) en zona excluida: Barra inferior completa
+[2026-01-31 18:34:28] [DEBUG] ⛔ [DINO] Posición (768, 74) en zona excluida: Barra inferior completa
+[2026-01-31 18:34:28] [INFO] 📊 Objetos detectados: 3🪙 1📦 6🦖 (Total: 10)
+[2026-01-31 18:34:28] [INFO] 🪙 Recolectando 3 monedas...
+[2026-01-31 18:34:30] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:34:30] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:34:30] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:34:30] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:34:31] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:34:31] [INFO] 📝 [OCR] Texto: 'OEOEEPICO'
+[2026-01-31 18:34:31] [INFO] 📝 [OCR] Combinado: 'LANZAR OEOEEPICO'
+[2026-01-31 18:34:31] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:34:31] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:34:33] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:34:33] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:34:33] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:34:33] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:34:35] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:34:35] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:34:35] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 18:34:35] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:34:35] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:34:36] [INFO] 📦 Recolectando 1 supply drops...
+[2026-01-31 18:34:37] [DEBUG] ⏭️  Click en (472, 53) no abrió nada - Saltando objeto
+[2026-01-31 18:34:37] [INFO] 🦖 Disparando a 6 dinosaurios...
+[2026-01-31 18:34:39] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:34:39] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:34:39] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:34:39] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:34:40] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 18:34:40] [INFO] 📝 [OCR] Texto: 'ASALTODEESTADISTICA'
+[2026-01-31 18:34:40] [INFO] 📝 [OCR] Combinado: ' ASALTODEESTADISTICA'
+[2026-01-31 18:34:40] [DEBUG] ⏱️  [OCR] Cooldown: 'EEVICTORIAS:0'
+[2026-01-31 18:34:40] [WARNING] ⛔ [EXCLUIDO] Incubadora o evento de combate detectado
+[2026-01-31 18:34:42] [INFO] 🔄 Revisando misma zona de nuevo para limpiar completamente...
+[2026-01-31 18:34:42] [DEBUG] 🔍 Escaneando mapa...
+[2026-01-31 18:34:43] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 18:34:43] [DEBUG]    📊 Supply color range: R[233-255] G[120-165] B[0-30]
+[2026-01-31 18:34:43] [DEBUG]    📊 Event color range: R[10-40] G[200-235] B[5-30]
+[2026-01-31 18:34:43] [DEBUG]    📐 Zona analizada: (490, 501, 3)
+[2026-01-31 18:34:43] [DEBUG]    🎨 Píxeles detectados inicialmente: 0
+[2026-01-31 18:34:43] [DEBUG]    🔢 Componentes detectados: 0
+[2026-01-31 18:34:43] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 18:34:43] [DEBUG] ⛔ [DINO] Posición (293, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:34:43] [DEBUG] ⛔ [DINO] Posición (371, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:34:43] [DEBUG] ⛔ [DINO] Posición (688, 34) en zona excluida: Barra inferior completa
+[2026-01-31 18:34:43] [INFO] 📊 Objetos detectados: 0🪙 0📦 1🦖 (Total: 1)
+[2026-01-31 18:34:43] [INFO] 🦖 Disparando a 1 dinosaurios...
+[2026-01-31 18:34:44] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:34:44] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:34:44] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:34:44] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:34:45] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 18:34:45] [INFO] 📝 [OCR] Texto: '>-.EVENTOESPECIALTERMINAEN:1414H'
+[2026-01-31 18:34:45] [INFO] 📝 [OCR] Combinado: ' >-.EVENTOESPECIALTERMINAEN:1414H'
+[2026-01-31 18:34:45] [DEBUG] ⏱️  [OCR] Cooldown: 'R'
+[2026-01-31 18:34:45] [DEBUG]    � Evento especial detectado
+[2026-01-31 18:34:45] [INFO] ✅ [ESTADO DETECTADO] EVENT
+[2026-01-31 18:34:45] [INFO] 🎁 Detectado EVENT en loop de dinos - Recolectando como supply...
+[2026-01-31 18:34:54] [INFO] ✅ EVENT recolectado desde loop de dinos
+[2026-01-31 18:34:54] [INFO] 🔄 Revisando misma zona de nuevo para limpiar completamente...
+[2026-01-31 18:34:54] [DEBUG] 🔍 Escaneando mapa...
+[2026-01-31 18:34:54] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 18:34:54] [DEBUG]    📊 Supply color range: R[233-255] G[120-165] B[0-30]
+[2026-01-31 18:34:54] [DEBUG]    📊 Event color range: R[10-40] G[200-235] B[5-30]
+[2026-01-31 18:34:54] [DEBUG]    📐 Zona analizada: (490, 501, 3)
+[2026-01-31 18:34:54] [DEBUG]    🎨 Píxeles detectados inicialmente: 242
+[2026-01-31 18:34:54] [DEBUG]    🔢 Componentes detectados: 19
+[2026-01-31 18:34:54] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 18:34:54] [DEBUG] ⛔ [DINO] Posición (518, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:34:54] [DEBUG] ⛔ [DINO] Posición (744, 12) en zona excluida: Barra inferior completa
+[2026-01-31 18:34:54] [INFO] 📊 Objetos detectados: 2🪙 0📦 5🦖 (Total: 7)
+[2026-01-31 18:34:54] [INFO] 🪙 Recolectando 2 monedas...
+[2026-01-31 18:34:56] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:34:56] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:34:56] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:34:56] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:34:57] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:34:57] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:34:57] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 18:34:57] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:34:57] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:34:59] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:34:59] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:34:59] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:34:59] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:35:01] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:35:01] [INFO] 📝 [OCR] Texto: 'WWOEEEESTEPICO'
+[2026-01-31 18:35:01] [INFO] 📝 [OCR] Combinado: 'LANZAR WWOEEEESTEPICO'
+[2026-01-31 18:35:01] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:35:01] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:35:02] [INFO] 🦖 Disparando a 5 dinosaurios...
+[2026-01-31 18:35:03] [INFO] 🔄 Revisando misma zona de nuevo para limpiar completamente...
+[2026-01-31 18:35:03] [DEBUG] 🔍 Escaneando mapa...
+[2026-01-31 18:35:03] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 18:35:03] [DEBUG]    📊 Supply color range: R[233-255] G[120-165] B[0-30]
+[2026-01-31 18:35:03] [DEBUG]    📊 Event color range: R[10-40] G[200-235] B[5-30]
+[2026-01-31 18:35:03] [DEBUG]    📐 Zona analizada: (490, 501, 3)
+[2026-01-31 18:35:03] [DEBUG]    🎨 Píxeles detectados inicialmente: 231
+[2026-01-31 18:35:03] [DEBUG]    🔢 Componentes detectados: 21
+[2026-01-31 18:35:03] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 18:35:04] [DEBUG] ⛔ [DINO] Posición (424, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:35:04] [DEBUG] ⛔ [DINO] Posición (518, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:35:04] [DEBUG] ⛔ [DINO] Posición (689, 140) en zona excluida: Barra inferior completa
+[2026-01-31 18:35:04] [DEBUG] ⛔ [DINO] Posición (744, 12) en zona excluida: Barra inferior completa
+[2026-01-31 18:35:04] [INFO] 📊 Objetos detectados: 3🪙 0📦 4🦖 (Total: 7)
+[2026-01-31 18:35:04] [INFO] 🪙 Recolectando 3 monedas...
+[2026-01-31 18:35:05] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:35:05] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:35:05] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:35:05] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:35:07] [INFO] 📝 [OCR] Botón: '(UNETEAHORE'
+[2026-01-31 18:35:07] [INFO] 📝 [OCR] Texto: 'WPEESEU)=:TERMINAEN:141'
+[2026-01-31 18:35:07] [INFO] 📝 [OCR] Combinado: '(UNETEAHORE WPEESEU)=:TERMINAEN:141'
+[2026-01-31 18:35:07] [WARNING] ⛔ [EXCLUIDO] Dinosaurio fuera de rango (VIP requerido)
+[2026-01-31 18:35:09] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:35:09] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:35:09] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:35:09] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:35:10] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:35:10] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:35:10] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 18:35:10] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:35:10] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:35:13] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:35:13] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:35:13] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:35:13] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:35:14] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:35:14] [INFO] 📝 [OCR] Texto: '-PIEN.0177HAVYAEPICO'
+[2026-01-31 18:35:14] [INFO] 📝 [OCR] Combinado: 'LANZAR -PIEN.0177HAVYAEPICO'
+[2026-01-31 18:35:14] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:35:14] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:35:15] [INFO] 🦖 Disparando a 4 dinosaurios...
+[2026-01-31 18:35:16] [INFO] 🔄 Revisando misma zona de nuevo para limpiar completamente...
+[2026-01-31 18:35:16] [DEBUG] 🔍 Escaneando mapa...
+[2026-01-31 18:35:16] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 18:35:16] [DEBUG]    📊 Supply color range: R[233-255] G[120-165] B[0-30]
+[2026-01-31 18:35:16] [DEBUG]    📊 Event color range: R[10-40] G[200-235] B[5-30]
+[2026-01-31 18:35:16] [DEBUG]    📐 Zona analizada: (490, 501, 3)
+[2026-01-31 18:35:16] [DEBUG]    🎨 Píxeles detectados inicialmente: 231
+[2026-01-31 18:35:16] [DEBUG]    🔢 Componentes detectados: 17
+[2026-01-31 18:35:16] [DEBUG]    ✅ Supply drop #17: 162 píxeles en posición (483, 55)
+[2026-01-31 18:35:16] [INFO] 🟠 [SUPPLY DROP] Detectados 1 supply drops: [[483, 55]]
+[2026-01-31 18:35:17] [DEBUG] ⛔ [DINO] Posición (425, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:35:17] [DEBUG] ⛔ [DINO] Posición (519, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:35:17] [DEBUG] ⛔ [DINO] Posición (744, 12) en zona excluida: Barra inferior completa
+[2026-01-31 18:35:17] [INFO] 📊 Objetos detectados: 2🪙 1📦 13🦖 (Total: 16)
+[2026-01-31 18:35:17] [INFO] 🪙 Recolectando 2 monedas...
+[2026-01-31 18:35:18] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:35:18] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:35:18] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:35:18] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:35:19] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:35:19] [INFO] 📝 [OCR] Texto: 'OEEPICO'
+[2026-01-31 18:35:19] [INFO] 📝 [OCR] Combinado: 'LANZAR OEEPICO'
+[2026-01-31 18:35:19] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:35:19] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:35:22] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:35:22] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:35:22] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:35:22] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:35:23] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:35:23] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:35:23] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 18:35:23] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:35:23] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:35:24] [INFO] 📦 Recolectando 1 supply drops...
+[2026-01-31 18:35:25] [DEBUG] ⏭️  Click en (483, 55) no abrió nada - Saltando objeto
+[2026-01-31 18:35:25] [INFO] 🦖 Disparando a 13 dinosaurios...
+[2026-01-31 18:35:27] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:35:27] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:35:27] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:35:27] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:35:28] [INFO] 📝 [OCR] Botón: '(UNETEAHORE'
+[2026-01-31 18:35:28] [INFO] 📝 [OCR] Texto: 'WPFEEESU>=:TERMINAEN:141'
+[2026-01-31 18:35:28] [INFO] 📝 [OCR] Combinado: '(UNETEAHORE WPFEEESU>=:TERMINAEN:141'
+[2026-01-31 18:35:28] [WARNING] ⛔ [EXCLUIDO] Dinosaurio fuera de rango (VIP requerido)
+[2026-01-31 18:35:31] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:35:31] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:35:31] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:35:31] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:35:32] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:35:32] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:35:32] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 18:35:32] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:35:32] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:35:41] [INFO] 🎯 [FASE 1] Intentando centrar dino (5s)...
+[2026-01-31 18:35:46] [WARNING] ⚠️  [FASE 1] No se centró en 5s - Pasando a FASE 2...
+[2026-01-31 18:35:46] [INFO] 🎯 [FASE 2] Disparos rápidos en patrón (garantiza dardos para alianza)
+[2026-01-31 18:35:47] [DEBUG]    💉 Disparo rápido 1/4...
+[2026-01-31 18:35:48] [DEBUG]    💉 Disparo rápido 2/4...
+[2026-01-31 18:35:49] [DEBUG]    💉 Disparo rápido 3/4...
+[2026-01-31 18:35:50] [DEBUG]    💉 Disparo rápido 4/4...
+[2026-01-31 18:35:51] [INFO] ✅ [FASE 2] Disparos completados
+[2026-01-31 18:36:19] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:36:19] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:36:19] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:36:19] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:36:20] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 18:36:20] [INFO] 📝 [OCR] Texto: '!EVENTOESPECIALTERMINAEN:1414H'
+[2026-01-31 18:36:20] [INFO] 📝 [OCR] Combinado: ' !EVENTOESPECIALTERMINAEN:1414H'
+[2026-01-31 18:36:20] [DEBUG] ⏱️  [OCR] Cooldown: '19M1B.'
+[2026-01-31 18:36:20] [WARNING] ⛔ [EXCLUIDO] Supply drop en cooldown - Tiempo: '19M1B.'
+[2026-01-31 18:36:23] [INFO] 🔄 Revisando misma zona de nuevo para limpiar completamente...
+[2026-01-31 18:36:23] [DEBUG] 🔍 Escaneando mapa...
+[2026-01-31 18:36:23] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 18:36:23] [DEBUG]    📊 Supply color range: R[233-255] G[120-165] B[0-30]
+[2026-01-31 18:36:23] [DEBUG]    📊 Event color range: R[10-40] G[200-235] B[5-30]
+[2026-01-31 18:36:23] [DEBUG]    📐 Zona analizada: (490, 501, 3)
+[2026-01-31 18:36:23] [DEBUG]    🎨 Píxeles detectados inicialmente: 212
+[2026-01-31 18:36:23] [DEBUG]    🔢 Componentes detectados: 25
+[2026-01-31 18:36:23] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 18:36:23] [DEBUG] ⛔ [DINO] Posición (519, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:36:23] [DEBUG] ⛔ [DINO] Posición (668, 425) en zona excluida: Barra inferior completa
+[2026-01-31 18:36:23] [DEBUG] ⛔ [DINO] Posición (706, 248) en zona excluida: Barra inferior completa
+[2026-01-31 18:36:23] [DEBUG] ⛔ [DINO] Posición (744, 12) en zona excluida: Barra inferior completa
+[2026-01-31 18:36:23] [INFO] 📊 Objetos detectados: 3🪙 0📦 9🦖 (Total: 12)
+[2026-01-31 18:36:23] [INFO] 🪙 Recolectando 3 monedas...
+[2026-01-31 18:36:24] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:36:24] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:36:24] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:36:24] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:36:26] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:36:26] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:36:26] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 18:36:26] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:36:26] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:36:28] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:36:28] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:36:28] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:36:28] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:36:29] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:36:29] [INFO] 📝 [OCR] Texto: 'EPICO'
+[2026-01-31 18:36:29] [INFO] 📝 [OCR] Combinado: 'LANZAR EPICO'
+[2026-01-31 18:36:29] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:36:29] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:36:31] [INFO] 🦖 Disparando a 9 dinosaurios...
+[2026-01-31 18:36:32] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:36:32] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:36:32] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:36:32] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:36:34] [INFO] 📝 [OCR] Botón: '(UNETEAHORE'
+[2026-01-31 18:36:34] [INFO] 📝 [OCR] Texto: 'WPFEEES»='
+[2026-01-31 18:36:34] [INFO] 📝 [OCR] Combinado: '(UNETEAHORE WPFEEES»='
+[2026-01-31 18:36:34] [WARNING] ⛔ [EXCLUIDO] Dinosaurio fuera de rango (VIP requerido)
+[2026-01-31 18:36:37] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:36:37] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:36:37] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:36:37] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:36:38] [INFO] 📝 [OCR] Botón: 'COMRATE'
+[2026-01-31 18:36:38] [INFO] 📝 [OCR] Texto: '=ESALTODEESTADISTICA'
+[2026-01-31 18:36:38] [INFO] 📝 [OCR] Combinado: 'COMRATE =ESALTODEESTADISTICA'
+[2026-01-31 18:36:38] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 18:36:38] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 18:36:40] [INFO] 🔄 Revisando misma zona de nuevo para limpiar completamente...
+[2026-01-31 18:36:40] [DEBUG] 🔍 Escaneando mapa...
+[2026-01-31 18:36:40] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 18:36:40] [DEBUG]    📊 Supply color range: R[233-255] G[120-165] B[0-30]
+[2026-01-31 18:36:40] [DEBUG]    📊 Event color range: R[10-40] G[200-235] B[5-30]
+[2026-01-31 18:36:40] [DEBUG]    📐 Zona analizada: (490, 501, 3)
+[2026-01-31 18:36:40] [DEBUG]    🎨 Píxeles detectados inicialmente: 230
+[2026-01-31 18:36:40] [DEBUG]    🔢 Componentes detectados: 17
+[2026-01-31 18:36:40] [DEBUG]    ✅ Supply drop #17: 154 píxeles en posición (484, 56)
+[2026-01-31 18:36:41] [INFO] 🟠 [SUPPLY DROP] Detectados 1 supply drops: [[484, 56]]
+[2026-01-31 18:36:41] [DEBUG] ⛔ [DINO] Posición (519, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:36:41] [DEBUG] ⛔ [DINO] Posición (744, 12) en zona excluida: Barra inferior completa
+[2026-01-31 18:36:41] [INFO] 📊 Objetos detectados: 2🪙 1📦 11🦖 (Total: 14)
+[2026-01-31 18:36:41] [INFO] 🪙 Recolectando 2 monedas...
+[2026-01-31 18:36:42] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:36:42] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:36:42] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:36:42] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:36:43] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:36:43] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:36:43] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 18:36:43] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:36:43] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:36:46] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:36:46] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:36:46] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:36:46] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:36:47] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:36:47] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:36:47] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 18:36:47] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:36:47] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:36:48] [INFO] 📦 Recolectando 1 supply drops...
+[2026-01-31 18:36:49] [DEBUG] ⏭️  Click en (484, 56) no abrió nada - Saltando objeto
+[2026-01-31 18:36:49] [INFO] 🦖 Disparando a 11 dinosaurios...
+[2026-01-31 18:36:51] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:36:51] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:36:51] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:36:51] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:36:52] [INFO] 📝 [OCR] Botón: '(UNETEAHORE'
+[2026-01-31 18:36:52] [INFO] 📝 [OCR] Texto: 'WPFEEESU)=:TERMINAEN:141'
+[2026-01-31 18:36:52] [INFO] 📝 [OCR] Combinado: '(UNETEAHORE WPFEEESU)=:TERMINAEN:141'
+[2026-01-31 18:36:52] [WARNING] ⛔ [EXCLUIDO] Dinosaurio fuera de rango (VIP requerido)
+[2026-01-31 18:36:55] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:36:55] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:36:55] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:36:55] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:36:56] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 18:36:56] [INFO] 📝 [OCR] Texto: 'ASALTODEESTADISTICA'
+[2026-01-31 18:36:56] [INFO] 📝 [OCR] Combinado: ' ASALTODEESTADISTICA'
+[2026-01-31 18:36:56] [DEBUG] ⏱️  [OCR] Cooldown: 'OEVICTORIAS:0'
+[2026-01-31 18:36:56] [WARNING] ⛔ [EXCLUIDO] Incubadora o evento de combate detectado
+[2026-01-31 18:36:59] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:36:59] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:36:59] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:36:59] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:37:01] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 18:37:01] [INFO] 📝 [OCR] Texto: 'EVENTOESPECIALTERMINAEN:1414H'
+[2026-01-31 18:37:01] [INFO] 📝 [OCR] Combinado: ' EVENTOESPECIALTERMINAEN:1414H'
+[2026-01-31 18:37:01] [DEBUG]    � Evento especial detectado
+[2026-01-31 18:37:01] [INFO] ✅ [ESTADO DETECTADO] EVENT
+[2026-01-31 18:37:01] [INFO] 🎁 Detectado EVENT en loop de dinos - Recolectando como supply...
+[2026-01-31 18:37:09] [INFO] ✅ EVENT recolectado desde loop de dinos
+[2026-01-31 18:37:10] [INFO] 🔄 Revisando misma zona de nuevo para limpiar completamente...
+[2026-01-31 18:37:10] [DEBUG] 🔍 Escaneando mapa...
+[2026-01-31 18:37:10] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 18:37:10] [DEBUG]    📊 Supply color range: R[233-255] G[120-165] B[0-30]
+[2026-01-31 18:37:10] [DEBUG]    📊 Event color range: R[10-40] G[200-235] B[5-30]
+[2026-01-31 18:37:10] [DEBUG]    📐 Zona analizada: (490, 501, 3)
+[2026-01-31 18:37:10] [DEBUG]    🎨 Píxeles detectados inicialmente: 234
+[2026-01-31 18:37:10] [DEBUG]    🔢 Componentes detectados: 15
+[2026-01-31 18:37:10] [DEBUG]    ✅ Supply drop #15: 172 píxeles en posición (482, 55)
+[2026-01-31 18:37:10] [INFO] 🟠 [SUPPLY DROP] Detectados 1 supply drops: [[482, 55]]
+[2026-01-31 18:37:10] [DEBUG] ⛔ [DINO] Posición (519, 12) en zona excluida: Borde izquierdo
+[2026-01-31 18:37:10] [DEBUG] ⛔ [DINO] Posición (744, 12) en zona excluida: Barra inferior completa
+[2026-01-31 18:37:10] [INFO] 📊 Objetos detectados: 2🪙 1📦 8🦖 (Total: 11)
+[2026-01-31 18:37:10] [INFO] 🪙 Recolectando 2 monedas...
+[2026-01-31 18:37:12] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:37:12] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:37:12] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:37:12] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:37:13] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:37:13] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 18:37:13] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 18:37:13] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:37:13] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:37:15] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 18:37:15] [DEBUG]    📐 Área botón lanzar: (75, 223, 3)
+[2026-01-31 18:37:15] [DEBUG]    📐 Área texto supply: (101, 362, 3)
+[2026-01-31 18:37:15] [DEBUG]    📐 Área cooldown: (158, 223, 3)
+[2026-01-31 18:37:17] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 18:37:17] [INFO] 📝 [OCR] Texto: 'AEEEEEEEES.,TLLLEPICO>=!'
+[2026-01-31 18:37:17] [INFO] 📝 [OCR] Combinado: 'LANZAR AEEEEEEEES.,TLLLEPICO>=!'
+[2026-01-31 18:37:17] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 18:37:17] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 18:37:18] [INFO] 📦 Recolectando 1 supply drops...
+[2026-01-31 18:37:19] [DEBUG] ⏭️  Click en (482, 55) no abrió nada - Saltando objeto
+[2026-01-31 18:37:19] [INFO] 🦖 Disparando a 8 dinosaurios...
+[2026-01-31 18:37:21] [INFO] ================================================================================
+[2026-01-31 18:37:21] [INFO] ⛔ BOT DETENIDO POR USUARIO (Ctrl+C o 'q')
+[2026-01-31 18:37:21] [INFO] ================================================================================
+[2026-01-31 18:37:21] [INFO] 📊 RESUMEN DE RECURSOS COLECTADOS:
+[2026-01-31 18:37:21] [INFO] --------------------------------------------------------------------------------
+[2026-01-31 18:37:21] [INFO] 📦 SUMINISTROS: Ninguno
+[2026-01-31 18:37:21] [INFO] 🦖 DINOSAURIOS: Ninguno
+[2026-01-31 18:37:21] [INFO] ================================================================================
+[2026-01-31 18:37:21] [INFO] ✅ Sesión finalizada. Log guardado en carpeta 'logs/'
+[2026-01-31 18:37:21] [INFO] ================================================================================
