@@ -128,6 +128,8 @@ if __name__ == "__main__":
                     logger.info(f"📊 Objetos detectados: {len(valid_coins)}🪙 {len(valid_drops)}📦 {len(valid_dinos)}🦖 (Total: {total_objects})")
                     
                     # Recolectar en orden: coins → supplies → dinos
+                    # NOTA: Cada collect_*() internamente verifica con determine_state() 
+                    # si el objeto ya fue recolectado, está en cooldown, o no existe
                     if valid_coins:
                         logger.info(f"🪙 Recolectando {len(valid_coins)} monedas...")
                         bot.collect_coin(filtered_positions=valid_coins)
@@ -141,7 +143,9 @@ if __name__ == "__main__":
                         bot.collect_dino(filtered_positions=valid_dinos)
                     
                     # ⚠️ NO CAMBIAR DE VISTA - volver a escanear misma zona
-                    logger.info("🔄 Revisando misma zona de nuevo para limpiar completamente...")
+                    # El siguiente escaneo solo detectará objetos que NO fueron recolectados
+                    # (los que tienen cooldown, están fuera de rango, o son nuevos spawns)
+                    logger.info("🔄 Revisando misma zona de nuevo para detectar objetos restantes...")
                     continue  # Volver al inicio del loop sin cambiar vista
                     
                 else:
