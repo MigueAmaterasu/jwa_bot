@@ -466,6 +466,8 @@ class Bot:
             import cv2
             from datetime import datetime
             
+            self.logger.debug(f"📸 [DEBUG SCREENSHOT] Iniciando guardado: type={detection_type}, n={len(positions)}, counter={counter}")
+            
             # Crear copia de la imagen para no modificar el original
             img_marked = background.copy()
             
@@ -483,10 +485,16 @@ class Bot:
             filename = f"debug_screenshots/{detection_type}s/{detection_type}_{timestamp}_{counter:03d}_n{len(positions)}.png"
             
             # Guardar (OpenCV usa BGR, convertir de RGB)
-            cv2.imwrite(filename, cv2.cvtColor(img_marked, cv2.COLOR_RGB2BGR))
+            success = cv2.imwrite(filename, cv2.cvtColor(img_marked, cv2.COLOR_RGB2BGR))
+            
+            if success:
+                self.logger.debug(f"✅ [DEBUG SCREENSHOT] Guardado exitoso: {filename}")
+            else:
+                self.logger.warning(f"⚠️  [DEBUG SCREENSHOT] cv2.imwrite retornó False: {filename}")
             
         except Exception as e:
-            self.logger.warning(f"⚠️  Error guardando screenshot debug: {e}")
+            import traceback
+            self.logger.error(f"❌ [DEBUG SCREENSHOT] Error guardando screenshot: {e}\n{traceback.format_exc()}")
 
     # ----------------------------------------------------------
     #   DETECTION
@@ -575,6 +583,7 @@ class Bot:
         
         # 📸 CAPTURA DEBUG: Guardar imagen con detecciones marcadas
         if len(pos) > 0:
+            self.logger.debug(f"🎯 [SUPPLY DROP] About to save screenshot: len(pos)={len(pos)}, counter={self.supply_counter}")
             self._save_detection_screenshot(background, pos, "supply", self.supply_counter)
             self.logger.info(f"🟠 [SUPPLY DROP] Detectados {len(pos)} supply drops: {pos}")
         else:
@@ -1542,21 +1551,32 @@ class Bot:
             filtered_positions: Lista pre-filtrada de posiciones [y, x]. 
                                Si es None, detecta normalmente.
         """
+        
+        self.logger.debug("=" * 60)
+        self.logger.debug(f"📦 [COLLECT SUPPLY] INICIANDO RECOLECCIÓN")
+        self.logger.debug(f"   Posiciones recibidas: {len(filtered_positions) if filtered_positions else 0}")
+        self.logger.debug(f"   Posiciones: {filtered_positions}")
 
         # use old background to determine stop clicking
         background_old= np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))        
         supply_drop_pos = filtered_positions if filtered_positions is not None else self.detect_supply_drop(background_old)
         
+        self.logger.debug(f"   Supply counter actual: {self.supply_counter}")
         # Incrementar contador para siguiente detección
         self.supply_counter += 1
+        self.logger.debug(f"   Supply counter incrementado a: {self.supply_counter}")
         
         # loop until you click supply drop
-        for pos in supply_drop_pos:
+        for idx, pos in enumerate(supply_drop_pos, 1):
+            
+            self.logger.debug("-" * 60)
+            self.logger.debug(f"📦 Procesando supply #{idx}/{len(supply_drop_pos)}: posición ({pos[0]}, {pos[1]})")
 
             if keyboard.is_pressed("q"):
                 raise KeyboardInterrupt
 
             background_old = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+            self.logger.debug(f"   🖱️  Clickeando en x={self.x+pos[1]}, y={self.y+pos[0]}")
             pyautogui.click(x=self.x+pos[1], y=self.y+pos[0])
             time.sleep(0.8)  # AUMENTADO para dar más tiempo a abrir supply drop
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
@@ -1565,17 +1585,21 @@ class Bot:
             # Si después del click la pantalla no cambió = clickeamos en vacío (árbol, pasto, nada)
             # Supply drops SÍ cambian la pantalla (aparece ventana encima del mapa)
             if not self.background_changed(background_old, background_new):
-                self.logger.debug(f"⏭️  Click en ({pos[0]}, {pos[1]}) no abrió nada - Saltando objeto")
+                self.logger.warning(f"⏭️  Click en ({pos[0]}, {pos[1]}) no abrió nada - Saltando objeto")
                 continue
-
+            
+            self.logger.debug(f"   ✅ Pantalla cambió - algo se abrió")
             time.sleep(1.2)  # AUMENTADO para dar más tiempo al OCR antes de leer texto
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
 
             # 🔍 DEBUG: SIEMPRE guardar imágenes de supply drops para analizar OCR
             # Esto nos ayuda a entender POR QUÉ el OCR falla en supplies
+            self.logger.debug(f"   📸 Guardando regiones OCR para debug...")
             self.debug_save_ocr_regions(background_new, f"supply_{pos[0]}_{pos[1]}")
 
+            self.logger.debug(f"   🔍 Determinando estado con OCR...")
             state = self.determine_state(background_new)
+            self.logger.debug(f"   📝 Estado determinado: '{state}'")
             
             # 🛡️ v3.4.8.8.0: VALIDACIÓN MEJORADA para force-supply
             # Solo forzar como supply si:

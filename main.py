@@ -109,53 +109,71 @@ if __name__ == "__main__":
 
                 # 🔄 v3.4.8.9.8: NUEVA LÓGICA - Revisar mismas posiciones hasta limpiar el mapa
                 # Detectar TODOS los objetos una sola vez
-                logger.debug("🔍 Escaneando mapa...")
+                logger.info("=" * 80)
+                logger.info("🔍 ESCANEANDO MAPA - Ciclo de detección")
+                logger.info("=" * 80)
                 screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
                 
                 # 🚫 COINS TEMPORALMENTE DESHABILITADAS - Ajustar mañana
                 # coins = bot.detect_coins(screenshot)
                 coins = []
+                logger.debug("🪙 Coins: Deshabilitadas temporalmente")
                 
+                logger.debug("-" * 60)
                 supply_drops = bot.detect_supply_drop(screenshot)
+                logger.debug(f"📦 Supplies detectados (raw): {len(supply_drops)} posiciones {supply_drops}")
+                
+                logger.debug("-" * 60)
                 dinos = bot.detect_dino(screenshot)
+                logger.debug(f"🦖 Dinos detectados (raw): {len(dinos)} posiciones")
                 
                 # Filtrar por zonas prohibidas
+                logger.debug("-" * 60)
+                logger.debug("🚧 FILTRANDO POR ZONAS EXCLUIDAS...")
                 valid_coins = bot.filter_excluded_zones(coins, "coin")
                 valid_drops = bot.filter_excluded_zones(supply_drops, "supply")
+                logger.debug(f"   📦 Supplies válidos después de filtro: {len(valid_drops)}/{len(supply_drops)}")
+                if len(supply_drops) != len(valid_drops):
+                    logger.warning(f"   ⚠️  {len(supply_drops) - len(valid_drops)} supplies filtrados por zonas excluidas")
                 valid_dinos = bot.filter_excluded_zones(dinos, "dino")
+                logger.debug(f"   🦖 Dinos válidos después de filtro: {len(valid_dinos)}/{len(dinos)}")
                 
                 # Contar objetos totales
                 total_objects = len(valid_coins) + len(valid_drops) + len(valid_dinos)
                 
+                logger.debug("-" * 60)
+                logger.info(f"📊 RESULTADO FINAL: {len(valid_coins)}🪙 {len(valid_drops)}📦 {len(valid_dinos)}🦖 (Total: {total_objects})")
+                logger.debug("=" * 80)
+                
                 if total_objects > 0:
-                    logger.info(f"📊 Objetos detectados: {len(valid_coins)}🪙 {len(valid_drops)}📦 {len(valid_dinos)}🦖 (Total: {total_objects})")
-                    
                     # Recolectar en orden: coins → supplies → dinos
                     # NOTA: Cada collect_*() internamente verifica con determine_state() 
                     # si el objeto ya fue recolectado, está en cooldown, o no existe
                     if valid_coins:
-                        logger.info(f"🪙 Recolectando {len(valid_coins)} monedas...")
+                        logger.info(f"🪙 ➡️  Iniciando recolección de {len(valid_coins)} monedas...")
                         bot.collect_coin(filtered_positions=valid_coins)
                     
                     if valid_drops:
-                        logger.info(f"📦 Recolectando {len(valid_drops)} supply drops...")
+                        logger.info(f"📦 ➡️  Iniciando recolección de {len(valid_drops)} supply drops...")
                         bot.collect_supply_drop(filtered_positions=valid_drops)
                     
                     if valid_dinos:
-                        logger.info(f"🦖 Disparando a {len(valid_dinos)} dinosaurios...")
+                        logger.info(f"🦖 ➡️  Iniciando disparo a {len(valid_dinos)} dinosaurios...")
                         bot.collect_dino(filtered_positions=valid_dinos)
                     
                     # ⚠️ NO CAMBIAR DE VISTA - volver a escanear misma zona
                     # El siguiente escaneo solo detectará objetos que NO fueron recolectados
                     # (los que tienen cooldown, están fuera de rango, o son nuevos spawns)
-                    logger.info("🔄 Revisando misma zona de nuevo para detectar objetos restantes...")
+                    logger.info("🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...")
                     continue  # Volver al inicio del loop sin cambiar vista
                     
                 else:
                     # ✅ Zona limpia - cambiar de vista
-                    if coins or supply_drops or dinos:
-                        logger.info(f"⚠️  Objetos en zonas prohibidas: {len(coins)-len(valid_coins)}🪙 {len(supply_drops)-len(valid_drops)}📦 {len(dinos)-len(valid_dinos)}🦖")
-                    logger.info("✅ Zona limpia - cambiando vista del mapa...")
+                    excluded_count = (len(coins)-len(valid_coins), len(supply_drops)-len(valid_drops), len(dinos)-len(valid_dinos))
+                    if any(excluded_count):
+                        logger.info(f"⚠️  Objetos en zonas prohibidas ignorados: {excluded_count[0]}🪙 {excluded_count[1]}📦 {excluded_count[2]}🦖")
+                    logger.info("✅ ➡️  Zona limpia - cambiando vista del mapa...")
+                    logger.debug("")
 
 
                 if bot.number_of_scrolls > max_scrolls:
