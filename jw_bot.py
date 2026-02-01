@@ -222,14 +222,16 @@ class Bot:
         # 🎨 COLORES ACTIVOS (basados en análisis RGB real v3.4.8.9.6):
         
         # 🟢 EVENTOS ESPECIALES - Verde brillante
-        # Análisis real: RGB(22, 219, 13) - Radio 3px
-        self.special_event_color = (10, 200, 5, 40, 235, 30)
-        # Rango: R[10-40], G[200-235], B[5-30]
+        # ⚡ v3.4.8.9.11: AMPLIADO para animación giratoria
+        # Original RGB(22, 219, 13) → Rangos ampliados ±10-15 por rotación
+        self.special_event_color = (5, 190, 0, 50, 245, 40)
+        # Rango ampliado: R[5-50], G[190-245], B[0-40]
         
         # 🟠 SUPPLY DROPS - Naranja (rojo alto)
-        # Análisis real: RGB(255, 143, 18) y RGB(255, 131, 4) - Radio 3px
-        self.supply_drop_color = (233, 120, 0, 255, 165, 30)
-        # Rango: R[233-255], G[120-165], B[0-30]
+        # ⚡ v3.4.8.9.11: AMPLIADO para animación giratoria
+        # Original RGB(255, 143, 18) → Rangos ampliados ±15-20 por rotación
+        self.supply_drop_color = (220, 100, 0, 255, 180, 40)
+        # Rango ampliado: R[220-255], G[100-180], B[0-40]
         
         # ========================================================================
         # 🎨 COLORES ALTERNATIVOS PARA EVENTOS ESPECIALES
@@ -1300,23 +1302,52 @@ class Bot:
         else:
             self.logger.warning("⚠️  [FASE 1] No se centró en 5s - Pasando a FASE 2...")
             
-            # ========== FASE 2: DISPARO RÁPIDO GARANTIZADO ==========
-            self.logger.info("🎯 [FASE 2] Disparos rápidos en patrón (garantiza dardos para alianza)")
+            # ========== FASE 2: DISPARAR HASTA AGOTAR BATERÍA ==========
+            self.logger.info("🔋 [FASE 2] Disparando hasta agotar batería...")
             
             # Soltar mouse antes de disparar
             pyautogui.mouseUp()
             time.sleep(0.3)
             
-            # Patrón de disparo: 4 posiciones estratégicas para maximizar cobertura
+            # Patrón circular de 6 posiciones para máxima cobertura
             shoot_positions = [
-                (self.w//2, self.h//2),              # Centro
-                (self.w//2 + 80, self.h//2 - 60),    # Arriba-derecha
-                (self.w//2 - 80, self.h//2 + 60),    # Abajo-izquierda  
-                (self.w//2, self.h//2 + 40),         # Centro-abajo
+                (self.w//2, self.h//2),              # 1. Centro
+                (self.w//2 + 80, self.h//2 - 60),    # 2. Arriba-derecha
+                (self.w//2 - 80, self.h//2 - 60),    # 3. Arriba-izquierda
+                (self.w//2 - 80, self.h//2 + 60),    # 4. Abajo-izquierda  
+                (self.w//2 + 80, self.h//2 + 60),    # 5. Abajo-derecha
+                (self.w//2, self.h//2 + 40),         # 6. Centro-abajo
             ]
             
-            for i, (offset_x, offset_y) in enumerate(shoot_positions, 1):
-                self.logger.debug(f"   💉 Disparo rápido {i}/4...")
+            shot_count = 0
+            max_shots = 50  # Límite de seguridad para evitar loops infinitos
+            
+            while shot_count < max_shots:
+                # Tomar screenshot para evaluar batería
+                background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                
+                # Verificar si ya terminó (loading screen)
+                if self.is_dino_loading_screen(background):
+                    self.logger.info(f"✅ [FASE 2] Pantalla de carga detectada después de {shot_count} disparos")
+                    successfully_centered = True
+                    break
+                
+                # Evaluar batería restante
+                battery_left = self.get_battery_left(background)
+                self.logger.debug(f"   🔋 Batería restante: {battery_left*100:.1f}%")
+                
+                # Si batería casi vacía (< 5%), detener
+                if battery_left < 0.05:
+                    self.logger.info(f"✅ [FASE 2] Batería agotada después de {shot_count} disparos")
+                    successfully_centered = True
+                    break
+                
+                # Seleccionar posición de disparo (rotar entre las 6)
+                position_index = shot_count % len(shoot_positions)
+                offset_x, offset_y = shoot_positions[position_index]
+                
+                shot_count += 1
+                self.logger.debug(f"   💉 Disparo #{shot_count} en posición {position_index+1}/6 (batería: {battery_left*100:.1f}%)")
                 
                 # Mover a posición
                 pyautogui.moveTo(self.x + offset_x, self.y + offset_y, 0.1)
@@ -1326,15 +1357,11 @@ class Bot:
                 time.sleep(0.4)  # Hold brevemente
                 pyautogui.mouseUp()
                 time.sleep(0.3)  # Pausa entre disparos
-                
-                # Verificar si ya disparó todo (detectó loading screen)
-                background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
-                if self.is_dino_loading_screen(background):
-                    self.logger.info(f"✅ [FASE 2] Dardos agotados después de {i} disparos")
-                    successfully_centered = True  # Marcamos como exitoso
-                    break
             
-            self.logger.info("✅ [FASE 2] Disparos completados")
+            if shot_count >= max_shots:
+                self.logger.warning(f"⚠️  [FASE 2] Límite de seguridad alcanzado ({max_shots} disparos)")
+            
+            self.logger.info(f"✅ [FASE 2] Disparos completados: {shot_count} total")
         
         # ========== FINALIZACIÓN ==========
         # Ya no necesitamos el bloque de "Si salió sin disparar"
