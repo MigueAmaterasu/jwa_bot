@@ -564,13 +564,19 @@ class Bot:
         
         roi = background[search_y_min:search_y_max, search_x_min:search_x_max]
         
-        # Buscar píxeles azules: B > R+30 AND B > G+30
-        blue_mask = (roi[:,:,2] > roi[:,:,0] + 30) & (roi[:,:,2] > roi[:,:,1] + 30)
+        # Buscar píxeles azules: B > R+30 AND B > G+30 (más estricto)
+        # Y también que sean azules intensos: B > 100
+        blue_mask = (roi[:,:,2] > roi[:,:,0] + 40) & \
+                    (roi[:,:,2] > roi[:,:,1] + 40) & \
+                    (roi[:,:,2] > 100)
         
         blue_pixels = np.sum(blue_mask)
         
-        # Si hay suficientes píxeles azules, buscar el centro del círculo
-        if blue_pixels > 200:  # Mínimo ~200 píxeles azules para un círculo de radio 29
+        # ⚡ FILTRO MÁS ESTRICTO: Mínimo 500 píxeles (evita falsos positivos del menú)
+        # Círculo de radio 29: área ≈ π*29² ≈ 2640 píxeles
+        # Con 33.3% azul del análisis → ~880 píxeles azules esperados
+        # Umbral de 500 deja margen pero evita elementos pequeños del menú
+        if blue_pixels > 500:  
             # Encontrar el centro de masa de los píxeles azules
             y_coords, x_coords = np.where(blue_mask)
             
