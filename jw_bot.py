@@ -540,6 +540,111 @@ class Bot:
             return shift + int(np.mean(y)), int(np.mean(x))
         return None
     
+    def locate_dino_exit_button(self, background):
+        """
+        Detecta el ícono de salida del dardeo (círculo azul con X en esquina inferior izquierda)
+        
+        Returns:
+            tuple: (y, x) posición del botón si se encuentra, None si no
+        """
+        if keyboard.is_pressed("q"):
+            raise KeyboardInterrupt
+        
+        # El ícono está en la esquina inferior izquierda
+        # Basado en análisis: x~66 (±20), y~953 desde arriba (o ~58 desde abajo)
+        # Radio: ~29px, Color: Azul dominante (B > R+30, B > G+30)
+        
+        height = background.shape[0]
+        
+        # Definir región de búsqueda: esquina inferior izquierda
+        search_x_min = 30
+        search_x_max = 100
+        search_y_min = height - 100  # 100px desde abajo
+        search_y_max = height - 10   # 10px desde abajo
+        
+        roi = background[search_y_min:search_y_max, search_x_min:search_x_max]
+        
+        # Buscar píxeles azules: B > R+30 AND B > G+30
+        blue_mask = (roi[:,:,2] > roi[:,:,0] + 30) & (roi[:,:,2] > roi[:,:,1] + 30)
+        
+        blue_pixels = np.sum(blue_mask)
+        
+        # Si hay suficientes píxeles azules, buscar el centro del círculo
+        if blue_pixels > 200:  # Mínimo ~200 píxeles azules para un círculo de radio 29
+            # Encontrar el centro de masa de los píxeles azules
+            y_coords, x_coords = np.where(blue_mask)
+            
+            if len(y_coords) > 0:
+                center_y_rel = int(np.mean(y_coords))
+                center_x_rel = int(np.mean(x_coords))
+                
+                # Convertir a coordenadas absolutas
+                center_y_abs = search_y_min + center_y_rel
+                center_x_abs = search_x_min + center_x_rel
+                
+                self.logger.debug(f"🔵 Ícono de salida del dardeo detectado en ({center_y_abs}, {center_x_abs}), píxeles azules: {blue_pixels}")
+                
+                return (center_y_abs, center_x_abs)
+        
+        return None
+    
+    def try_exit_dino_screen(self):
+        """
+        Intenta salir de una pantalla de dardeo cuando está atorado.
+        Estrategia:
+        1. Buscar botón X (2 intentos)
+        2. Si no funciona, buscar ícono de salida del dardeo (círculo azul)
+        
+        Returns:
+            bool: True si logró salir, False si no encontró forma de salir
+        """
+        self.logger.warning("⚠️  Intentando salir de pantalla de dardeo...")
+        
+        # INTENTO 1 y 2: Buscar botón X
+        for attempt in range(2):
+            background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+            pos_x = self.locate_x_button(background)
+            
+            if pos_x:
+                self.logger.info(f"🔍 [Intento {attempt+1}/2] Botón X encontrado en {pos_x}")
+                pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                time.sleep(1.5)
+                
+                # Verificar si salió
+                background_after = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                if self.background_changed(background, background_after):
+                    self.logger.info("✅ Salida exitosa con botón X")
+                    return True
+            else:
+                self.logger.debug(f"   [Intento {attempt+1}/2] Botón X no encontrado")
+            
+            time.sleep(0.5)
+        
+        # INTENTO 3: Buscar ícono de salida del dardeo
+        self.logger.info("🔍 [Intento 3/3] Buscando ícono de salida del dardeo...")
+        background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+        exit_button = self.locate_dino_exit_button(background)
+        
+        if exit_button:
+            self.logger.info(f"🔵 Ícono de salida encontrado en {exit_button}")
+            pyautogui.click(x=self.x+exit_button[1], y=self.y+exit_button[0])
+            time.sleep(1.5)
+            
+            # Verificar si salió
+            background_after = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+            if self.background_changed(background, background_after):
+                self.logger.info("✅ Salida exitosa con ícono de dardeo")
+                return True
+        else:
+            self.logger.warning("⚠️  Ícono de salida del dardeo no encontrado")
+        
+        # Si llegamos aquí, no pudimos salir
+        self.logger.error("❌ No se pudo encontrar forma de salir - Clickeando botón del mapa como fallback")
+        pyautogui.click(x=self.x+self.map_button_loc[1], y=self.y+self.map_button_loc[0])
+        time.sleep(1)
+        
+        return False
+    
     def detect_supply_drop(self, background):
         """Finds supply drop by simply thresholding, but there might be false positives"""
         
@@ -1532,16 +1637,34 @@ class Bot:
                 pyautogui.click(x=self.x+cx, y=self.y+cy)  
                 time.sleep(0.5)
 
+                # ⚡ Timeout para pantalla de carga - si no aparece en 10s, puede estar atorado
+                loading_start = time.time()
+                loading_timeout = 10  # segundos
+                
                 background_loading_screen = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
                 while self.is_dino_loading_screen(background_loading_screen):
+                    if time.time() - loading_start > loading_timeout:
+                        self.logger.error(f"❌ [TIMEOUT] Pantalla de carga del dino no apareció en {loading_timeout}s - Intentando salir")
+                        self.try_exit_dino_screen()
+                        break
+                    
                     background_loading_screen = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
                     time.sleep(1)
 
-                print("--"*10)
-                print("TIME TO SHOOT")                
-                
-                time.sleep(0.3)
-                self.shoot_dino()
+                # Solo disparar si no hubo timeout
+                if time.time() - loading_start <= loading_timeout:
+                    print("--"*10)
+                    print("TIME TO SHOOT")                
+                    
+                    time.sleep(0.3)
+                    
+                    # ⚡ Protección: Si shoot_dino() tarda más de 120s, algo salió mal
+                    shoot_start = time.time()
+                    self.shoot_dino()
+                    shoot_duration = time.time() - shoot_start
+                    
+                    if shoot_duration > 100:  # Si tardó más de 100s (muy sospechoso)
+                        self.logger.warning(f"⚠️  shoot_dino() tardó {shoot_duration:.1f}s - Puede haber estado atorado")
 
                 # there is some bug in JW which is expected when I shoot a dino it turn to original direction
                 for _ in range(self.number_of_scrolls):

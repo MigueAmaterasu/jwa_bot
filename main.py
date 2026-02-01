@@ -107,12 +107,34 @@ if __name__ == "__main__":
                 if bot.check_time_limit():
                     raise KeyboardInterrupt
 
+                # ⚡ v3.4.8.9.15: VERIFICACIÓN DE SALIDA AL INICIO DE CADA CICLO
+                # Evita quedarse atorado en pantallas de dardeo
+                logger.debug("🔍 Verificando si está atorado en pantalla de dardeo...")
+                screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
+                
+                # Buscar botón X primero (más común)
+                pos_x = bot.locate_x_button(screenshot)
+                if pos_x:
+                    logger.warning("⚠️  Botón X detectado - Saliendo de pantalla inesperada")
+                    pyautogui.click(x=bot.x+pos_x[1], y=bot.y+pos_x[0])
+                    time.sleep(1.5)
+                    screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
+                
+                # Buscar ícono de salida del dardeo
+                exit_button = bot.locate_dino_exit_button(screenshot)
+                if exit_button:
+                    logger.warning("⚠️  Ícono de salida de dardeo detectado - Saliendo")
+                    pyautogui.click(x=bot.x+exit_button[1], y=bot.y+exit_button[0])
+                    time.sleep(1.5)
+                    screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
+                
+                logger.debug("✅ Verificación de salida completada")
+
                 # 🔄 v3.4.8.9.8: NUEVA LÓGICA - Revisar mismas posiciones hasta limpiar el mapa
                 # Detectar TODOS los objetos una sola vez
                 logger.info("=" * 80)
                 logger.info("🔍 ESCANEANDO MAPA - Ciclo de detección")
                 logger.info("=" * 80)
-                screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
                 
                 # 🚫 COINS TEMPORALMENTE DESHABILITADAS - Ajustar mañana
                 # coins = bot.detect_coins(screenshot)
