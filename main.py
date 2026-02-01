@@ -97,6 +97,10 @@ if __name__ == "__main__":
                     logger.info("🚀 Calibración completa! El bot comenzará a operar...")
                     time.sleep(1)
 
+            # ⚡ v3.4.8.9.20: CONTADOR DE ESCANEOS POR VISTA (máximo 20)
+            scans_this_view = 0
+            MAX_SCANS_PER_VIEW = 20
+
             # take photo
             if bot.loc:
                 
@@ -121,6 +125,10 @@ if __name__ == "__main__":
                     screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
                 
                 logger.debug("✅ Verificación de salida completada")
+
+                # ⚡ v3.4.8.9.20: INCREMENTAR CONTADOR DE ESCANEOS
+                scans_this_view += 1
+                logger.debug(f"📊 Scan {scans_this_view}/{MAX_SCANS_PER_VIEW} en esta vista")
 
                 # 🔄 v3.4.8.9.8: NUEVA LÓGICA - Revisar mismas posiciones hasta limpiar el mapa
                 # Detectar TODOS los objetos una sola vez
@@ -199,6 +207,15 @@ if __name__ == "__main__":
                     logger.info("✅ ➡️  Zona limpia - cambiando vista del mapa...")
                     logger.debug("")
 
+                # ⚡ v3.4.8.9.20: FORZAR CAMBIO DE VISTA si alcanzamos 20 escaneos
+                if scans_this_view >= MAX_SCANS_PER_VIEW:
+                    logger.warning(f"⚠️  LÍMITE ALCANZADO: {scans_this_view} escaneos en esta vista")
+                    logger.warning("⚠️  Forzando cambio de vista (probablemente hay FP persistente)")
+                    scans_this_view = 0  # Reset contador
+                    bot.change_view()
+                    bot.number_of_scrolls += 1
+                    continue  # Saltar el resto y empezar nueva vista
+
                 # ⚡ v3.4.8.9.18: SIEMPRE verificar si necesitamos cambiar ubicación
                 if bot.number_of_scrolls > max_scrolls:
                     # move location
@@ -210,6 +227,7 @@ if __name__ == "__main__":
                     
                 # ⚡ v3.4.8.9.18: Cambiar vista SOLO si la zona está limpia (total_objects == 0)
                 if total_objects == 0:
+                    scans_this_view = 0  # Reset contador al cambiar vista
                     bot.change_view()
                     bot.number_of_scrolls += 1
                 

@@ -178,12 +178,13 @@ class Bot:
         # REVERTIDO a valores originales - el área expandida rompió el OCR
         self.launch_button_loc_ratio = (650 / 831, 712 / 831, 132 / 481, 310 / 481)
         
-        # ⏱️ v3.4.8.9.18: NUEVA ÁREA MEJORADA para detectar tiempo de cooldown
-        # Área JUSTO ARRIBA del launch button, donde aparece "14H 10M" o "0m 9s"
-        # Coordenadas más precisas: Y[580-640] X[140-300] (60px altura, centrado sobre botón)
-        self.cooldown_time_loc_ratio = (580 / 831, 640 / 831, 140 / 481, 300 / 481)
+        # ⏱️ v3.4.8.9.20: ÁREA CORREGIDA para detectar texto ROJO de cooldown
+        # El texto de cooldown es ROJO, MUY LARGO (casi todo el ancho) y está donde el LAUNCH button
+        # Coordenadas VERIFICADAS: Y[640-722] X[50-551] (82px altura, 501px ancho)
+        # Dimensiones imagen: 601x1010 -> Ratios calculados sobre pantalla 831x481
+        self.cooldown_time_loc_ratio = (640 / 831, 722 / 831, 50 / 481, 551 / 481)
         
-        # ⏱️ v3.4.3: ÁREA ANTIGUA (más grande, menos precisa - mantener por compatibilidad)
+        # ⏱️ v3.4.3: ÁREA ANTIGUA (más pequeña - mantener como fallback)
         # Esta área escanea ARRIBA del botón donde aparece el tiempo restante
         # Coordenadas: Y[55%-70%] X[27%-64%] - justo arriba del launch button
         self.cooldown_text_loc_ratio = (450 / 831, 580 / 831, 132 / 481, 310 / 481)
@@ -213,8 +214,9 @@ class Bot:
         self.shooting_zone = (230, 720, 10, 440)
         self.launch_button_loc = (650, 712, 132, 310)
         
-        # ⏱️ v3.4.8.9.18: Área optimizada para tiempo de cooldown (ARRIBA del launch button)
-        self.cooldown_time_loc = (580, 640, 140, 300)  # Y[580-640] X[140-300]
+        # ⏱️ v3.4.8.9.20: ÁREA CORREGIDA - Texto ROJO largo de cooldown
+        # Coordenadas VERIFICADAS en screenshot real: Y[640-722] X[50-551]
+        self.cooldown_time_loc = (640, 722, 50, 551)
         
         self.supply_drop_text_loc = (150, 250, 80, 400)  # CORREGIDO: área más grande y centrada
         self.map_button_loc = (786, 222)
