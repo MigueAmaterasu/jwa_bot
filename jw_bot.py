@@ -222,14 +222,16 @@ class Bot:
         # 🎨 COLORES ACTIVOS (basados en análisis RGB real v3.4.8.9.6):
         
         # 🟢 EVENTOS ESPECIALES - Verde brillante
-        # Análisis real: RGB(22, 219, 13) - Radio 3px
-        self.special_event_color = (10, 200, 5, 40, 235, 30)
-        # Rango: R[10-40], G[200-235], B[5-30]
+        # ⚡ v3.4.8.9.11: AMPLIADO para animación giratoria
+        # Original RGB(22, 219, 13) → Rangos ampliados ±10-15 por rotación
+        self.special_event_color = (5, 190, 0, 50, 245, 40)
+        # Rango ampliado: R[5-50], G[190-245], B[0-40]
         
         # 🟠 SUPPLY DROPS - Naranja (rojo alto)
-        # Análisis real: RGB(255, 143, 18) y RGB(255, 131, 4) - Radio 3px
-        self.supply_drop_color = (233, 120, 0, 255, 165, 30)
-        # Rango: R[233-255], G[120-165], B[0-30]
+        # ⚡ v3.4.8.9.11: AMPLIADO para animación giratoria
+        # Original RGB(255, 143, 18) → Rangos ampliados ±15-20 por rotación
+        self.supply_drop_color = (220, 100, 0, 255, 180, 40)
+        # Rango ampliado: R[220-255], G[100-180], B[0-40]
         
         # ========================================================================
         # 🎨 COLORES ALTERNATIVOS PARA EVENTOS ESPECIALES
