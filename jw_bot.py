@@ -484,7 +484,18 @@ class Bot:
             
             # Generar nombre de archivo con timestamp
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f"debug_screenshots/{detection_type}s/{detection_type}_{timestamp}_{counter:03d}_n{len(positions)}.png"
+            
+            # 🐛 FIX: Carpeta correcta según tipo
+            # supply → supplies (no supplys)
+            # coin → coins
+            # dino → dinos
+            folder_map = {
+                "supply": "supplies",
+                "coin": "coins",
+                "dino": "dinos"
+            }
+            folder = folder_map.get(detection_type, f"{detection_type}s")
+            filename = f"debug_screenshots/{folder}/{detection_type}_{timestamp}_{counter:03d}_n{len(positions)}.png"
             
             # Guardar (OpenCV usa BGR, convertir de RGB)
             success = cv2.imwrite(filename, cv2.cvtColor(img_marked, cv2.COLOR_RGB2BGR))
