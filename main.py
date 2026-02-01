@@ -112,7 +112,10 @@ if __name__ == "__main__":
                 logger.debug("🔍 Escaneando mapa...")
                 screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
                 
-                coins = bot.detect_coins(screenshot)
+                # 🚫 COINS TEMPORALMENTE DESHABILITADAS - Ajustar mañana
+                # coins = bot.detect_coins(screenshot)
+                coins = []
+                
                 supply_drops = bot.detect_supply_drop(screenshot)
                 dinos = bot.detect_dino(screenshot)
                 
