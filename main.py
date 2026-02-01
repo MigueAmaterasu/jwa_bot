@@ -107,7 +107,7 @@ if __name__ == "__main__":
                 if bot.check_time_limit():
                     raise KeyboardInterrupt
 
-                # ⚡ v3.4.8.9.15: VERIFICACIÓN DE SALIDA AL INICIO DE CADA CICLO
+                # ⚡ v3.4.8.9.17: VERIFICACIÓN DE SALIDA AL INICIO DE CADA CICLO
                 # Solo busca botón X (universal), NO el ícono de dardeo (puede confundirse con mapa)
                 logger.debug("🔍 Verificando si está atorado en pantalla inesperada...")
                 screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))

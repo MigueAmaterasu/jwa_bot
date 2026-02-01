@@ -164,6 +164,11 @@ class Bot:
             'coin': [],
             'dino': []
         }
+        
+        # ⚡ v3.4.8.9.17: MEMORIA DE COOLDOWNS
+        # Guarda supplies en cooldown con su tiempo de disponibilidad
+        # Formato: {(y, x): timestamp_disponible}
+        self.supply_cooldowns = {}  # {(y, x): tiempo_unix_cuando_estara_disponible}
 
 
         # get the ratios (I get it from my PC to fit other screen sizes)
@@ -723,11 +728,36 @@ class Bot:
         min_pixels = 70
         
         # v3.4.8.7: Filtrado removido - ahora se hace en main.py de forma centralizada
+        import time as time_module
+        current_time = time_module.time()
+        
         for label in range(1, labels.max()+1):
             rows, cols = np.where(labels == label)
             if len(rows) > min_pixels:
                 center_y = self.shooting_zone[0] + int(np.mean(rows))
                 center_x = self.shooting_zone[2] + int(np.mean(cols))
+                pos_key = (center_y, center_x)
+                
+                # ⚡ v3.4.8.9.17: FILTRAR supplies en cooldown activo
+                # Verificar si este supply está en cooldown y aún no está disponible
+                still_in_cooldown = False
+                for cooldown_pos, available_at in list(self.supply_cooldowns.items()):
+                    # Tolerancia de ±15px por movimiento de animación
+                    if abs(cooldown_pos[0] - center_y) <= 15 and abs(cooldown_pos[1] - center_x) <= 15:
+                        if current_time < available_at:
+                            # Todavía en cooldown
+                            remaining = int((available_at - current_time) / 60)
+                            self.logger.debug(f"   ⏱️  Supply drop #{label} en ({center_y}, {center_x}) en COOLDOWN - {remaining}m restantes")
+                            still_in_cooldown = True
+                            break
+                        else:
+                            # Cooldown expiró, remover de la lista
+                            del self.supply_cooldowns[cooldown_pos]
+                            self.logger.debug(f"   ✅ Supply drop #{label} en ({center_y}, {center_x}) - COOLDOWN EXPIRADO")
+                            break
+                
+                if still_in_cooldown:
+                    continue
                 
                 # ⚡ v3.4.8.9.13: FILTRAR posiciones ya cobradas
                 # Evita re-detectar supplies que ya clickeamos en scans previos
@@ -743,10 +773,13 @@ class Bot:
                     pos.append([center_y, center_x])
                     self.logger.debug(f"   ✅ Supply drop #{label}: {len(rows)} píxeles en posición ({center_y}, {center_x})")
         
-        # 📸 CAPTURA DEBUG: Guardar imagen con detecciones marcadas
-        if len(pos) > 0:
-            self.logger.debug(f"🎯 [SUPPLY DROP] About to save screenshot: len(pos)={len(pos)}, counter={self.supply_counter}")
+        # 📸 CAPTURA DEBUG: Solo guardar si hay muchos (posible error) o muy pocos
+        # ⚡ v3.4.8.9.17: Reducir capturas - solo casos excepcionales
+        if len(pos) > 10:  # Demasiados = posible error
+            self.logger.debug(f"🎯 [SUPPLY DROP] MUCHOS detectados: len(pos)={len(pos)}, counter={self.supply_counter}")
             self._save_detection_screenshot(background, pos, "supply", self.supply_counter)
+            self.logger.info(f"🟠 [SUPPLY DROP] Detectados {len(pos)} supply drops: {pos}")
+        elif len(pos) > 0:
             self.logger.info(f"🟠 [SUPPLY DROP] Detectados {len(pos)} supply drops: {pos}")
         else:
             self.logger.debug("   ❌ No se detectaron supply drops")
@@ -780,9 +813,12 @@ class Bot:
             if len(rows) > 10:  # Cambiado de 15 a 10
                 pos.append([self.shooting_zone[0] + int(np.mean(rows)), self.shooting_zone[2] + int(np.mean(cols))])
 
-        # 📸 CAPTURA DEBUG: Guardar imagen con detecciones marcadas
-        if len(pos) > 0:
+        # 📸 CAPTURA DEBUG: Solo guardar si hay muchas (posible error)
+        # ⚡ v3.4.8.9.17: Reducir capturas - solo casos excepcionales
+        if len(pos) > 8:  # Demasiadas monedas = posible error
             self._save_detection_screenshot(background, pos, "coin", self.coin_counter)
+            print(f"[COINS] ⚠️ MUCHAS detectadas: {len(pos)} monedas")
+        elif len(pos) > 0:
             print(f"[COINS] Detectadas {len(pos)} monedas")
         
         return pos
@@ -883,9 +919,13 @@ class Bot:
             pos.append([self.shooting_zone[0] + row, 
                         self.shooting_zone[2] + col])
 
-        # 📸 CAPTURA DEBUG: Guardar imagen con detecciones marcadas
-        if len(pos) > 0:
+        # 📸 CAPTURA DEBUG: Solo guardar si hay muchos (posible error)
+        # ⚡ v3.4.8.9.17: Reducir capturas - solo casos excepcionales
+        if len(pos) > 15:  # Demasiados dinos = posible error
             self._save_detection_screenshot(background, pos, "dino", self.dino_counter)
+            self.logger.warning(f"⚠️ [DINO] MUCHOS detectados: {len(pos)} - Posibles falsos positivos")
+        elif len(pos) > 0:
+            self.logger.debug(f"🦖 [DINO] Detectados {len(pos)} dinos")
 
         # import matplotlib.pyplot as plt
         # plt.figure(1)
@@ -990,6 +1030,50 @@ class Bot:
                 valid_positions.append(pos)
         
         return valid_positions
+    
+    def parse_cooldown_time(self, cooldown_text):
+        """
+        Parsea el tiempo de cooldown y devuelve minutos totales
+        
+        Formatos soportados:
+        - "1H 30M" → 90 minutos
+        - "45M" → 45 minutos  
+        - "30S" → 0.5 minutos
+        - "14h 10m" → 850 minutos
+        
+        Args:
+            cooldown_text: String con el tiempo extraído por OCR
+            
+        Returns:
+            int: Minutos totales (0 si no se pudo parsear)
+        """
+        import re
+        
+        try:
+            # Normalizar texto (mayúsculas)
+            text = cooldown_text.upper()
+            
+            # Extraer horas
+            hours_match = re.search(r'(\d+)\s*H', text)
+            hours = int(hours_match.group(1)) if hours_match else 0
+            
+            # Extraer minutos
+            minutes_match = re.search(r'(\d+)\s*M', text)
+            minutes = int(minutes_match.group(1)) if minutes_match else 0
+            
+            # Extraer segundos
+            seconds_match = re.search(r'(\d+)\s*S', text)
+            seconds = int(seconds_match.group(1)) if seconds_match else 0
+            
+            # Convertir todo a minutos
+            total_minutes = (hours * 60) + minutes + (seconds // 60)
+            
+            self.logger.debug(f"⏱️  Cooldown parseado: '{cooldown_text}' → {total_minutes} minutos")
+            return total_minutes
+            
+        except Exception as e:
+            self.logger.warning(f"⚠️  Error parseando cooldown '{cooldown_text}': {e}")
+            return 0
             
 
     def determine_state(self, background):
@@ -1093,6 +1177,7 @@ class Bot:
             return state
         
         # 8. ⏱️ SUPPLY DROPS EN COOLDOWN - Ya fueron recolectados recientemente
+        # ⚡ v3.4.8.9.17: Ahora retorna el estado "cooldown" con el tiempo
         # v3.4.3: Usa área SEPARADA dedicada solo a cooldown, no contamina el OCR principal
         # Detecta tiempo restante en formato: "0m 9s", "14h 10m", "1h", "30m", etc.
         import re
@@ -1107,8 +1192,11 @@ class Bot:
         has_cooldown_time = any(re.search(pattern, cooldown_text) for pattern in cooldown_patterns)
         
         if has_cooldown_time:
-            state = "out_of_range"
-            self.logger.warning(f"⛔ [EXCLUIDO] Supply drop en cooldown - Tiempo: '{cooldown_text[:30]}'")
+            # En vez de retornar "out_of_range", retornar "cooldown"
+            state = "cooldown"
+            self.logger.warning(f"⏱️  [COOLDOWN] Supply drop en cooldown - Tiempo: '{cooldown_text[:30]}'")
+            # Guardar el texto de cooldown en un atributo temporal para procesarlo después
+            self.last_cooldown_time = cooldown_text
             return state
         
         # ✅ EVENTOS ESPECIALES SON VÁLIDOS - NO se excluyen
@@ -1594,6 +1682,9 @@ class Bot:
             # to many FPs so quick way to eliminate them
             if not self.background_changed(background_old, background_new):
                 self.logger.warning(f"⏭️  Click en {pos} no cambió pantalla - Falso positivo detectado")
+                # ⚡ v3.4.8.9.17: Agregar falsos positivos a memoria para evitar re-detección
+                self.collected_positions['dino'].append(pos)
+                self.logger.debug(f"   ➕ Falso positivo agregado a memoria - ahora tenemos {len(self.collected_positions['dino'])} dinos en memoria")
                 print("--"*10)
                 print("NOTHING THERE")
                 continue
@@ -1607,6 +1698,8 @@ class Bot:
             # 🔧 FIX: Si detectamos supply/coin en vez de dino, recolectarlo apropiadamente
             if state == "supply" or state == "event":
                 self.logger.info(f"🎁 Detectado {state.upper()} en loop de dinos - Recolectando como supply...")
+                # ⚡ v3.4.8.9.17: Agregar a memoria de dinos para no clickearlo de nuevo
+                self.collected_positions['dino'].append(pos)
                 pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
                 time.sleep(2.5)
                 for i in range(3):
@@ -1624,6 +1717,8 @@ class Bot:
                 
             elif state == "coin":
                 self.logger.info("🪙 Detectada COIN en loop de dinos - Recolectando...")
+                # ⚡ v3.4.8.9.17: Agregar a memoria de dinos para no clickearlo de nuevo
+                self.collected_positions['dino'].append(pos)
                 pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
                 time.sleep(2.5)
                 pyautogui.click(x=self.x+self.w//2, y=self.y+self.h//2)
@@ -1671,6 +1766,10 @@ class Bot:
                     
                     if shoot_duration > 100:  # Si tardó más de 100s (muy sospechoso)
                         self.logger.warning(f"⚠️  shoot_dino() tardó {shoot_duration:.1f}s - Puede haber estado atorado")
+                    
+                    # ⚡ v3.4.8.9.17: Agregar dino disparado a memoria
+                    self.collected_positions['dino'].append(pos)
+                    self.logger.debug(f"   ✅ Dino disparado exitosamente - agregado a memoria")
 
                 # there is some bug in JW which is expected when I shoot a dino it turn to original direction
                 for _ in range(self.number_of_scrolls):
@@ -1679,6 +1778,9 @@ class Bot:
             else:
                 print("--"*10)
                 print("NOT DINO")
+                # ⚡ v3.4.8.9.17: Agregar a memoria (probablemente out_of_range u otro estado)
+                self.collected_positions['dino'].append(pos)
+                self.logger.debug(f"   ➕ Estado inesperado '{state}' agregado a memoria")
                 pos = self.locate_x_button(background_new)
                 pos = pos if pos else self.map_button_loc
                 pyautogui.click(x=self.x+pos[1], y=self.y+pos[0])
@@ -1869,6 +1971,39 @@ class Bot:
             self.logger.debug(f"🔍 Valor de state antes del if: '{state}' (type: {type(state)})")
             self.logger.debug(f"🔍 Evaluando: state == 'supply' → {state == 'supply'}")
             self.logger.debug(f"🔍 Evaluando: state == 'event' → {state == 'event'}")
+            self.logger.debug(f"🔍 Evaluando: state == 'cooldown' → {state == 'cooldown'}")
+            
+            # ⚡ v3.4.8.9.17: Manejar COOLDOWN - guardar tiempo y agregar a memoria
+            if state == "cooldown":
+                import time as time_module
+                
+                # Parsear el tiempo de cooldown
+                cooldown_minutes = self.parse_cooldown_time(self.last_cooldown_time)
+                
+                if cooldown_minutes > 0:
+                    # Calcular cuándo estará disponible (timestamp unix)
+                    available_at = time_module.time() + (cooldown_minutes * 60)
+                    
+                    # Guardar en diccionario de cooldowns
+                    pos_key = (pos[0], pos[1])
+                    self.supply_cooldowns[pos_key] = available_at
+                    
+                    # También agregar a memoria normal para no clickearlo de nuevo
+                    self.collected_positions['supply'].append(pos)
+                    
+                    self.logger.info(f"⏱️  Supply en cooldown guardado - Disponible en {cooldown_minutes} minutos")
+                else:
+                    self.logger.warning(f"⚠️  No se pudo parsear tiempo de cooldown: '{self.last_cooldown_time}'")
+                
+                # Cerrar ventana del supply
+                pos_x = self.locate_x_button(background_new)
+                if pos_x:
+                    pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                else:
+                    pyautogui.click(x=self.x+self.map_button_loc[1], y=self.y+self.map_button_loc[0])
+                time.sleep(1)
+                
+                continue  # Siguiente supply
             
             # MEJORADO: También aceptar "event" como supply drop válido
             if state == "supply" or state == "event":
