@@ -159,6 +159,16 @@ if __name__ == "__main__":
                 logger.info(f"📊 RESULTADO FINAL: {len(valid_coins)}🪙 {len(valid_drops)}📦 {len(valid_dinos)}🦖 (Total: {total_objects})")
                 logger.debug("=" * 80)
                 
+                # ⚡ v3.4.8.9.16: Si NO detectó NADA, verificar si está atorado en pantalla de dardeo
+                if total_objects == 0:
+                    logger.debug("🔍 No se detectaron objetos - verificando si está atorado en pantalla de dardeo...")
+                    exit_button = bot.locate_dino_exit_button(screenshot)
+                    if exit_button:
+                        logger.warning("⚠️  ¡Atorado en pantalla de dardeo! Saliendo con ícono de salida...")
+                        pyautogui.click(x=bot.x+exit_button[1], y=bot.y+exit_button[0])
+                        time.sleep(1.5)
+                        continue  # Reiniciar el ciclo
+                
                 if total_objects > 0:
                     # Recolectar en orden: coins → supplies → dinos
                     # NOTA: Cada collect_*() internamente verifica con determine_state() 
