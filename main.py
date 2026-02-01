@@ -107,7 +107,7 @@ if __name__ == "__main__":
                 if bot.check_time_limit():
                     raise KeyboardInterrupt
 
-                # ⚡ v3.4.8.9.17: VERIFICACIÓN DE SALIDA AL INICIO DE CADA CICLO
+                # ⚡ v3.4.8.9.18: VERIFICACIÓN DE SALIDA AL INICIO DE CADA CICLO
                 # Solo busca botón X (universal), NO el ícono de dardeo (puede confundirse con mapa)
                 logger.debug("🔍 Verificando si está atorado en pantalla inesperada...")
                 screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
@@ -199,7 +199,7 @@ if __name__ == "__main__":
                     logger.info("✅ ➡️  Zona limpia - cambiando vista del mapa...")
                     logger.debug("")
 
-
+                # ⚡ v3.4.8.9.18: SIEMPRE verificar si necesitamos cambiar ubicación
                 if bot.number_of_scrolls > max_scrolls:
                     # move location
                     logger.info("="*80)
@@ -208,9 +208,10 @@ if __name__ == "__main__":
                     bot.change_location()
                     bot.number_of_scrolls = 0
                     
-                # if not something_there:
-                bot.change_view()
-                bot.number_of_scrolls += 1
+                # ⚡ v3.4.8.9.18: Cambiar vista SOLO si la zona está limpia (total_objects == 0)
+                if total_objects == 0:
+                    bot.change_view()
+                    bot.number_of_scrolls += 1
                 
 
             time.sleep(0.1)

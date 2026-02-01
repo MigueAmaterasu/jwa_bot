@@ -178,7 +178,12 @@ class Bot:
         # REVERTIDO a valores originales - el área expandida rompió el OCR
         self.launch_button_loc_ratio = (650 / 831, 712 / 831, 132 / 481, 310 / 481)
         
-        # ⏱️ v3.4.3: NUEVA ÁREA DEDICADA solo para detectar cooldown "0m 9s"
+        # ⏱️ v3.4.8.9.18: NUEVA ÁREA MEJORADA para detectar tiempo de cooldown
+        # Área JUSTO ARRIBA del launch button, donde aparece "14H 10M" o "0m 9s"
+        # Coordenadas más precisas: Y[580-640] X[140-300] (60px altura, centrado sobre botón)
+        self.cooldown_time_loc_ratio = (580 / 831, 640 / 831, 140 / 481, 300 / 481)
+        
+        # ⏱️ v3.4.3: ÁREA ANTIGUA (más grande, menos precisa - mantener por compatibilidad)
         # Esta área escanea ARRIBA del botón donde aparece el tiempo restante
         # Coordenadas: Y[55%-70%] X[27%-64%] - justo arriba del launch button
         self.cooldown_text_loc_ratio = (450 / 831, 580 / 831, 132 / 481, 310 / 481)
@@ -207,6 +212,10 @@ class Bot:
         # (y, x)
         self.shooting_zone = (230, 720, 10, 440)
         self.launch_button_loc = (650, 712, 132, 310)
+        
+        # ⏱️ v3.4.8.9.18: Área optimizada para tiempo de cooldown (ARRIBA del launch button)
+        self.cooldown_time_loc = (580, 640, 140, 300)  # Y[580-640] X[140-300]
+        
         self.supply_drop_text_loc = (150, 250, 80, 400)  # CORREGIDO: área más grande y centrada
         self.map_button_loc = (786, 222)
         self.battery_loc = (75, 76, 360, 420)
@@ -916,8 +925,22 @@ class Bot:
             # Calcular centro usando distance transform
             label_dist = dist * (labels == region.label).astype(np.uint8)
             row, col = np.unravel_index(label_dist.argmax(), label_dist.shape)
-            pos.append([self.shooting_zone[0] + row, 
-                        self.shooting_zone[2] + col])
+            center_y = self.shooting_zone[0] + row
+            center_x = self.shooting_zone[2] + col
+            
+            # ⚡ v3.4.8.9.18: FILTRAR posiciones ya procesadas (falsos positivos o dinos disparados)
+            # Evita re-detectar dinos que ya clickeamos en scans previos
+            already_processed = False
+            for processed_pos in self.collected_positions['dino']:
+                # Tolerancia de ±15px por movimiento de animación
+                if abs(processed_pos[0] - center_y) <= 15 and abs(processed_pos[1] - center_x) <= 15:
+                    self.logger.debug(f"   ⏭️  Dino en ({center_y}, {center_x}) YA PROCESADO - ignorando")
+                    already_processed = True
+                    break
+            
+            if not already_processed:
+                pos.append([center_y, center_x])
+
 
         # 📸 CAPTURA DEBUG: Solo guardar si hay muchos (posible error)
         # ⚡ v3.4.8.9.17: Reducir capturas - solo casos excepcionales
@@ -1104,20 +1127,31 @@ class Bot:
         supply_drop = background[self.supply_drop_text_loc[0]:self.supply_drop_text_loc[1],
                                 self.supply_drop_text_loc[2]:self.supply_drop_text_loc[3]]
         
-        # ⏱️ v3.4.3: Área SEPARADA solo para cooldown (no interfiere con launch button)
+        # ⏱️ v3.4.8.9.18: Área OPTIMIZADA para cooldown (más pequeña y precisa)
+        cooldown_time_area = background[self.cooldown_time_loc[0]:self.cooldown_time_loc[1],
+                                        self.cooldown_time_loc[2]:self.cooldown_time_loc[3]]
+        
+        # ⏱️ v3.4.3: Área ANTIGUA para cooldown (más grande, usar como fallback)
         cooldown_area = background[self.cooldown_text_loc[0]:self.cooldown_text_loc[1],
                                    self.cooldown_text_loc[2]:self.cooldown_text_loc[3]]
 
         self.logger.debug(f"   📐 Área botón lanzar: {launch_button.shape}")
         self.logger.debug(f"   📐 Área texto supply: {supply_drop.shape}")
-        self.logger.debug(f"   📐 Área cooldown: {cooldown_area.shape}")
+        self.logger.debug(f"   📐 Área cooldown optimizada: {cooldown_time_area.shape}")
+        self.logger.debug(f"   📐 Área cooldown antigua: {cooldown_area.shape}")
 
         # Intentar OCR en las zonas principales
         text1 = "".join(pytesseract.image_to_string(launch_button, config = self.custom_config).split()).upper()
         text2 = "".join(pytesseract.image_to_string(supply_drop, config = self.custom_config).split()).upper()
         
-        # OCR en área de cooldown (separado para no contaminar detección principal)
-        cooldown_text = "".join(pytesseract.image_to_string(cooldown_area, config = self.custom_config).split()).upper()
+        # ⏱️ v3.4.8.9.18: OCR en NUEVA área optimizada para tiempo (prioritario)
+        cooldown_time_text = "".join(pytesseract.image_to_string(cooldown_time_area, config = self.custom_config).split()).upper()
+        
+        # OCR en área antigua de cooldown (fallback si la nueva no detecta nada)
+        cooldown_area_text = "".join(pytesseract.image_to_string(cooldown_area, config = self.custom_config).split()).upper()
+        
+        # Usar el texto de cooldown que tenga contenido (priorizar área optimizada)
+        cooldown_text = cooldown_time_text if cooldown_time_text else cooldown_area_text
         
         # Combinar textos PRINCIPALES (sin cooldown para no interferir)
         combined_text = text1 + " " + text2
@@ -1125,8 +1159,11 @@ class Bot:
         self.logger.info(f"📝 [OCR] Botón: '{text1}'")
         self.logger.info(f"📝 [OCR] Texto: '{text2}'")
         self.logger.info(f"📝 [OCR] Combinado: '{combined_text}'")
-        if cooldown_text:
-            self.logger.debug(f"⏱️  [OCR] Cooldown: '{cooldown_text}'")
+        if cooldown_time_text:
+            self.logger.info(f"⏱️  [OCR] Cooldown (optimizado): '{cooldown_time_text}'")
+        if cooldown_area_text and not cooldown_time_text:
+            self.logger.debug(f"⏱️  [OCR] Cooldown (fallback): '{cooldown_area_text}'")
+
         
         # ⛔ FILTRO DE EXCLUSIÓN: Detectar objetos que NO debemos clickear
         
@@ -1665,6 +1702,10 @@ class Bot:
         self.logger.debug(f"   Dino counter: {self.dino_counter}")
         self.logger.debug("-" * 60)
         
+        # ⚡ v3.4.8.9.18: Contador de falsos positivos consecutivos
+        # Si detecta 5-6 FPs seguidos, probablemente está stuck en pantalla de dardeo
+        consecutive_fps = 0
+        
         print("--"*10)
         print("TOTAL NUMBER OF DINO", len(dino_pos))
         for i, pos in enumerate(dino_pos):
@@ -1684,10 +1725,52 @@ class Bot:
                 self.logger.warning(f"⏭️  Click en {pos} no cambió pantalla - Falso positivo detectado")
                 # ⚡ v3.4.8.9.17: Agregar falsos positivos a memoria para evitar re-detección
                 self.collected_positions['dino'].append(pos)
+                consecutive_fps += 1
                 self.logger.debug(f"   ➕ Falso positivo agregado a memoria - ahora tenemos {len(self.collected_positions['dino'])} dinos en memoria")
+                self.logger.debug(f"   📊 Falsos positivos consecutivos: {consecutive_fps}")
+                
+                # ⚡ v3.4.8.9.18: Si 5 FPs consecutivos, probablemente stuck en pantalla de dardeo
+                if consecutive_fps >= 5:
+                    self.logger.error(f"🚨 ALERTA: {consecutive_fps} falsos positivos consecutivos - Probablemente stuck en pantalla de dardeo")
+                    self.logger.info("🔍 Intentando detectar y clickear botón de salida...")
+                    
+                    # Tomar screenshot actual
+                    current_screen = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                    
+                    # 1. Intentar con botón X (más común)
+                    pos_x = self.locate_x_button(current_screen)
+                    if pos_x:
+                        self.logger.info("✅ Botón X detectado - Clickeando para salir")
+                        pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                        time.sleep(1.5)
+                        # Resetear contador y salir del loop
+                        consecutive_fps = 0
+                        self.logger.info("✅ Salida exitosa - Continuando con siguiente área")
+                        break  # Salir del loop de dinos
+                    
+                    # 2. Intentar con ícono de salida del dardeo (círculo azul)
+                    exit_button = self.locate_dino_exit_button(current_screen)
+                    if exit_button:
+                        self.logger.info("✅ Ícono de salida de dardeo detectado - Clickeando")
+                        pyautogui.click(x=self.x+exit_button[1], y=self.y+exit_button[0])
+                        time.sleep(1.5)
+                        consecutive_fps = 0
+                        self.logger.info("✅ Salida exitosa - Continuando con siguiente área")
+                        break
+                    
+                    # 3. Fallback: Click en botón del mapa
+                    self.logger.warning("⚠️  No se detectó botón de salida - Usando botón del mapa como fallback")
+                    pyautogui.click(x=self.x+self.map_button_loc[1], y=self.y+self.map_button_loc[0])
+                    time.sleep(1.5)
+                    consecutive_fps = 0
+                    break
+                
                 print("--"*10)
                 print("NOTHING THERE")
                 continue
+            
+            # Si el click SÍ cambió la pantalla, resetear contador de FPs
+            consecutive_fps = 0
 
             time.sleep(0.8)
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
@@ -1894,6 +1977,9 @@ class Bot:
         self.supply_counter += 1
         self.logger.debug(f"   Supply counter incrementado a: {self.supply_counter}")
         
+        # ⚡ v3.4.8.9.18: Contador de "no abrió nada" consecutivos
+        consecutive_empty_clicks = 0
+        
         # loop until you click supply drop
         for idx, pos in enumerate(supply_drop_pos, 1):
             
@@ -1914,7 +2000,36 @@ class Bot:
             # Supply drops SÍ cambian la pantalla (aparece ventana encima del mapa)
             if not self.background_changed(background_old, background_new):
                 self.logger.warning(f"⏭️  Click en ({pos[0]}, {pos[1]}) no abrió nada - Saltando objeto")
+                consecutive_empty_clicks += 1
+                self.logger.debug(f"   📊 Clicks vacíos consecutivos: {consecutive_empty_clicks}")
+                
+                # ⚡ v3.4.8.9.18: Si 5 clicks consecutivos no abren nada, probablemente stuck
+                if consecutive_empty_clicks >= 5:
+                    self.logger.error(f"🚨 ALERTA: {consecutive_empty_clicks} clicks vacíos consecutivos - Probablemente stuck")
+                    self.logger.info("🔍 Intentando detectar y clickear botón de salida...")
+                    
+                    current_screen = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
+                    
+                    # Intentar X button
+                    pos_x = self.locate_x_button(current_screen)
+                    if pos_x:
+                        self.logger.info("✅ Botón X detectado - Clickeando para salir")
+                        pyautogui.click(x=self.x+pos_x[1], y=self.y+pos_x[0])
+                        time.sleep(1.5)
+                        consecutive_empty_clicks = 0
+                        break
+                    
+                    # Fallback
+                    self.logger.warning("⚠️  No se detectó botón X - Usando botón del mapa")
+                    pyautogui.click(x=self.x+self.map_button_loc[1], y=self.y+self.map_button_loc[0])
+                    time.sleep(1.5)
+                    consecutive_empty_clicks = 0
+                    break
+                
                 continue
+            
+            # Si el click SÍ abrió algo, resetear contador
+            consecutive_empty_clicks = 0
             
             self.logger.debug(f"   ✅ Pantalla cambió - algo se abrió")
             time.sleep(1.2)  # AUMENTADO para dar más tiempo al OCR antes de leer texto
@@ -2122,6 +2237,11 @@ class Bot:
             supply_text = background[self.supply_drop_text_loc[0]:self.supply_drop_text_loc[1],
                                     self.supply_drop_text_loc[2]:self.supply_drop_text_loc[3]]
             Image.fromarray(supply_text).save(f"{debug_folder}/{filename_prefix}_supply_text.png")
+            
+            # ⏱️ v3.4.8.9.18: Guardar región OPTIMIZADA de cooldown
+            cooldown_time = background[self.cooldown_time_loc[0]:self.cooldown_time_loc[1],
+                                      self.cooldown_time_loc[2]:self.cooldown_time_loc[3]]
+            Image.fromarray(cooldown_time).save(f"{debug_folder}/{filename_prefix}_cooldown_time.png")
             
             # Guardar pantalla completa para referencia
             Image.fromarray(background).save(f"{debug_folder}/{filename_prefix}_full_screen.png")
