@@ -155,6 +155,15 @@ class Bot:
         self.supply_counter = 0
         self.coin_counter = 0
         self.dino_counter = 0
+        
+        # ⚡ v3.4.8.9.13: MEMORIA DE OBJETOS COBRADOS
+        # Evita re-detectar supplies/coins/dinos que ya fueron clickeados
+        # Se resetea cuando cambia la vista del mapa (change_view)
+        self.collected_positions = {
+            'supply': [],  # Lista de [y, x] ya cobrados
+            'coin': [],
+            'dino': []
+        }
 
 
         # get the ratios (I get it from my PC to fit other screen sizes)
@@ -553,21 +562,38 @@ class Bot:
         
         self.logger.debug(f"   📐 Zona analizada: {background_cropped.shape}")
         
+        # ⚡ v3.4.8.9.13: FILTRO DE SATURACIÓN - Excluir grises (ya cobrados)
+        # Supplies grises (ya cobrados): R≈G≈B (baja saturación)
+        # Supplies activos: Colores brillantes con alta diferencia entre canales
+        # Saturación = max(R,G,B) - min(R,G,B)
+        r = background_cropped[:,:,0].astype(np.float32)
+        g = background_cropped[:,:,1].astype(np.float32)
+        b = background_cropped[:,:,2].astype(np.float32)
+        saturation = np.maximum(np.maximum(r, g), b) - np.minimum(np.minimum(r, g), b)
+        
+        # Saturación mínima: 50 (supplies grises tienen ~10-30, activos tienen 100+)
+        min_saturation = 50
+        saturation_mask = (saturation >= min_saturation)
+        
         t1 = (background_cropped[:,:,0] >= self.supply_drop_color[0]) * \
             (background_cropped[:,:,1] >= self.supply_drop_color[1]) * \
             (background_cropped[:,:,2] >= self.supply_drop_color[2]) * \
             (background_cropped[:,:,0] <= self.supply_drop_color[3]) * \
             (background_cropped[:,:,1] <= self.supply_drop_color[4]) * \
-            (background_cropped[:,:,2] <= self.supply_drop_color[5])
+            (background_cropped[:,:,2] <= self.supply_drop_color[5]) * \
+            saturation_mask  # ⚡ NUEVO: Filtrar grises
+            
         t2 = (background_cropped[:,:,0] >= self.special_event_color[0]) * \
             (background_cropped[:,:,1] >= self.special_event_color[1]) * \
             (background_cropped[:,:,2] >= self.special_event_color[2]) * \
             (background_cropped[:,:,0] <= self.special_event_color[3]) * \
             (background_cropped[:,:,1] <= self.special_event_color[4]) * \
-            (background_cropped[:,:,2] <= self.special_event_color[5])
+            (background_cropped[:,:,2] <= self.special_event_color[5]) * \
+            saturation_mask  # ⚡ NUEVO: Filtrar grises
         
         mask = np.logical_or(t1, t2).astype(np.uint8)
         self.logger.debug(f"   🎨 Píxeles detectados inicialmente: {mask.sum()}")
+        self.logger.debug(f"   🌈 Filtro saturación (min={min_saturation}): {saturation_mask.sum()} píxeles con color")
         
         mask = morphology.binary_closing(mask, np.ones((5,5)))
         
@@ -591,8 +617,20 @@ class Bot:
             if len(rows) > min_pixels:
                 center_y = self.shooting_zone[0] + int(np.mean(rows))
                 center_x = self.shooting_zone[2] + int(np.mean(cols))
-                pos.append([center_y, center_x])
-                self.logger.debug(f"   ✅ Supply drop #{label}: {len(rows)} píxeles en posición ({center_y}, {center_x})")
+                
+                # ⚡ v3.4.8.9.13: FILTRAR posiciones ya cobradas
+                # Evita re-detectar supplies que ya clickeamos en scans previos
+                already_collected = False
+                for collected_pos in self.collected_positions['supply']:
+                    # Tolerancia de ±15px por movimiento de animación
+                    if abs(collected_pos[0] - center_y) <= 15 and abs(collected_pos[1] - center_x) <= 15:
+                        self.logger.debug(f"   ⏭️  Supply drop #{label} en ({center_y}, {center_x}) YA COBRADO - ignorando")
+                        already_collected = True
+                        break
+                
+                if not already_collected:
+                    pos.append([center_y, center_x])
+                    self.logger.debug(f"   ✅ Supply drop #{label}: {len(rows)} píxeles en posición ({center_y}, {center_x})")
         
         # 📸 CAPTURA DEBUG: Guardar imagen con detecciones marcadas
         if len(pos) > 0:
@@ -1094,6 +1132,14 @@ class Bot:
         """"Rotates the screen after everthing is collected"""
         print("--"*10)
         print("CHANGING VIEW")
+        
+        # ⚡ v3.4.8.9.13: RESETEAR memoria de cobrados al cambiar vista
+        self.collected_positions = {
+            'supply': [],
+            'coin': [],
+            'dino': []
+        }
+        self.logger.debug("🧹 Memoria de objetos cobrados reseteada (nueva vista)")
         
         # 📸 CAPTURA DE ANÁLISIS: Guardar pantalla antes de rotar para analizar detecciones
         background_before = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
@@ -1717,6 +1763,10 @@ class Bot:
                         # Si no hay X, clickear botón de mapa
                         pyautogui.click(x=self.x+self.map_button_loc[1], y=self.y+self.map_button_loc[0])
                         time.sleep(1)
+                
+                # ⚡ v3.4.8.9.13: REGISTRAR como cobrado
+                self.collected_positions['supply'].append(pos)
+                self.logger.debug(f"   ✅ Supply cobrado registrado en memoria: {pos}")
                 
                 self.logger.info(f"✅ {state.upper()} procesado")
 
