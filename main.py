@@ -107,36 +107,49 @@ if __name__ == "__main__":
                 if bot.check_time_limit():
                     raise KeyboardInterrupt
 
-                # v3.4.8.7: Filtrado de zonas prohibidas para TODOS los objetos
-                # get coins
-                logger.debug("🪙 Verificando monedas...")
-                coins = bot.detect_coins(np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h))))
+                # 🔄 v3.4.8.9.8: NUEVA LÓGICA - Revisar mismas posiciones hasta limpiar el mapa
+                # Detectar TODOS los objetos una sola vez
+                logger.debug("🔍 Escaneando mapa...")
+                screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
+                
+                coins = bot.detect_coins(screenshot)
+                supply_drops = bot.detect_supply_drop(screenshot)
+                dinos = bot.detect_dino(screenshot)
+                
+                # Filtrar por zonas prohibidas
                 valid_coins = bot.filter_excluded_zones(coins, "coin")
-                if valid_coins:
-                    logger.info(f"🪙 Recolectando {len(valid_coins)} monedas válidas...")
-                    bot.collect_coin(filtered_positions=valid_coins)
-                elif coins:
-                    logger.info(f"🪙 {len(coins)} monedas detectadas pero TODAS en zonas prohibidas - SKIP")
-
-                # get supply drops
-                logger.debug("📦 Verificando supply drops...")
-                supply_drops = bot.detect_supply_drop(np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h))))
                 valid_drops = bot.filter_excluded_zones(supply_drops, "supply")
-                if valid_drops:
-                    logger.info(f"📦 Recolectando {len(valid_drops)} supply drops válidos...")
-                    bot.collect_supply_drop(filtered_positions=valid_drops)
-                elif supply_drops:
-                    logger.info(f"📦 {len(supply_drops)} supply drops detectados pero TODOS en zonas prohibidas - SKIP")
-
-                # get dinos
-                logger.debug("🦖 Verificando dinosaurios...")
-                dinos = bot.detect_dino(np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h))))
                 valid_dinos = bot.filter_excluded_zones(dinos, "dino")
-                if valid_dinos:
-                    logger.info(f"🦖 Disparando a {len(valid_dinos)} dinosaurios válidos...")
-                    bot.collect_dino(filtered_positions=valid_dinos)
-                elif dinos:
-                    logger.info(f"🦖 {len(dinos)} dinosaurios detectados pero TODOS en zonas prohibidas - SKIP")
+                
+                # Contar objetos totales
+                total_objects = len(valid_coins) + len(valid_drops) + len(valid_dinos)
+                
+                if total_objects > 0:
+                    logger.info(f"📊 Objetos detectados: {len(valid_coins)}🪙 {len(valid_drops)}📦 {len(valid_dinos)}🦖 (Total: {total_objects})")
+                    
+                    # Recolectar en orden: coins → supplies → dinos
+                    if valid_coins:
+                        logger.info(f"🪙 Recolectando {len(valid_coins)} monedas...")
+                        bot.collect_coin(filtered_positions=valid_coins)
+                    
+                    if valid_drops:
+                        logger.info(f"📦 Recolectando {len(valid_drops)} supply drops...")
+                        bot.collect_supply_drop(filtered_positions=valid_drops)
+                    
+                    if valid_dinos:
+                        logger.info(f"🦖 Disparando a {len(valid_dinos)} dinosaurios...")
+                        bot.collect_dino(filtered_positions=valid_dinos)
+                    
+                    # ⚠️ NO CAMBIAR DE VISTA - volver a escanear misma zona
+                    logger.info("🔄 Revisando misma zona de nuevo para limpiar completamente...")
+                    continue  # Volver al inicio del loop sin cambiar vista
+                    
+                else:
+                    # ✅ Zona limpia - cambiar de vista
+                    if coins or supply_drops or dinos:
+                        logger.info(f"⚠️  Objetos en zonas prohibidas: {len(coins)-len(valid_coins)}🪙 {len(supply_drops)-len(valid_drops)}📦 {len(dinos)-len(valid_dinos)}🦖")
+                    logger.info("✅ Zona limpia - cambiando vista del mapa...")
+
 
                 if bot.number_of_scrolls > max_scrolls:
                     # move location

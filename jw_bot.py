@@ -13,9 +13,30 @@ from skimage import measure, morphology, filters, feature, color, transform
 from scipy import ndimage
 
 # ============================================================================
-# 🦖 JURASSIC WORLD ALIVE BOT - v3.4.8.9.6
+# 🦖 JURASSIC WORLD ALIVE BOT - v3.4.8.9.8
 # ============================================================================
 # CHANGELOG:
+# v3.4.8.9.8 (31-Ene-2026): 📸 Capturas debug + Limpieza completa del mapa
+#   - CAPTURAS AUTOMÁTICAS: Guarda screenshots de cada detección
+#     * Carpetas: debug_screenshots/{supplies,coins,dinos}/
+#     * Formato: {tipo}_{timestamp}_{contador:03d}_n{cantidad}.png
+#     * Visualización: Círculos verdes numerados en cada detección
+#   - LÓGICA MEJORADA (main.py): Revisa mismas posiciones múltiples veces
+#     * Escanea mapa → recolecta todo → vuelve a escanear (sin cambiar vista)
+#     * Solo cambia vista cuando zona está 100% limpia (0 objetos válidos)
+#     * Evita perder dinos que reaparecen o tienen cooldown corto
+#   - PROPÓSITO: Análisis de ~40 runs para entrenar filtros con ejemplos reales
+#
+# v3.4.8.9.7 (31-Ene-2026): 🦕 Filtros Sobel optimizados para detección de dinos
+#   - ANÁLISIS: 6 dinos reales identificados (63-2107px, ratios 0.55-1.67)
+#   - FILTROS IMPLEMENTADOS:
+#     * Área: 31-6321px (captura desde dinos pequeños hasta raids grandes)
+#     * Aspect ratio: 0.30-1.97 (elimina objetos muy alargados o muy planos)
+#   - REDUCCIÓN: 114 → 31 detecciones (72.8% menos falsos positivos)
+#   - MEJORA: Precisión de 5.3% → 19.4% (+14.1 puntos)
+#   - RESULTADO: Bot pierde menos tiempo haciendo click en edificios/árboles
+#   - NOTA: OCR post-click ya filtraba raids (palabras: JEFE/BOSS/NIVEL)
+#
 # v3.4.8.9.6 (31-Ene-2026): 🎨 Rangos RGB basados en análisis REAL de supplies
 #   - ANÁLISIS: Sampleados píxeles exactos (radio 3px) de supplies reales
 #   - EVENTO VERDE: RGB(22,219,13) → Rangos R[10-40] G[200-235] B[5-30]
@@ -123,6 +144,17 @@ class Bot:
         if not os.path.exists('debug_screenshots'):
             os.makedirs('debug_screenshots')
             self.logger.info("📁 Carpeta 'debug_screenshots' creada")
+        
+        # Crear subcarpetas para capturas por tipo
+        for folder in ['supplies', 'coins', 'dinos']:
+            folder_path = os.path.join('debug_screenshots', folder)
+            if not os.path.exists(folder_path):
+                os.makedirs(folder_path)
+        
+        # Contadores para nombrar capturas
+        self.supply_counter = 0
+        self.coin_counter = 0
+        self.dino_counter = 0
 
 
         # get the ratios (I get it from my PC to fit other screen sizes)
@@ -417,6 +449,49 @@ class Bot:
     #   DETECTION
     # ----------------------------------------------------------
 
+    # ----------------------------------------------------------
+    #   DEBUG SCREENSHOTS
+    # ----------------------------------------------------------
+    
+    def _save_detection_screenshot(self, background, positions, detection_type, counter):
+        """Guarda screenshot con detecciones marcadas para análisis posterior
+        
+        Args:
+            background: Imagen del mapa (numpy array)
+            positions: Lista de posiciones detectadas [[row, col], ...]
+            detection_type: Tipo de detección ("supply", "coin", "dino")
+            counter: Contador para enumerar archivos
+        """
+        try:
+            import cv2
+            from datetime import datetime
+            
+            # Crear copia de la imagen para no modificar el original
+            img_marked = background.copy()
+            
+            # Dibujar círculos en cada detección
+            for i, pos in enumerate(positions, 1):
+                row, col = pos[0], pos[1]
+                # Círculo verde
+                cv2.circle(img_marked, (col, row), 15, (0, 255, 0), 2)
+                # Número
+                cv2.putText(img_marked, str(i), (col - 10, row + 5), 
+                           cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
+            
+            # Generar nombre de archivo con timestamp
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"debug_screenshots/{detection_type}s/{detection_type}_{timestamp}_{counter:03d}_n{len(positions)}.png"
+            
+            # Guardar (OpenCV usa BGR, convertir de RGB)
+            cv2.imwrite(filename, cv2.cvtColor(img_marked, cv2.COLOR_RGB2BGR))
+            
+        except Exception as e:
+            self.logger.warning(f"⚠️  Error guardando screenshot debug: {e}")
+
+    # ----------------------------------------------------------
+    #   DETECTION
+    # ----------------------------------------------------------
+
     def locate_x_button(self, background, button_color=None, shift=712):
         """Locate x button to go back to map"""
 
@@ -498,7 +573,9 @@ class Bot:
                 pos.append([center_y, center_x])
                 self.logger.debug(f"   ✅ Supply drop #{label}: {len(rows)} píxeles en posición ({center_y}, {center_x})")
         
+        # 📸 CAPTURA DEBUG: Guardar imagen con detecciones marcadas
         if len(pos) > 0:
+            self._save_detection_screenshot(background, pos, "supply", self.supply_counter)
             self.logger.info(f"🟠 [SUPPLY DROP] Detectados {len(pos)} supply drops: {pos}")
         else:
             self.logger.debug("   ❌ No se detectaron supply drops")
@@ -532,7 +609,9 @@ class Bot:
             if len(rows) > 10:  # Cambiado de 15 a 10
                 pos.append([self.shooting_zone[0] + int(np.mean(rows)), self.shooting_zone[2] + int(np.mean(cols))])
 
+        # 📸 CAPTURA DEBUG: Guardar imagen con detecciones marcadas
         if len(pos) > 0:
+            self._save_detection_screenshot(background, pos, "coin", self.coin_counter)
             print(f"[COINS] Detectadas {len(pos)} monedas")
         
         return pos
@@ -601,13 +680,41 @@ class Bot:
         # connected components
         labels = measure.label(mask, background=0, connectivity=2)
         dist = ndimage.distance_transform_edt(mask)
+        
+        # Extract region properties for filtering
+        regions = measure.regionprops(labels)
+        
+        # Filtros optimizados para reducir falsos positivos (v3.4.8.9.7)
+        # Análisis con 6 dinos reales confirmados: reduce 114 → 31 detecciones (72.8%)
+        MIN_AREA = 31      # Mínimo: dinos pequeños (63px) con margen
+        MAX_AREA = 6321    # Máximo: dinos grandes (2107px) x3 para raids
+        MIN_RATIO = 0.30   # Aspect ratio mínimo (ancho/alto)
+        MAX_RATIO = 1.97   # Aspect ratio máximo
 
-        # find center of mass
-        for label in range(1, labels.max()+1):
-            label_dist = dist * (labels == label).astype(np.uint8)
+        # find center of mass with filters
+        for region in regions:
+            # Calcular características
+            area = region.area
+            bbox = region.bbox  # (min_row, min_col, max_row, max_col)
+            height = bbox[2] - bbox[0]
+            width = bbox[3] - bbox[1]
+            aspect_ratio = width / height if height > 0 else 0
+            
+            # Aplicar filtros de área y forma
+            if not (MIN_AREA <= area <= MAX_AREA):
+                continue  # Área fuera de rango
+            if not (MIN_RATIO <= aspect_ratio <= MAX_RATIO):
+                continue  # Forma incorrecta (muy alargado o muy plano)
+            
+            # Calcular centro usando distance transform
+            label_dist = dist * (labels == region.label).astype(np.uint8)
             row, col = np.unravel_index(label_dist.argmax(), label_dist.shape)
             pos.append([self.shooting_zone[0] + row, 
                         self.shooting_zone[2] + col])
+
+        # 📸 CAPTURA DEBUG: Guardar imagen con detecciones marcadas
+        if len(pos) > 0:
+            self._save_detection_screenshot(background, pos, "dino", self.dino_counter)
 
         # import matplotlib.pyplot as plt
         # plt.figure(1)
@@ -1256,6 +1363,9 @@ class Bot:
         background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
         dino_pos = filtered_positions if filtered_positions is not None else self.detect_dino(background)
         
+        # Incrementar contador para siguiente detección
+        self.dino_counter += 1
+        
         print("--"*10)
         print("TOTAL NUMBER OF DINO", len(dino_pos))
         for i, pos in enumerate(dino_pos):
@@ -1353,6 +1463,9 @@ class Bot:
         background = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
         coin_pos = filtered_positions if filtered_positions is not None else self.detect_coins(background)
 
+        # Incrementar contador para siguiente detección
+        self.coin_counter += 1
+
         for pos in coin_pos:
             if keyboard.is_pressed("q"):
                 raise KeyboardInterrupt
@@ -1433,6 +1546,9 @@ class Bot:
         # use old background to determine stop clicking
         background_old= np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))        
         supply_drop_pos = filtered_positions if filtered_positions is not None else self.detect_supply_drop(background_old)
+        
+        # Incrementar contador para siguiente detección
+        self.supply_counter += 1
         
         # loop until you click supply drop
         for pos in supply_drop_pos:
