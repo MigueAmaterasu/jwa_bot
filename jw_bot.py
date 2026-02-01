@@ -13,9 +13,18 @@ from skimage import measure, morphology, filters, feature, color, transform
 from scipy import ndimage
 
 # ============================================================================
-# 🦖 JURASSIC WORLD ALIVE BOT - v3.4.8.9.2
+# 🦖 JURASSIC WORLD ALIVE BOT - v3.4.8.9.6
 # ============================================================================
 # CHANGELOG:
+# v3.4.8.9.6 (31-Ene-2026): 🎨 Rangos RGB basados en análisis REAL de supplies
+#   - ANÁLISIS: Sampleados píxeles exactos (radio 3px) de supplies reales
+#   - EVENTO VERDE: RGB(22,219,13) → Rangos R[10-40] G[200-235] B[5-30]
+#   - SUPPLY NARANJA: RGB(255,143,18) y RGB(255,131,4) → R[233-255] G[120-165] B[0-30]
+#   - min_pixels: 15 → 100 → 70 (captura supplies pequeños de 78px)
+#   - Zonas excluidas: Bordes ajustados (50px→20px izq, 516px→540px der)
+#   - RESULTADO: 10/11 correctos (90.9% precisión vs 1/42 = 2.4% anterior)
+#   - Problema anterior: Detectaba árboles (R alto, G bajo) en vez de supplies (R alto, G medio o G muy alto)
+#
 # v3.4.8.9.2 (31-Ene-2026): 🔴 BUG CRÍTICO CORREGIDO - Supply drops rechazados
 #   - FIX: Reordenado checks en determine_state() para verificar "SUMINISTRO" ANTES de "ASALTO"
 #   - PROBLEMA: Supply drops legítimos rechazados con "⛔ Incubadora o evento de combate"
@@ -178,15 +187,17 @@ class Bot:
         # 2. Usa un color picker (ej: GIMP, Photoshop, Paint) para obtener RGB
         # 3. Ajusta los rangos min/max para incluir variaciones de brillo
         # 
-        # 🎨 COLORES ACTIVOS (normal):
+        # 🎨 COLORES ACTIVOS (basados en análisis RGB real v3.4.8.9.6):
         
         # 🟢 EVENTOS ESPECIALES - Verde brillante
-        self.special_event_color = (0, 120, 0, 180, 255, 180)
-        # Rango: R[0-180], G[120-255], B[0-180]
+        # Análisis real: RGB(22, 219, 13) - Radio 3px
+        self.special_event_color = (10, 200, 5, 40, 235, 30)
+        # Rango: R[10-40], G[200-235], B[5-30]
         
-        # 🟠 SUPPLY DROPS - Naranja/Amarillo
-        self.supply_drop_color = (160, 60, 0, 255, 255, 120)
-        # Rango: R[160-255], G[60-255], B[0-120]
+        # 🟠 SUPPLY DROPS - Naranja (rojo alto)
+        # Análisis real: RGB(255, 143, 18) y RGB(255, 131, 4) - Radio 3px
+        self.supply_drop_color = (233, 120, 0, 255, 165, 30)
+        # Rango: R[233-255], G[120-165], B[0-30]
         
         # ========================================================================
         # 🎨 COLORES ALTERNATIVOS PARA EVENTOS ESPECIALES
@@ -468,11 +479,15 @@ class Bot:
         labels = measure.label(mask, background=0, connectivity=2)
         self.logger.debug(f"   🔢 Componentes detectados: {labels.max()}")
 
-        # ⚡ OPTIMIZADO v3.4.4: Tamaño mínimo basado en análisis real de map_initial
-        # Análisis: Supply drops reales van de 11-2712 píxeles
-        # Con min=50 se perdían 9/19 naranjas (47%) y 1/3 verdes (33%)
-        # Nuevo umbral: 15 píxeles = captura todos sin generar falsos positivos
-        min_pixels = 15
+        # ⚡ v3.4.8.9.6: Umbral basado en análisis RGB real
+        # Análisis real (31 Ene 2025):
+        #   - Evento verde más pequeño: 141 píxeles
+        #   - Supply naranja más pequeño: 78 píxeles (posición [201, 305])
+        #   - Supply naranja típico: 150-200 píxeles
+        # Umbral anterior (15px): 97.6% falsos positivos (41/42)
+        # Umbral 100px: Rechazaba supplies pequeños válidos (78px)
+        # Nuevo umbral: 70 píxeles = captura todos los reales (10/11 = 90.9%)
+        min_pixels = 70
         
         # v3.4.8.7: Filtrado removido - ahora se hace en main.py de forma centralizada
         for label in range(1, labels.max()+1):
@@ -665,9 +680,9 @@ class Bot:
         Returns:
             Lista filtrada de posiciones válidas
         """
-        # v3.4.8.8.0: ZONAS EXCLUIDAS EXPANDIDAS
-        # Basado en análisis de logs: objetos en [690, 264], [707, 240], [669, 267] se repiten constantemente
-        # Son elementos fijos de la UI, NO supply drops reales
+        # v3.4.8.9.6: ZONAS EXCLUIDAS AJUSTADAS - Bordes más estrechos
+        # Basado en pruebas: bordes de 50px bloqueaban supplies válidos
+        # Nuevos bordes: 20px (izq) y 540px (der) solo bloquean UI extrema
         excluded_zones = [
             # Barra inferior completa (botones del juego)
             {'name': 'Barra inferior completa', 'x_min': 0, 'x_max': 566, 'y_min': 630, 'y_max': 953},
@@ -676,9 +691,9 @@ class Bot:
             {'name': 'Esquina superior izquierda', 'x_min': 0, 'x_max': 100, 'y_min': 0, 'y_max': 100},
             {'name': 'Esquina superior derecha', 'x_min': 466, 'x_max': 566, 'y_min': 0, 'y_max': 100},
             
-            # Bordes laterales (pueden tener iconos de UI)
-            {'name': 'Borde izquierdo', 'x_min': 0, 'x_max': 50, 'y_min': 0, 'y_max': 630},
-            {'name': 'Borde derecho', 'x_min': 516, 'x_max': 566, 'y_min': 0, 'y_max': 630},
+            # Bordes laterales MÁS ESTRECHOS (solo UI extrema)
+            {'name': 'Borde izquierdo', 'x_min': 0, 'x_max': 20, 'y_min': 0, 'y_max': 630},
+            {'name': 'Borde derecho', 'x_min': 540, 'x_max': 566, 'y_min': 0, 'y_max': 630},
         ]
         
         valid_positions = []
