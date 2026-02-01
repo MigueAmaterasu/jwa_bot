@@ -1459,12 +1459,22 @@ class Bot:
         # Incrementar contador para siguiente detección
         self.dino_counter += 1
         
+        self.logger.debug("=" * 60)
+        self.logger.debug(f"🦖 [COLLECT DINO] INICIANDO PROCESAMIENTO")
+        self.logger.debug(f"   Posiciones recibidas: {len(dino_pos)}")
+        self.logger.debug(f"   Posiciones: {dino_pos}")
+        self.logger.debug(f"   Dino counter: {self.dino_counter}")
+        self.logger.debug("-" * 60)
+        
         print("--"*10)
         print("TOTAL NUMBER OF DINO", len(dino_pos))
         for i, pos in enumerate(dino_pos):
             if keyboard.is_pressed("q"):
                 raise KeyboardInterrupt
 
+            self.logger.debug(f"🦖 Procesando dino #{i+1}/{len(dino_pos)}: posición {pos}")
+            self.logger.debug(f"   🖱️  Clickeando en x={self.x+pos[1]}, y={self.y+pos[0]}")
+            
             background_old = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
             pyautogui.click(x=self.x+pos[1], y=self.y+pos[0])
             time.sleep(0.02)
@@ -1472,6 +1482,7 @@ class Bot:
 
             # to many FPs so quick way to eliminate them
             if not self.background_changed(background_old, background_new):
+                self.logger.warning(f"⏭️  Click en {pos} no cambió pantalla - Falso positivo detectado")
                 print("--"*10)
                 print("NOTHING THERE")
                 continue
@@ -1479,6 +1490,8 @@ class Bot:
             time.sleep(0.8)
             background_new = np.array(pyautogui.screenshot(region=(self.x, self.y, self.w, self.h)))
             state = self.determine_state(background_new)
+            
+            self.logger.debug(f"   🔍 Estado detectado: {state.upper()}")
 
             # 🔧 FIX: Si detectamos supply/coin en vez de dino, recolectarlo apropiadamente
             if state == "supply" or state == "event":
