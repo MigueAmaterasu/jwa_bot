@@ -1,0 +1,808 @@
+[2026-01-31 19:17:45] [INFO] ================================================================================
+[2026-01-31 19:17:45] [INFO] 🦖 JURASSIC WORLD ALIVE BOT - INICIADO
+[2026-01-31 19:17:45] [INFO] ================================================================================
+[2026-01-31 19:17:45] [INFO] 📁 Log guardado en: logs/bot_log_20260131_191745.log
+[2026-01-31 19:17:45] [INFO] ================================================================================
+[2026-01-31 19:17:45] [INFO] 🎮 INSTRUCCIONES DE CALIBRACIÓN
+[2026-01-31 19:17:45] [INFO] ================================================================================
+[2026-01-31 19:17:45] [INFO] 1️⃣  Abre BlueStacks con Jurassic World Alive en el MAPA
+[2026-01-31 19:17:45] [INFO] 2️⃣  Presiona 'a' y haz click en ESQUINA SUPERIOR IZQUIERDA del juego
+[2026-01-31 19:17:45] [INFO] 3️⃣  Presiona 'a' otra vez y haz click en ESQUINA INFERIOR DERECHA
+[2026-01-31 19:17:45] [INFO] 4️⃣  El bot empezará a funcionar automáticamente
+[2026-01-31 19:17:45] [INFO] ❌ Presiona 'q' para detener el bot en cualquier momento
+[2026-01-31 19:17:45] [INFO] ================================================================================
+[2026-01-31 19:17:45] [INFO] 🔧 Inicializando Bot...
+[2026-01-31 19:17:45] [INFO] ⏱️  Tiempo límite configurado: 10 horas
+[2026-01-31 19:17:52] [INFO] 🔘 Tecla 'a' presionada
+[2026-01-31 19:17:52] [INFO] ✅ Primer punto capturado: (681, 38)
+[2026-01-31 19:17:52] [INFO] 👉 Ahora presiona 'a' de nuevo y haz click en la esquina inferior derecha
+[2026-01-31 19:17:57] [INFO] 🔘 Tecla 'a' presionada
+[2026-01-31 19:17:57] [INFO] ✅ Segundo punto capturado: (1283, 1049)
+[2026-01-31 19:17:57] [INFO] ================================================================================
+[2026-01-31 19:17:57] [INFO] 📐 CONFIGURACIÓN DE VENTANA BLUESTACKS
+[2026-01-31 19:17:57] [INFO] ================================================================================
+[2026-01-31 19:17:57] [INFO] 📍 Posición X: 681px
+[2026-01-31 19:17:57] [INFO] 📍 Posición Y: 38px
+[2026-01-31 19:17:57] [INFO] 📏 Ancho (W): 602px
+[2026-01-31 19:17:57] [INFO] 📏 Alto (H): 1011px
+[2026-01-31 19:17:57] [INFO] 🎯 Esquina superior izquierda: (681, 38)
+[2026-01-31 19:17:57] [INFO] 🎯 Esquina inferior derecha: (1283, 1049)
+[2026-01-31 19:17:57] [INFO] ================================================================================
+[2026-01-31 19:17:57] [INFO] 🎯 Shooting zone: Y[279-770] X[12-513]
+[2026-01-31 19:17:57] [INFO] 🚀 Launch button: Y[790-866] X[165-387]
+[2026-01-31 19:17:57] [INFO] ⏱️  Cooldown text area: Y[547-705] X[165-387]
+[2026-01-31 19:17:57] [INFO] 📝 Supply text area: Y[50-151] X[120-481]
+[2026-01-31 19:17:57] [INFO] 📸 Capturando vista inicial del mapa para análisis...
+[2026-01-31 19:17:58] [INFO] ✅ Captura inicial guardada: map_initial_20260131_191757.png
+[2026-01-31 19:17:58] [INFO] 🚀 Calibración completa! El bot comenzará a operar...
+[2026-01-31 19:17:59] [INFO] ================================================================================
+[2026-01-31 19:17:59] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:17:59] [INFO] ================================================================================
+[2026-01-31 19:17:59] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:17:59] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:17:59] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:17:59] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:17:59] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:17:59] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:17:59] [DEBUG]    🎨 Píxeles detectados inicialmente: 888
+[2026-01-31 19:17:59] [DEBUG]    🔢 Componentes detectados: 18
+[2026-01-31 19:17:59] [DEBUG]    ✅ Supply drop #18: 876 píxeles en posición (433, 45)
+[2026-01-31 19:17:59] [DEBUG] 🎯 [SUPPLY DROP] About to save screenshot: len(pos)=1, counter=0
+[2026-01-31 19:17:59] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=supply, n=1, counter=0
+[2026-01-31 19:17:59] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/supplies/supply_20260131_191759_000_n1.png
+[2026-01-31 19:17:59] [INFO] 🟠 [SUPPLY DROP] Detectados 1 supply drops: [[433, 45]]
+[2026-01-31 19:17:59] [DEBUG] 📦 Supplies detectados (raw): 1 posiciones [[433, 45]]
+[2026-01-31 19:17:59] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:17:59] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=6, counter=0
+[2026-01-31 19:17:59] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191759_000_n6.png
+[2026-01-31 19:17:59] [DEBUG] 🦖 Dinos detectados (raw): 6 posiciones
+[2026-01-31 19:17:59] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:17:59] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:17:59] [DEBUG]    📦 Supplies válidos después de filtro: 1/1
+[2026-01-31 19:17:59] [DEBUG]    🦖 Dinos válidos después de filtro: 6/6
+[2026-01-31 19:17:59] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:17:59] [INFO] 📊 RESULTADO FINAL: 0🪙 1📦 6🦖 (Total: 7)
+[2026-01-31 19:17:59] [DEBUG] ================================================================================
+[2026-01-31 19:17:59] [INFO] 📦 ➡️  Iniciando recolección de 1 supply drops...
+[2026-01-31 19:17:59] [DEBUG] ============================================================
+[2026-01-31 19:17:59] [DEBUG] 📦 [COLLECT SUPPLY] INICIANDO RECOLECCIÓN
+[2026-01-31 19:17:59] [DEBUG]    Posiciones recibidas: 1
+[2026-01-31 19:17:59] [DEBUG]    Posiciones: [[433, 45]]
+[2026-01-31 19:17:59] [DEBUG]    Supply counter actual: 0
+[2026-01-31 19:17:59] [DEBUG]    Supply counter incrementado a: 1
+[2026-01-31 19:17:59] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:17:59] [DEBUG] 📦 Procesando supply #1/1: posición (433, 45)
+[2026-01-31 19:17:59] [DEBUG]    🖱️  Clickeando en x=726, y=471
+[2026-01-31 19:18:00] [DEBUG]    ✅ Pantalla cambió - algo se abrió
+[2026-01-31 19:18:01] [DEBUG]    📸 Guardando regiones OCR para debug...
+[2026-01-31 19:18:02] [DEBUG]    🔍 Determinando estado con OCR...
+[2026-01-31 19:18:02] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:18:02] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:18:02] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:18:02] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:18:03] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 19:18:03] [INFO] 📝 [OCR] Texto: '(ALIZACIONDESUMINISTRO'
+[2026-01-31 19:18:03] [INFO] 📝 [OCR] Combinado: ' (ALIZACIONDESUMINISTRO'
+[2026-01-31 19:18:03] [DEBUG]    📦 Palabras clave de SUPPLY detectadas (prioridad alta)
+[2026-01-31 19:18:03] [DEBUG]    📝 Estado determinado: 'supply'
+[2026-01-31 19:18:03] [DEBUG] 🔍 Evaluando force-supply: filtered_positions=True, state='supply'
+[2026-01-31 19:18:03] [DEBUG] 🔍 Valor de state antes del if: 'supply' (type: <class 'str'>)
+[2026-01-31 19:18:03] [DEBUG] 🔍 Evaluando: state == 'supply' → True
+[2026-01-31 19:18:03] [DEBUG] 🔍 Evaluando: state == 'event' → False
+[2026-01-31 19:18:03] [INFO] 🎁 Recolectando SUPPLY...
+[2026-01-31 19:18:07] [DEBUG]    Click recolección 1/3
+[2026-01-31 19:18:09] [DEBUG]    Click recolección 2/3
+[2026-01-31 19:18:10] [DEBUG]    Click recolección 3/3
+[2026-01-31 19:18:11] [DEBUG]    Supply aún abierto, buscando botón para cerrar...
+[2026-01-31 19:18:12] [INFO] ✅ SUPPLY procesado
+[2026-01-31 19:18:12] [INFO] 🦖 ➡️  Iniciando disparo a 6 dinosaurios...
+[2026-01-31 19:18:13] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:18:13] [INFO] ================================================================================
+[2026-01-31 19:18:13] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:18:13] [INFO] ================================================================================
+[2026-01-31 19:18:13] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:18:13] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:13] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:18:13] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:18:13] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:18:13] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:18:13] [DEBUG]    🎨 Píxeles detectados inicialmente: 358
+[2026-01-31 19:18:13] [DEBUG]    🔢 Componentes detectados: 16
+[2026-01-31 19:18:13] [DEBUG]    ✅ Supply drop #16: 232 píxeles en posición (484, 55)
+[2026-01-31 19:18:13] [DEBUG] 🎯 [SUPPLY DROP] About to save screenshot: len(pos)=1, counter=1
+[2026-01-31 19:18:13] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=supply, n=1, counter=1
+[2026-01-31 19:18:13] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/supplies/supply_20260131_191813_001_n1.png
+[2026-01-31 19:18:13] [INFO] 🟠 [SUPPLY DROP] Detectados 1 supply drops: [[484, 55]]
+[2026-01-31 19:18:13] [DEBUG] 📦 Supplies detectados (raw): 1 posiciones [[484, 55]]
+[2026-01-31 19:18:13] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:14] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=7, counter=1
+[2026-01-31 19:18:14] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191814_001_n7.png
+[2026-01-31 19:18:14] [DEBUG] 🦖 Dinos detectados (raw): 7 posiciones
+[2026-01-31 19:18:14] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:14] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:18:14] [DEBUG]    📦 Supplies válidos después de filtro: 1/1
+[2026-01-31 19:18:14] [DEBUG]    🦖 Dinos válidos después de filtro: 7/7
+[2026-01-31 19:18:14] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:14] [INFO] 📊 RESULTADO FINAL: 0🪙 1📦 7🦖 (Total: 8)
+[2026-01-31 19:18:14] [DEBUG] ================================================================================
+[2026-01-31 19:18:14] [INFO] 📦 ➡️  Iniciando recolección de 1 supply drops...
+[2026-01-31 19:18:14] [DEBUG] ============================================================
+[2026-01-31 19:18:14] [DEBUG] 📦 [COLLECT SUPPLY] INICIANDO RECOLECCIÓN
+[2026-01-31 19:18:14] [DEBUG]    Posiciones recibidas: 1
+[2026-01-31 19:18:14] [DEBUG]    Posiciones: [[484, 55]]
+[2026-01-31 19:18:14] [DEBUG]    Supply counter actual: 1
+[2026-01-31 19:18:14] [DEBUG]    Supply counter incrementado a: 2
+[2026-01-31 19:18:14] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:14] [DEBUG] 📦 Procesando supply #1/1: posición (484, 55)
+[2026-01-31 19:18:14] [DEBUG]    🖱️  Clickeando en x=736, y=522
+[2026-01-31 19:18:15] [WARNING] ⏭️  Click en (484, 55) no abrió nada - Saltando objeto
+[2026-01-31 19:18:15] [INFO] 🦖 ➡️  Iniciando disparo a 7 dinosaurios...
+[2026-01-31 19:18:17] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:18:17] [INFO] ================================================================================
+[2026-01-31 19:18:17] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:18:17] [INFO] ================================================================================
+[2026-01-31 19:18:17] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:18:17] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:17] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:18:17] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:18:17] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:18:17] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:18:17] [DEBUG]    🎨 Píxeles detectados inicialmente: 360
+[2026-01-31 19:18:17] [DEBUG]    🔢 Componentes detectados: 19
+[2026-01-31 19:18:17] [DEBUG]    ✅ Supply drop #19: 237 píxeles en posición (484, 55)
+[2026-01-31 19:18:17] [DEBUG] 🎯 [SUPPLY DROP] About to save screenshot: len(pos)=1, counter=2
+[2026-01-31 19:18:17] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=supply, n=1, counter=2
+[2026-01-31 19:18:17] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/supplies/supply_20260131_191817_002_n1.png
+[2026-01-31 19:18:17] [INFO] 🟠 [SUPPLY DROP] Detectados 1 supply drops: [[484, 55]]
+[2026-01-31 19:18:17] [DEBUG] 📦 Supplies detectados (raw): 1 posiciones [[484, 55]]
+[2026-01-31 19:18:17] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:17] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=12, counter=2
+[2026-01-31 19:18:17] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191817_002_n12.png
+[2026-01-31 19:18:17] [DEBUG] 🦖 Dinos detectados (raw): 12 posiciones
+[2026-01-31 19:18:17] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:17] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:18:17] [DEBUG]    📦 Supplies válidos después de filtro: 1/1
+[2026-01-31 19:18:17] [DEBUG] ⛔ [DINO] Posición (484, 15) en zona excluida: Borde izquierdo
+[2026-01-31 19:18:17] [DEBUG] ⛔ [DINO] Posición (769, 73) en zona excluida: Barra inferior completa
+[2026-01-31 19:18:17] [DEBUG]    🦖 Dinos válidos después de filtro: 10/12
+[2026-01-31 19:18:17] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:17] [INFO] 📊 RESULTADO FINAL: 0🪙 1📦 10🦖 (Total: 11)
+[2026-01-31 19:18:17] [DEBUG] ================================================================================
+[2026-01-31 19:18:17] [INFO] 📦 ➡️  Iniciando recolección de 1 supply drops...
+[2026-01-31 19:18:17] [DEBUG] ============================================================
+[2026-01-31 19:18:17] [DEBUG] 📦 [COLLECT SUPPLY] INICIANDO RECOLECCIÓN
+[2026-01-31 19:18:17] [DEBUG]    Posiciones recibidas: 1
+[2026-01-31 19:18:17] [DEBUG]    Posiciones: [[484, 55]]
+[2026-01-31 19:18:17] [DEBUG]    Supply counter actual: 2
+[2026-01-31 19:18:17] [DEBUG]    Supply counter incrementado a: 3
+[2026-01-31 19:18:17] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:17] [DEBUG] 📦 Procesando supply #1/1: posición (484, 55)
+[2026-01-31 19:18:17] [DEBUG]    🖱️  Clickeando en x=736, y=522
+[2026-01-31 19:18:18] [WARNING] ⏭️  Click en (484, 55) no abrió nada - Saltando objeto
+[2026-01-31 19:18:18] [INFO] 🦖 ➡️  Iniciando disparo a 10 dinosaurios...
+[2026-01-31 19:18:21] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:18:21] [INFO] ================================================================================
+[2026-01-31 19:18:21] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:18:21] [INFO] ================================================================================
+[2026-01-31 19:18:21] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:18:21] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:21] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:18:21] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:18:21] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:18:21] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:18:21] [DEBUG]    🎨 Píxeles detectados inicialmente: 0
+[2026-01-31 19:18:21] [DEBUG]    🔢 Componentes detectados: 0
+[2026-01-31 19:18:21] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 19:18:21] [DEBUG] 📦 Supplies detectados (raw): 0 posiciones []
+[2026-01-31 19:18:21] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:21] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=6, counter=3
+[2026-01-31 19:18:21] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191821_003_n6.png
+[2026-01-31 19:18:21] [DEBUG] 🦖 Dinos detectados (raw): 6 posiciones
+[2026-01-31 19:18:21] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:21] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:18:21] [DEBUG]    📦 Supplies válidos después de filtro: 0/0
+[2026-01-31 19:18:21] [DEBUG] ⛔ [DINO] Posición (688, 233) en zona excluida: Barra inferior completa
+[2026-01-31 19:18:21] [DEBUG]    🦖 Dinos válidos después de filtro: 5/6
+[2026-01-31 19:18:21] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:21] [INFO] 📊 RESULTADO FINAL: 0🪙 0📦 5🦖 (Total: 5)
+[2026-01-31 19:18:21] [DEBUG] ================================================================================
+[2026-01-31 19:18:21] [INFO] 🦖 ➡️  Iniciando disparo a 5 dinosaurios...
+[2026-01-31 19:18:22] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:18:22] [INFO] ================================================================================
+[2026-01-31 19:18:22] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:18:22] [INFO] ================================================================================
+[2026-01-31 19:18:22] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:18:22] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:22] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:18:22] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:18:22] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:18:22] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:18:22] [DEBUG]    🎨 Píxeles detectados inicialmente: 0
+[2026-01-31 19:18:22] [DEBUG]    🔢 Componentes detectados: 0
+[2026-01-31 19:18:22] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 19:18:22] [DEBUG] 📦 Supplies detectados (raw): 0 posiciones []
+[2026-01-31 19:18:22] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:23] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=6, counter=4
+[2026-01-31 19:18:23] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191823_004_n6.png
+[2026-01-31 19:18:23] [DEBUG] 🦖 Dinos detectados (raw): 6 posiciones
+[2026-01-31 19:18:23] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:23] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:18:23] [DEBUG]    📦 Supplies válidos después de filtro: 0/0
+[2026-01-31 19:18:23] [DEBUG] ⛔ [DINO] Posición (688, 233) en zona excluida: Barra inferior completa
+[2026-01-31 19:18:23] [DEBUG]    🦖 Dinos válidos después de filtro: 5/6
+[2026-01-31 19:18:23] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:23] [INFO] 📊 RESULTADO FINAL: 0🪙 0📦 5🦖 (Total: 5)
+[2026-01-31 19:18:23] [DEBUG] ================================================================================
+[2026-01-31 19:18:23] [INFO] 🦖 ➡️  Iniciando disparo a 5 dinosaurios...
+[2026-01-31 19:18:24] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:18:24] [INFO] ================================================================================
+[2026-01-31 19:18:24] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:18:24] [INFO] ================================================================================
+[2026-01-31 19:18:24] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:18:24] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:24] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:18:24] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:18:24] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:18:24] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:18:24] [DEBUG]    🎨 Píxeles detectados inicialmente: 0
+[2026-01-31 19:18:24] [DEBUG]    🔢 Componentes detectados: 0
+[2026-01-31 19:18:24] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 19:18:24] [DEBUG] 📦 Supplies detectados (raw): 0 posiciones []
+[2026-01-31 19:18:24] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:24] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=5, counter=5
+[2026-01-31 19:18:24] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191824_005_n5.png
+[2026-01-31 19:18:24] [DEBUG] 🦖 Dinos detectados (raw): 5 posiciones
+[2026-01-31 19:18:24] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:24] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:18:24] [DEBUG]    📦 Supplies válidos después de filtro: 0/0
+[2026-01-31 19:18:24] [DEBUG]    🦖 Dinos válidos después de filtro: 5/5
+[2026-01-31 19:18:24] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:24] [INFO] 📊 RESULTADO FINAL: 0🪙 0📦 5🦖 (Total: 5)
+[2026-01-31 19:18:24] [DEBUG] ================================================================================
+[2026-01-31 19:18:24] [INFO] 🦖 ➡️  Iniciando disparo a 5 dinosaurios...
+[2026-01-31 19:18:26] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:18:26] [INFO] ================================================================================
+[2026-01-31 19:18:26] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:18:26] [INFO] ================================================================================
+[2026-01-31 19:18:26] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:18:26] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:26] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:18:26] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:18:26] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:18:26] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:18:26] [DEBUG]    🎨 Píxeles detectados inicialmente: 0
+[2026-01-31 19:18:26] [DEBUG]    🔢 Componentes detectados: 0
+[2026-01-31 19:18:26] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 19:18:26] [DEBUG] 📦 Supplies detectados (raw): 0 posiciones []
+[2026-01-31 19:18:26] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:26] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=5, counter=6
+[2026-01-31 19:18:26] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191826_006_n5.png
+[2026-01-31 19:18:26] [DEBUG] 🦖 Dinos detectados (raw): 5 posiciones
+[2026-01-31 19:18:26] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:26] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:18:26] [DEBUG]    📦 Supplies válidos después de filtro: 0/0
+[2026-01-31 19:18:26] [DEBUG]    🦖 Dinos válidos después de filtro: 5/5
+[2026-01-31 19:18:26] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:26] [INFO] 📊 RESULTADO FINAL: 0🪙 0📦 5🦖 (Total: 5)
+[2026-01-31 19:18:26] [DEBUG] ================================================================================
+[2026-01-31 19:18:26] [INFO] 🦖 ➡️  Iniciando disparo a 5 dinosaurios...
+[2026-01-31 19:18:27] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:18:27] [INFO] ================================================================================
+[2026-01-31 19:18:27] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:18:27] [INFO] ================================================================================
+[2026-01-31 19:18:28] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:18:28] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:28] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:18:28] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:18:28] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:18:28] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:18:28] [DEBUG]    🎨 Píxeles detectados inicialmente: 0
+[2026-01-31 19:18:28] [DEBUG]    🔢 Componentes detectados: 0
+[2026-01-31 19:18:28] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 19:18:28] [DEBUG] 📦 Supplies detectados (raw): 0 posiciones []
+[2026-01-31 19:18:28] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:28] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=5, counter=7
+[2026-01-31 19:18:28] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191828_007_n5.png
+[2026-01-31 19:18:28] [DEBUG] 🦖 Dinos detectados (raw): 5 posiciones
+[2026-01-31 19:18:28] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:28] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:18:28] [DEBUG]    📦 Supplies válidos después de filtro: 0/0
+[2026-01-31 19:18:28] [DEBUG]    🦖 Dinos válidos después de filtro: 5/5
+[2026-01-31 19:18:28] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:28] [INFO] 📊 RESULTADO FINAL: 0🪙 0📦 5🦖 (Total: 5)
+[2026-01-31 19:18:28] [DEBUG] ================================================================================
+[2026-01-31 19:18:28] [INFO] 🦖 ➡️  Iniciando disparo a 5 dinosaurios...
+[2026-01-31 19:18:29] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:18:29] [INFO] ================================================================================
+[2026-01-31 19:18:29] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:18:29] [INFO] ================================================================================
+[2026-01-31 19:18:29] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:18:29] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:29] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:18:29] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:18:29] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:18:29] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:18:29] [DEBUG]    🎨 Píxeles detectados inicialmente: 0
+[2026-01-31 19:18:29] [DEBUG]    🔢 Componentes detectados: 0
+[2026-01-31 19:18:29] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 19:18:29] [DEBUG] 📦 Supplies detectados (raw): 0 posiciones []
+[2026-01-31 19:18:29] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:29] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=5, counter=8
+[2026-01-31 19:18:29] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191829_008_n5.png
+[2026-01-31 19:18:29] [DEBUG] 🦖 Dinos detectados (raw): 5 posiciones
+[2026-01-31 19:18:29] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:29] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:18:29] [DEBUG]    📦 Supplies válidos después de filtro: 0/0
+[2026-01-31 19:18:29] [DEBUG]    🦖 Dinos válidos después de filtro: 5/5
+[2026-01-31 19:18:29] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:29] [INFO] 📊 RESULTADO FINAL: 0🪙 0📦 5🦖 (Total: 5)
+[2026-01-31 19:18:29] [DEBUG] ================================================================================
+[2026-01-31 19:18:29] [INFO] 🦖 ➡️  Iniciando disparo a 5 dinosaurios...
+[2026-01-31 19:18:31] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:18:31] [INFO] ================================================================================
+[2026-01-31 19:18:31] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:18:31] [INFO] ================================================================================
+[2026-01-31 19:18:31] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:18:31] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:31] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:18:31] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:18:31] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:18:31] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:18:31] [DEBUG]    🎨 Píxeles detectados inicialmente: 0
+[2026-01-31 19:18:31] [DEBUG]    🔢 Componentes detectados: 0
+[2026-01-31 19:18:31] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 19:18:31] [DEBUG] 📦 Supplies detectados (raw): 0 posiciones []
+[2026-01-31 19:18:31] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:31] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=7, counter=9
+[2026-01-31 19:18:31] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191831_009_n7.png
+[2026-01-31 19:18:31] [DEBUG] 🦖 Dinos detectados (raw): 7 posiciones
+[2026-01-31 19:18:31] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:31] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:18:31] [DEBUG]    📦 Supplies válidos después de filtro: 0/0
+[2026-01-31 19:18:31] [DEBUG]    🦖 Dinos válidos después de filtro: 7/7
+[2026-01-31 19:18:31] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:31] [INFO] 📊 RESULTADO FINAL: 0🪙 0📦 7🦖 (Total: 7)
+[2026-01-31 19:18:31] [DEBUG] ================================================================================
+[2026-01-31 19:18:31] [INFO] 🦖 ➡️  Iniciando disparo a 7 dinosaurios...
+[2026-01-31 19:18:33] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:18:33] [INFO] ================================================================================
+[2026-01-31 19:18:33] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:18:33] [INFO] ================================================================================
+[2026-01-31 19:18:33] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:18:33] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:33] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:18:33] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:18:33] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:18:33] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:18:33] [DEBUG]    🎨 Píxeles detectados inicialmente: 0
+[2026-01-31 19:18:33] [DEBUG]    🔢 Componentes detectados: 0
+[2026-01-31 19:18:33] [DEBUG]    ❌ No se detectaron supply drops
+[2026-01-31 19:18:33] [DEBUG] 📦 Supplies detectados (raw): 0 posiciones []
+[2026-01-31 19:18:33] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:33] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=7, counter=10
+[2026-01-31 19:18:33] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191833_010_n7.png
+[2026-01-31 19:18:33] [DEBUG] 🦖 Dinos detectados (raw): 7 posiciones
+[2026-01-31 19:18:33] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:33] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:18:33] [DEBUG]    📦 Supplies válidos después de filtro: 0/0
+[2026-01-31 19:18:33] [DEBUG]    🦖 Dinos válidos después de filtro: 7/7
+[2026-01-31 19:18:33] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:33] [INFO] 📊 RESULTADO FINAL: 0🪙 0📦 7🦖 (Total: 7)
+[2026-01-31 19:18:33] [DEBUG] ================================================================================
+[2026-01-31 19:18:33] [INFO] 🦖 ➡️  Iniciando disparo a 7 dinosaurios...
+[2026-01-31 19:18:35] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:18:35] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:18:35] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:18:35] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:18:36] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 19:18:36] [INFO] 📝 [OCR] Texto: 'EVENTODEASALTO'
+[2026-01-31 19:18:36] [INFO] 📝 [OCR] Combinado: ' EVENTODEASALTO'
+[2026-01-31 19:18:36] [WARNING] ⛔ [EXCLUIDO] Incubadora o evento de combate detectado
+[2026-01-31 19:18:38] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:18:38] [INFO] ================================================================================
+[2026-01-31 19:18:38] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:18:38] [INFO] ================================================================================
+[2026-01-31 19:18:38] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:18:38] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:38] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:18:38] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:18:38] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:18:38] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:18:38] [DEBUG]    🎨 Píxeles detectados inicialmente: 360
+[2026-01-31 19:18:38] [DEBUG]    🔢 Componentes detectados: 18
+[2026-01-31 19:18:38] [DEBUG]    ✅ Supply drop #18: 229 píxeles en posición (484, 55)
+[2026-01-31 19:18:38] [DEBUG] 🎯 [SUPPLY DROP] About to save screenshot: len(pos)=1, counter=3
+[2026-01-31 19:18:38] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=supply, n=1, counter=3
+[2026-01-31 19:18:38] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/supplies/supply_20260131_191838_003_n1.png
+[2026-01-31 19:18:38] [INFO] 🟠 [SUPPLY DROP] Detectados 1 supply drops: [[484, 55]]
+[2026-01-31 19:18:38] [DEBUG] 📦 Supplies detectados (raw): 1 posiciones [[484, 55]]
+[2026-01-31 19:18:38] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:38] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=10, counter=11
+[2026-01-31 19:18:39] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_191838_011_n10.png
+[2026-01-31 19:18:39] [DEBUG] 🦖 Dinos detectados (raw): 10 posiciones
+[2026-01-31 19:18:39] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:39] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:18:39] [DEBUG]    📦 Supplies válidos después de filtro: 1/1
+[2026-01-31 19:18:39] [DEBUG]    🦖 Dinos válidos después de filtro: 10/10
+[2026-01-31 19:18:39] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:39] [INFO] 📊 RESULTADO FINAL: 0🪙 1📦 10🦖 (Total: 11)
+[2026-01-31 19:18:39] [DEBUG] ================================================================================
+[2026-01-31 19:18:39] [INFO] 📦 ➡️  Iniciando recolección de 1 supply drops...
+[2026-01-31 19:18:39] [DEBUG] ============================================================
+[2026-01-31 19:18:39] [DEBUG] 📦 [COLLECT SUPPLY] INICIANDO RECOLECCIÓN
+[2026-01-31 19:18:39] [DEBUG]    Posiciones recibidas: 1
+[2026-01-31 19:18:39] [DEBUG]    Posiciones: [[484, 55]]
+[2026-01-31 19:18:39] [DEBUG]    Supply counter actual: 3
+[2026-01-31 19:18:39] [DEBUG]    Supply counter incrementado a: 4
+[2026-01-31 19:18:39] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:18:39] [DEBUG] 📦 Procesando supply #1/1: posición (484, 55)
+[2026-01-31 19:18:39] [DEBUG]    🖱️  Clickeando en x=736, y=522
+[2026-01-31 19:18:40] [WARNING] ⏭️  Click en (484, 55) no abrió nada - Saltando objeto
+[2026-01-31 19:18:40] [INFO] 🦖 ➡️  Iniciando disparo a 10 dinosaurios...
+[2026-01-31 19:18:41] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:18:41] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:18:41] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:18:41] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:18:42] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 19:18:42] [INFO] 📝 [OCR] Texto: '(ALIZACIONDESUMINISTRO:'
+[2026-01-31 19:18:42] [INFO] 📝 [OCR] Combinado: ' (ALIZACIONDESUMINISTRO:'
+[2026-01-31 19:18:42] [DEBUG] ⏱️  [OCR] Cooldown: '\'
+[2026-01-31 19:18:42] [DEBUG]    📦 Palabras clave de SUPPLY detectadas (prioridad alta)
+[2026-01-31 19:18:42] [INFO] 🎁 Detectado SUPPLY en loop de dinos - Recolectando como supply...
+[2026-01-31 19:18:51] [INFO] ✅ SUPPLY recolectado desde loop de dinos
+[2026-01-31 19:18:52] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:18:52] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:18:52] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:18:52] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:18:54] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 19:18:54] [INFO] 📝 [OCR] Texto: 'EWVENTODEASALTO'
+[2026-01-31 19:18:54] [INFO] 📝 [OCR] Combinado: ' EWVENTODEASALTO'
+[2026-01-31 19:18:54] [WARNING] ⛔ [EXCLUIDO] Incubadora o evento de combate detectado
+[2026-01-31 19:18:56] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:18:56] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:18:56] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:18:56] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:18:57] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 19:18:57] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 19:18:57] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 19:18:57] [DEBUG] ⏱️  [OCR] Cooldown: '4)'
+[2026-01-31 19:18:57] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 19:18:57] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 19:19:06] [INFO] 🎯 [FASE 1] Intentando centrar dino (5s)...
+[2026-01-31 19:19:12] [WARNING] ⚠️  [FASE 1] No se centró en 5s - Pasando a FASE 2...
+[2026-01-31 19:19:12] [INFO] 🔋 [FASE 2] Disparando hasta agotar batería...
+[2026-01-31 19:19:12] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:19:12] [DEBUG]    💉 Disparo #1 en posición 1/6 (batería: 100.0%)
+[2026-01-31 19:19:13] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:19:13] [DEBUG]    💉 Disparo #2 en posición 2/6 (batería: 100.0%)
+[2026-01-31 19:19:14] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:19:14] [DEBUG]    💉 Disparo #3 en posición 3/6 (batería: 100.0%)
+[2026-01-31 19:19:16] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:19:16] [DEBUG]    💉 Disparo #4 en posición 4/6 (batería: 100.0%)
+[2026-01-31 19:19:17] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:19:17] [DEBUG]    💉 Disparo #5 en posición 5/6 (batería: 100.0%)
+[2026-01-31 19:19:18] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:19:18] [DEBUG]    💉 Disparo #6 en posición 6/6 (batería: 100.0%)
+[2026-01-31 19:19:19] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:19:19] [DEBUG]    💉 Disparo #7 en posición 1/6 (batería: 100.0%)
+[2026-01-31 19:19:20] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:19:20] [DEBUG]    💉 Disparo #8 en posición 2/6 (batería: 100.0%)
+[2026-01-31 19:19:21] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:19:21] [DEBUG]    💉 Disparo #9 en posición 3/6 (batería: 100.0%)
+[2026-01-31 19:19:22] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:19:22] [DEBUG]    💉 Disparo #10 en posición 4/6 (batería: 100.0%)
+[2026-01-31 19:19:24] [INFO] ✅ [FASE 2] Pantalla de carga detectada después de 10 disparos
+[2026-01-31 19:19:24] [INFO] ✅ [FASE 2] Disparos completados: 10 total
+[2026-01-31 19:19:57] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:19:57] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:19:57] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:19:57] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:19:59] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 19:19:59] [INFO] 📝 [OCR] Texto: '(ALIZACIONDESUMINISTROO'
+[2026-01-31 19:19:59] [INFO] 📝 [OCR] Combinado: ' (ALIZACIONDESUMINISTROO'
+[2026-01-31 19:19:59] [DEBUG] ⏱️  [OCR] Cooldown: '——_—7~—'
+[2026-01-31 19:19:59] [DEBUG]    📦 Palabras clave de SUPPLY detectadas (prioridad alta)
+[2026-01-31 19:19:59] [INFO] 🎁 Detectado SUPPLY en loop de dinos - Recolectando como supply...
+[2026-01-31 19:20:07] [INFO] ✅ SUPPLY recolectado desde loop de dinos
+[2026-01-31 19:20:08] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:20:08] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:20:08] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:20:08] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:20:10] [INFO] 📝 [OCR] Botón: 'LANZAR'
+[2026-01-31 19:20:10] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 19:20:10] [INFO] 📝 [OCR] Combinado: 'LANZAR '
+[2026-01-31 19:20:10] [DEBUG]    🦖 Palabras clave de DINO detectadas
+[2026-01-31 19:20:10] [INFO] ✅ [ESTADO DETECTADO] DINO
+[2026-01-31 19:20:19] [INFO] 🎯 [FASE 1] Intentando centrar dino (5s)...
+[2026-01-31 19:20:24] [WARNING] ⚠️  [FASE 1] No se centró en 5s - Pasando a FASE 2...
+[2026-01-31 19:20:24] [INFO] 🔋 [FASE 2] Disparando hasta agotar batería...
+[2026-01-31 19:20:25] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:25] [DEBUG]    💉 Disparo #1 en posición 1/6 (batería: 100.0%)
+[2026-01-31 19:20:26] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:26] [DEBUG]    💉 Disparo #2 en posición 2/6 (batería: 100.0%)
+[2026-01-31 19:20:27] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:27] [DEBUG]    💉 Disparo #3 en posición 3/6 (batería: 100.0%)
+[2026-01-31 19:20:28] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:28] [DEBUG]    💉 Disparo #4 en posición 4/6 (batería: 100.0%)
+[2026-01-31 19:20:29] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:29] [DEBUG]    💉 Disparo #5 en posición 5/6 (batería: 100.0%)
+[2026-01-31 19:20:30] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:30] [DEBUG]    💉 Disparo #6 en posición 6/6 (batería: 100.0%)
+[2026-01-31 19:20:31] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:31] [DEBUG]    💉 Disparo #7 en posición 1/6 (batería: 100.0%)
+[2026-01-31 19:20:33] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:33] [DEBUG]    💉 Disparo #8 en posición 2/6 (batería: 100.0%)
+[2026-01-31 19:20:34] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:34] [DEBUG]    💉 Disparo #9 en posición 3/6 (batería: 100.0%)
+[2026-01-31 19:20:35] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:35] [DEBUG]    💉 Disparo #10 en posición 4/6 (batería: 100.0%)
+[2026-01-31 19:20:36] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:36] [DEBUG]    💉 Disparo #11 en posición 5/6 (batería: 100.0%)
+[2026-01-31 19:20:37] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:37] [DEBUG]    💉 Disparo #12 en posición 6/6 (batería: 100.0%)
+[2026-01-31 19:20:38] [DEBUG]    🔋 Batería restante: 100.0%
+[2026-01-31 19:20:38] [DEBUG]    💉 Disparo #13 en posición 1/6 (batería: 100.0%)
+[2026-01-31 19:20:39] [INFO] ✅ [FASE 2] Pantalla de carga detectada después de 13 disparos
+[2026-01-31 19:20:39] [INFO] ✅ [FASE 2] Disparos completados: 13 total
+[2026-01-31 19:21:13] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:21:13] [INFO] ================================================================================
+[2026-01-31 19:21:13] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:21:13] [INFO] ================================================================================
+[2026-01-31 19:21:13] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:21:13] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:21:13] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:21:13] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:21:13] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:21:13] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:21:13] [DEBUG]    🎨 Píxeles detectados inicialmente: 1489
+[2026-01-31 19:21:13] [DEBUG]    🔢 Componentes detectados: 18
+[2026-01-31 19:21:13] [DEBUG]    ✅ Supply drop #2: 163 píxeles en posición (284, 66)
+[2026-01-31 19:21:13] [DEBUG]    ✅ Supply drop #17: 1296 píxeles en posición (421, 331)
+[2026-01-31 19:21:13] [DEBUG]    ✅ Supply drop #18: 221 píxeles en posición (483, 54)
+[2026-01-31 19:21:13] [DEBUG] 🎯 [SUPPLY DROP] About to save screenshot: len(pos)=3, counter=4
+[2026-01-31 19:21:13] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=supply, n=3, counter=4
+[2026-01-31 19:21:13] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/supplies/supply_20260131_192113_004_n3.png
+[2026-01-31 19:21:13] [INFO] 🟠 [SUPPLY DROP] Detectados 3 supply drops: [[284, 66], [421, 331], [483, 54]]
+[2026-01-31 19:21:13] [DEBUG] 📦 Supplies detectados (raw): 3 posiciones [[284, 66], [421, 331], [483, 54]]
+[2026-01-31 19:21:13] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:21:13] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=9, counter=12
+[2026-01-31 19:21:13] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_192113_012_n9.png
+[2026-01-31 19:21:13] [DEBUG] 🦖 Dinos detectados (raw): 9 posiciones
+[2026-01-31 19:21:13] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:21:13] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:21:13] [DEBUG]    📦 Supplies válidos después de filtro: 3/3
+[2026-01-31 19:21:13] [DEBUG]    🦖 Dinos válidos después de filtro: 9/9
+[2026-01-31 19:21:13] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:21:13] [INFO] 📊 RESULTADO FINAL: 0🪙 3📦 9🦖 (Total: 12)
+[2026-01-31 19:21:13] [DEBUG] ================================================================================
+[2026-01-31 19:21:13] [INFO] 📦 ➡️  Iniciando recolección de 3 supply drops...
+[2026-01-31 19:21:13] [DEBUG] ============================================================
+[2026-01-31 19:21:13] [DEBUG] 📦 [COLLECT SUPPLY] INICIANDO RECOLECCIÓN
+[2026-01-31 19:21:13] [DEBUG]    Posiciones recibidas: 3
+[2026-01-31 19:21:13] [DEBUG]    Posiciones: [[284, 66], [421, 331], [483, 54]]
+[2026-01-31 19:21:13] [DEBUG]    Supply counter actual: 4
+[2026-01-31 19:21:13] [DEBUG]    Supply counter incrementado a: 5
+[2026-01-31 19:21:13] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:21:13] [DEBUG] 📦 Procesando supply #1/3: posición (284, 66)
+[2026-01-31 19:21:13] [DEBUG]    🖱️  Clickeando en x=747, y=322
+[2026-01-31 19:21:14] [DEBUG]    ✅ Pantalla cambió - algo se abrió
+[2026-01-31 19:21:16] [DEBUG]    📸 Guardando regiones OCR para debug...
+[2026-01-31 19:21:16] [DEBUG]    🔍 Determinando estado con OCR...
+[2026-01-31 19:21:16] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:21:16] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:21:16] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:21:16] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:21:17] [INFO] 📝 [OCR] Botón: 'PALAGUUGOLDAUL—_—'
+[2026-01-31 19:21:17] [INFO] 📝 [OCR] Texto: '(ALIZACIONDESUMINISTRO:'
+[2026-01-31 19:21:17] [INFO] 📝 [OCR] Combinado: 'PALAGUUGOLDAUL—_— (ALIZACIONDESUMINISTRO:'
+[2026-01-31 19:21:17] [DEBUG]    📦 Palabras clave de SUPPLY detectadas (prioridad alta)
+[2026-01-31 19:21:17] [DEBUG]    📝 Estado determinado: 'supply'
+[2026-01-31 19:21:17] [DEBUG] 🔍 Evaluando force-supply: filtered_positions=True, state='supply'
+[2026-01-31 19:21:17] [DEBUG] 🔍 Valor de state antes del if: 'supply' (type: <class 'str'>)
+[2026-01-31 19:21:17] [DEBUG] 🔍 Evaluando: state == 'supply' → True
+[2026-01-31 19:21:17] [DEBUG] 🔍 Evaluando: state == 'event' → False
+[2026-01-31 19:21:17] [INFO] 🎁 Recolectando SUPPLY...
+[2026-01-31 19:21:21] [DEBUG]    Click recolección 1/3
+[2026-01-31 19:21:23] [DEBUG]    Click recolección 2/3
+[2026-01-31 19:21:25] [DEBUG]    Click recolección 3/3
+[2026-01-31 19:21:25] [DEBUG]    Supply aún abierto, buscando botón para cerrar...
+[2026-01-31 19:21:26] [INFO] ✅ SUPPLY procesado
+[2026-01-31 19:21:26] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:21:26] [DEBUG] 📦 Procesando supply #2/3: posición (421, 331)
+[2026-01-31 19:21:26] [DEBUG]    🖱️  Clickeando en x=1012, y=459
+[2026-01-31 19:21:27] [DEBUG]    ✅ Pantalla cambió - algo se abrió
+[2026-01-31 19:21:28] [DEBUG]    📸 Guardando regiones OCR para debug...
+[2026-01-31 19:21:28] [DEBUG]    🔍 Determinando estado con OCR...
+[2026-01-31 19:21:28] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:21:28] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:21:28] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:21:28] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:21:30] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 19:21:30] [INFO] 📝 [OCR] Texto: 'EVENTOESPECIALTOARMINAEN:1D12H'
+[2026-01-31 19:21:30] [INFO] 📝 [OCR] Combinado: ' EVENTOESPECIALTOARMINAEN:1D12H'
+[2026-01-31 19:21:30] [DEBUG]    � Evento especial detectado
+[2026-01-31 19:21:30] [INFO] ✅ [ESTADO DETECTADO] EVENT
+[2026-01-31 19:21:30] [DEBUG]    📝 Estado determinado: 'event'
+[2026-01-31 19:21:30] [DEBUG] 🔍 Evaluando force-supply: filtered_positions=True, state='event'
+[2026-01-31 19:21:30] [DEBUG] 🔍 Valor de state antes del if: 'event' (type: <class 'str'>)
+[2026-01-31 19:21:30] [DEBUG] 🔍 Evaluando: state == 'supply' → False
+[2026-01-31 19:21:30] [DEBUG] 🔍 Evaluando: state == 'event' → True
+[2026-01-31 19:21:30] [INFO] 🎁 Recolectando EVENT...
+[2026-01-31 19:21:34] [DEBUG]    Click recolección 1/3
+[2026-01-31 19:21:36] [DEBUG]    Click recolección 2/3
+[2026-01-31 19:21:37] [DEBUG]    Click recolección 3/3
+[2026-01-31 19:21:37] [DEBUG]    Supply aún abierto, buscando botón para cerrar...
+[2026-01-31 19:21:38] [INFO] ✅ EVENT procesado
+[2026-01-31 19:21:38] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:21:38] [DEBUG] 📦 Procesando supply #3/3: posición (483, 54)
+[2026-01-31 19:21:39] [DEBUG]    🖱️  Clickeando en x=735, y=521
+[2026-01-31 19:21:40] [WARNING] ⏭️  Click en (483, 54) no abrió nada - Saltando objeto
+[2026-01-31 19:21:40] [INFO] 🦖 ➡️  Iniciando disparo a 9 dinosaurios...
+[2026-01-31 19:21:41] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:21:41] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:21:41] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:21:41] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:21:42] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 19:21:42] [INFO] 📝 [OCR] Texto: ''
+[2026-01-31 19:21:42] [INFO] 📝 [OCR] Combinado: ' '
+[2026-01-31 19:21:42] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 19:21:42] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 19:21:45] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:21:45] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:21:45] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:21:45] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:21:46] [INFO] 📝 [OCR] Botón: 'ENTRAR'
+[2026-01-31 19:21:46] [INFO] 📝 [OCR] Texto: 'SANTUARIO'
+[2026-01-31 19:21:46] [INFO] 📝 [OCR] Combinado: 'ENTRAR SANTUARIO'
+[2026-01-31 19:21:46] [DEBUG] ⏱️  [OCR] Cooldown: '—A___MEJORESCRIATURAS:FETECANTUARIOESTAVAR'
+[2026-01-31 19:21:46] [WARNING] ⛔ [EXCLUIDO] Santuario detectado
+[2026-01-31 19:21:49] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:21:49] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:21:49] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:21:49] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:21:51] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 19:21:51] [INFO] 📝 [OCR] Texto: '(ALIZACIONDESUMINISTRO'
+[2026-01-31 19:21:51] [INFO] 📝 [OCR] Combinado: ' (ALIZACIONDESUMINISTRO'
+[2026-01-31 19:21:51] [DEBUG]    📦 Palabras clave de SUPPLY detectadas (prioridad alta)
+[2026-01-31 19:21:51] [INFO] 🎁 Detectado SUPPLY en loop de dinos - Recolectando como supply...
+[2026-01-31 19:21:59] [INFO] ✅ SUPPLY recolectado desde loop de dinos
+[2026-01-31 19:22:00] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:22:00] [INFO] ================================================================================
+[2026-01-31 19:22:00] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:22:00] [INFO] ================================================================================
+[2026-01-31 19:22:00] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:22:00] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:00] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:22:00] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:22:00] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:22:00] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:22:00] [DEBUG]    🎨 Píxeles detectados inicialmente: 373
+[2026-01-31 19:22:00] [DEBUG]    🔢 Componentes detectados: 17
+[2026-01-31 19:22:00] [DEBUG]    ✅ Supply drop #2: 72 píxeles en posición (304, 312)
+[2026-01-31 19:22:00] [DEBUG]    ✅ Supply drop #17: 232 píxeles en posición (484, 55)
+[2026-01-31 19:22:00] [DEBUG] 🎯 [SUPPLY DROP] About to save screenshot: len(pos)=2, counter=5
+[2026-01-31 19:22:00] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=supply, n=2, counter=5
+[2026-01-31 19:22:00] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/supplies/supply_20260131_192200_005_n2.png
+[2026-01-31 19:22:00] [INFO] 🟠 [SUPPLY DROP] Detectados 2 supply drops: [[304, 312], [484, 55]]
+[2026-01-31 19:22:00] [DEBUG] 📦 Supplies detectados (raw): 2 posiciones [[304, 312], [484, 55]]
+[2026-01-31 19:22:00] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:00] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=7, counter=13
+[2026-01-31 19:22:00] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_192200_013_n7.png
+[2026-01-31 19:22:00] [DEBUG] 🦖 Dinos detectados (raw): 7 posiciones
+[2026-01-31 19:22:00] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:00] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:22:00] [DEBUG]    📦 Supplies válidos después de filtro: 2/2
+[2026-01-31 19:22:00] [DEBUG]    🦖 Dinos válidos después de filtro: 7/7
+[2026-01-31 19:22:00] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:00] [INFO] 📊 RESULTADO FINAL: 0🪙 2📦 7🦖 (Total: 9)
+[2026-01-31 19:22:00] [DEBUG] ================================================================================
+[2026-01-31 19:22:00] [INFO] 📦 ➡️  Iniciando recolección de 2 supply drops...
+[2026-01-31 19:22:00] [DEBUG] ============================================================
+[2026-01-31 19:22:00] [DEBUG] 📦 [COLLECT SUPPLY] INICIANDO RECOLECCIÓN
+[2026-01-31 19:22:00] [DEBUG]    Posiciones recibidas: 2
+[2026-01-31 19:22:00] [DEBUG]    Posiciones: [[304, 312], [484, 55]]
+[2026-01-31 19:22:00] [DEBUG]    Supply counter actual: 5
+[2026-01-31 19:22:00] [DEBUG]    Supply counter incrementado a: 6
+[2026-01-31 19:22:00] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:00] [DEBUG] 📦 Procesando supply #1/2: posición (304, 312)
+[2026-01-31 19:22:00] [DEBUG]    🖱️  Clickeando en x=993, y=342
+[2026-01-31 19:22:01] [WARNING] ⏭️  Click en (304, 312) no abrió nada - Saltando objeto
+[2026-01-31 19:22:01] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:01] [DEBUG] 📦 Procesando supply #2/2: posición (484, 55)
+[2026-01-31 19:22:01] [DEBUG]    🖱️  Clickeando en x=736, y=522
+[2026-01-31 19:22:02] [WARNING] ⏭️  Click en (484, 55) no abrió nada - Saltando objeto
+[2026-01-31 19:22:02] [INFO] 🦖 ➡️  Iniciando disparo a 7 dinosaurios...
+[2026-01-31 19:22:04] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:22:04] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:22:04] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:22:04] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:22:05] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 19:22:05] [INFO] 📝 [OCR] Texto: '(ALIZACIONDESUMINISTRO:'
+[2026-01-31 19:22:05] [INFO] 📝 [OCR] Combinado: ' (ALIZACIONDESUMINISTRO:'
+[2026-01-31 19:22:05] [DEBUG]    📦 Palabras clave de SUPPLY detectadas (prioridad alta)
+[2026-01-31 19:22:05] [INFO] 🎁 Detectado SUPPLY en loop de dinos - Recolectando como supply...
+[2026-01-31 19:22:14] [INFO] ✅ SUPPLY recolectado desde loop de dinos
+[2026-01-31 19:22:15] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:22:15] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:22:15] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:22:15] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:22:16] [INFO] 📝 [OCR] Botón: 'ENTRAR'
+[2026-01-31 19:22:16] [INFO] 📝 [OCR] Texto: 'SANTUARIO'
+[2026-01-31 19:22:16] [INFO] 📝 [OCR] Combinado: 'ENTRAR SANTUARIO'
+[2026-01-31 19:22:16] [DEBUG] ⏱️  [OCR] Cooldown: '—A___MEJORESCRIATURAS:FETECANTUARIOESTAVAR'
+[2026-01-31 19:22:16] [WARNING] ⛔ [EXCLUIDO] Santuario detectado
+[2026-01-31 19:22:20] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:22:20] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:22:20] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:22:20] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:22:21] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 19:22:21] [INFO] 📝 [OCR] Texto: '(ALIZACIONDESUAMINISTRO:'
+[2026-01-31 19:22:21] [INFO] 📝 [OCR] Combinado: ' (ALIZACIONDESUAMINISTRO:'
+[2026-01-31 19:22:21] [WARNING] ❌ [ESTADO DETECTADO] NO IDENTIFICADO - OCR puede haber fallado
+[2026-01-31 19:22:21] [WARNING]    💡 Considera activar debug visual para ver qué captura el OCR
+[2026-01-31 19:22:22] [INFO] 🔄 ➡️  Revisando misma zona de nuevo para detectar objetos restantes...
+[2026-01-31 19:22:22] [INFO] ================================================================================
+[2026-01-31 19:22:22] [INFO] 🔍 ESCANEANDO MAPA - Ciclo de detección
+[2026-01-31 19:22:22] [INFO] ================================================================================
+[2026-01-31 19:22:22] [DEBUG] 🪙 Coins: Deshabilitadas temporalmente
+[2026-01-31 19:22:22] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:22] [DEBUG] 🔍 Buscando supply drops...
+[2026-01-31 19:22:22] [DEBUG]    📊 Supply color range: R[220-255] G[100-180] B[0-40]
+[2026-01-31 19:22:22] [DEBUG]    📊 Event color range: R[5-50] G[190-245] B[0-40]
+[2026-01-31 19:22:22] [DEBUG]    📐 Zona analizada: (491, 501, 3)
+[2026-01-31 19:22:22] [DEBUG]    🎨 Píxeles detectados inicialmente: 377
+[2026-01-31 19:22:22] [DEBUG]    🔢 Componentes detectados: 16
+[2026-01-31 19:22:22] [DEBUG]    ✅ Supply drop #2: 72 píxeles en posición (302, 312)
+[2026-01-31 19:22:22] [DEBUG]    ✅ Supply drop #16: 244 píxeles en posición (483, 55)
+[2026-01-31 19:22:22] [DEBUG] 🎯 [SUPPLY DROP] About to save screenshot: len(pos)=2, counter=6
+[2026-01-31 19:22:22] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=supply, n=2, counter=6
+[2026-01-31 19:22:22] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/supplies/supply_20260131_192222_006_n2.png
+[2026-01-31 19:22:22] [INFO] 🟠 [SUPPLY DROP] Detectados 2 supply drops: [[302, 312], [483, 55]]
+[2026-01-31 19:22:22] [DEBUG] 📦 Supplies detectados (raw): 2 posiciones [[302, 312], [483, 55]]
+[2026-01-31 19:22:22] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:22] [DEBUG] 📸 [DEBUG SCREENSHOT] Iniciando guardado: type=dino, n=9, counter=14
+[2026-01-31 19:22:22] [DEBUG] ✅ [DEBUG SCREENSHOT] Guardado exitoso: debug_screenshots/dinos/dino_20260131_192222_014_n9.png
+[2026-01-31 19:22:22] [DEBUG] 🦖 Dinos detectados (raw): 9 posiciones
+[2026-01-31 19:22:22] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:22] [DEBUG] 🚧 FILTRANDO POR ZONAS EXCLUIDAS...
+[2026-01-31 19:22:22] [DEBUG]    📦 Supplies válidos después de filtro: 2/2
+[2026-01-31 19:22:22] [DEBUG]    🦖 Dinos válidos después de filtro: 9/9
+[2026-01-31 19:22:22] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:22] [INFO] 📊 RESULTADO FINAL: 0🪙 2📦 9🦖 (Total: 11)
+[2026-01-31 19:22:22] [DEBUG] ================================================================================
+[2026-01-31 19:22:22] [INFO] 📦 ➡️  Iniciando recolección de 2 supply drops...
+[2026-01-31 19:22:22] [DEBUG] ============================================================
+[2026-01-31 19:22:22] [DEBUG] 📦 [COLLECT SUPPLY] INICIANDO RECOLECCIÓN
+[2026-01-31 19:22:22] [DEBUG]    Posiciones recibidas: 2
+[2026-01-31 19:22:22] [DEBUG]    Posiciones: [[302, 312], [483, 55]]
+[2026-01-31 19:22:22] [DEBUG]    Supply counter actual: 6
+[2026-01-31 19:22:22] [DEBUG]    Supply counter incrementado a: 7
+[2026-01-31 19:22:22] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:22] [DEBUG] 📦 Procesando supply #1/2: posición (302, 312)
+[2026-01-31 19:22:23] [DEBUG]    🖱️  Clickeando en x=993, y=340
+[2026-01-31 19:22:24] [WARNING] ⏭️  Click en (302, 312) no abrió nada - Saltando objeto
+[2026-01-31 19:22:24] [DEBUG] ------------------------------------------------------------
+[2026-01-31 19:22:24] [DEBUG] 📦 Procesando supply #2/2: posición (483, 55)
+[2026-01-31 19:22:24] [DEBUG]    🖱️  Clickeando en x=736, y=521
+[2026-01-31 19:22:25] [WARNING] ⏭️  Click en (483, 55) no abrió nada - Saltando objeto
+[2026-01-31 19:22:25] [INFO] 🦖 ➡️  Iniciando disparo a 9 dinosaurios...
+[2026-01-31 19:22:26] [DEBUG] 🔍 Determinando estado del objeto...
+[2026-01-31 19:22:26] [DEBUG]    📐 Área botón lanzar: (76, 222, 3)
+[2026-01-31 19:22:26] [DEBUG]    📐 Área texto supply: (101, 361, 3)
+[2026-01-31 19:22:26] [DEBUG]    📐 Área cooldown: (158, 222, 3)
+[2026-01-31 19:22:27] [INFO] 📝 [OCR] Botón: ''
+[2026-01-31 19:22:27] [INFO] 📝 [OCR] Texto: '(ALIZACIONDESUMINISTRO:'
+[2026-01-31 19:22:27] [INFO] 📝 [OCR] Combinado: ' (ALIZACIONDESUMINISTRO:'
+[2026-01-31 19:22:27] [DEBUG]    📦 Palabras clave de SUPPLY detectadas (prioridad alta)
+[2026-01-31 19:22:27] [INFO] 🎁 Detectado SUPPLY en loop de dinos - Recolectando como supply...
+[2026-01-31 19:22:36] [INFO] ✅ SUPPLY recolectado desde loop de dinos
+[2026-01-31 19:22:36] [INFO] ================================================================================
+[2026-01-31 19:22:36] [INFO] ⛔ BOT DETENIDO POR USUARIO (Ctrl+C o 'q')
+[2026-01-31 19:22:36] [INFO] ================================================================================
+[2026-01-31 19:22:36] [INFO] 📊 RESUMEN DE RECURSOS COLECTADOS:
+[2026-01-31 19:22:36] [INFO] --------------------------------------------------------------------------------
+[2026-01-31 19:22:36] [INFO] 📦 SUMINISTROS: Ninguno
+[2026-01-31 19:22:36] [INFO] 🦖 DINOSAURIOS: Ninguno
+[2026-01-31 19:22:36] [INFO] ================================================================================
+[2026-01-31 19:22:36] [INFO] ✅ Sesión finalizada. Log guardado en carpeta 'logs/'
+[2026-01-31 19:22:36] [INFO] ================================================================================
