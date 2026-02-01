@@ -108,23 +108,15 @@ if __name__ == "__main__":
                     raise KeyboardInterrupt
 
                 # ⚡ v3.4.8.9.15: VERIFICACIÓN DE SALIDA AL INICIO DE CADA CICLO
-                # Evita quedarse atorado en pantallas de dardeo
-                logger.debug("🔍 Verificando si está atorado en pantalla de dardeo...")
+                # Solo busca botón X (universal), NO el ícono de dardeo (puede confundirse con mapa)
+                logger.debug("🔍 Verificando si está atorado en pantalla inesperada...")
                 screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
                 
-                # Buscar botón X primero (más común)
+                # Buscar botón X (aparece en muchas pantallas: supplies, coins, ofertas, etc)
                 pos_x = bot.locate_x_button(screenshot)
                 if pos_x:
                     logger.warning("⚠️  Botón X detectado - Saliendo de pantalla inesperada")
                     pyautogui.click(x=bot.x+pos_x[1], y=bot.y+pos_x[0])
-                    time.sleep(1.5)
-                    screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
-                
-                # Buscar ícono de salida del dardeo
-                exit_button = bot.locate_dino_exit_button(screenshot)
-                if exit_button:
-                    logger.warning("⚠️  Ícono de salida de dardeo detectado - Saliendo")
-                    pyautogui.click(x=bot.x+exit_button[1], y=bot.y+exit_button[0])
                     time.sleep(1.5)
                     screenshot = np.array(pyautogui.screenshot(region=(bot.x, bot.y, bot.w, bot.h)))
                 
